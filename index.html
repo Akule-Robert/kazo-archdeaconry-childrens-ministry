@@ -17,7 +17,7 @@
   <nav class="navbar">
     <div class="container">
       <a href="index.html" class="nav-logo">
-        <span class="logo-icon">✝</span>
+        <span class="logo-icon"><i class="fas fa-cross"></i></span>
         <span>Kazo Archdeaconry Children's Ministry</span>
       </a>
       <ul class="nav-links">
@@ -35,7 +35,7 @@
   </nav>
 
   <!-- ===== HERO SECTION ===== -->
-  <header class="hero">
+  <header class="hero" style="background: linear-gradient(135deg, rgba(69,32,107,0.88), rgba(91,45,142,0.85)), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;">
     <div class="container">
       <h1>Welcome to Kazo Archdeaconry Children's Ministry</h1>
       <p class="hero-subtitle">Nurturing Every Child in the Love of Christ — Kazo Archdeaconry, Uganda</p>
@@ -56,7 +56,7 @@
         <h2>About KACM</h2>
       </div>
       <p class="page-intro fade-in">
-        Kazo Archdeaconry Children's Ministry (KACM) is a ministry of the Church of Uganda under the Namirembe Diocese, headquartered at Kazo, Kiruhura District. We exist to nurture every child in the love of Christ, equip families with tools of faith, and ensure that no child is left behind due to poverty, neglect, or lack of opportunity. Every day, children across the Kazo Archdeaconry face the risk of school dropout, malnutrition, violence, and spiritual emptiness — KACM stands in the gap.
+        Kazo Archdeaconry Children's Ministry (KACM) is a ministry of the Church of Uganda under the Namirembe Diocese, headquartered at St. Luke Church, Lugoba Road, Kazo - Kawempe, Kampala. We exist to nurture every child in the love of Christ, equip families with tools of faith, and ensure that no child is left behind due to poverty, neglect, or lack of opportunity. Every day, children across the Kazo Archdeaconry face the risk of school dropout, malnutrition, violence, and spiritual emptiness — KACM stands in the gap.
       </p>
       <div style="text-align:center; margin-top:24px;" class="fade-in">
         <a href="about.html" class="btn btn-outline-dark">Learn More About Us</a>
@@ -73,7 +73,7 @@
           <div class="label">Children Served</div>
         </div>
         <div class="impact-item fade-in">
-          <div class="count" data-target="12" data-suffix="+">0+</div>
+          <div class="count" data-target="6" data-suffix="+">0+</div>
           <div class="label">Parishes Covered</div>
         </div>
         <div class="impact-item fade-in">
@@ -88,8 +88,44 @@
     </div>
   </section>
 
-  <!-- ===== WHAT WE DO ===== -->
+  <!-- ===== PROGRAM HIGHLIGHTS (3-Card Grid) ===== -->
   <section class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Our Program Areas</h2>
+        <p>Three pillars through which we reach every child across the Archdeaconry</p>
+      </div>
+      <div class="card-grid-3">
+        <div class="program-card fade-in" style="background: linear-gradient(180deg, rgba(91,45,142,0.15) 0%, rgba(26,26,46,0.85) 100%), url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80') center/cover no-repeat;">
+          <div class="program-card-badge"><i class="fas fa-futbol"></i></div>
+          <div class="program-card-content">
+            <h3>Sports Ministry</h3>
+            <p>We share the Gospel through football, netball, and athletics — building character and faith in every child.</p>
+            <a href="#" data-program="sports" class="program-learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="program-card fade-in" style="background: linear-gradient(180deg, rgba(201,168,76,0.2) 0%, rgba(26,26,46,0.85) 100%), url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=600&q=80') center/cover no-repeat;">
+          <div class="program-card-badge"><i class="fas fa-music"></i></div>
+          <div class="program-card-content">
+            <h3>Arts & Expression</h3>
+            <p>Children express their faith through music, drama, dance and poetry — developing confidence and talent for God.</p>
+            <a href="#" data-program="mddp" class="program-learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="program-card fade-in" style="background: linear-gradient(180deg, rgba(91,45,142,0.2) 0%, rgba(26,26,46,0.85) 100%), url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=600&q=80') center/cover no-repeat;">
+          <div class="program-card-badge"><i class="fas fa-handshake"></i></div>
+          <div class="program-card-content">
+            <h3>Community Outreach</h3>
+            <p>We bring food, healthcare, education, and the Gospel to the most vulnerable families across the Archdeaconry.</p>
+            <a href="#" data-program="outreach" class="program-learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT WE DO (7 Activities) ===== -->
+  <section class="section-alt">
     <div class="container">
       <div class="section-header fade-in">
         <h2>What We Do</h2>
@@ -97,163 +133,150 @@
       <div class="scripture-block fade-in" style="margin:0 auto 32px; text-align:center; border-left:none; max-width:700px;">
         "Start children off on the way they should go, and even when they are old they will not turn from it." — Proverbs 22:6
       </div>
-      <div style="display:flex; flex-direction:column; gap:24px;">
+      <div class="scroll-track">
+        <div class="scroll-strip">
 
-        <div class="activity-card fade-in">
-          <div class="activity-icon">🙏</div>
-          <div class="activity-content">
-            <h3>1. Prayer and Fellowship</h3>
-            <p>At the heart of KACM is prayer. Children are taught how to pray — both individually and corporately — and how to build meaningful, Christ-centred friendships with their peers. Regular prayer groups, devotions, and Sunday school fellowships create a community of faith where children feel safe, loved, and spiritually nourished.</p>
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('https://images.unsplash.com/photo-1473177104440-fbb6db3e0c08?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;">
+            <div class="wwd-badge"><i class="fas fa-pray"></i></div>
+            <h4>Prayer & Fellowship</h4>
+            <p>Teaching children to pray and build Christ-centred friendships.</p>
           </div>
-        </div>
 
-        <div class="activity-card fade-in">
-          <div class="activity-icon">🌟</div>
-          <div class="activity-content">
-            <h3>2. Life Skills and Character Building</h3>
-            <p>KACM designs lessons that go beyond academics to shape the values and character of every child. Through interactive activities, play, drawing, storytelling, and group discussions, children are taught respect, obedience, kindness, integrity, and responsibility — qualities that form the foundation of a Godly life and a productive citizen.</p>
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('https://images.unsplash.com/photo-1497633762265-9d769a7919a6?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;">
+            <div class="wwd-badge"><i class="fas fa-star"></i></div>
+            <h4>Life Skills</h4>
+            <p>Building character through interactive activities and group discussions.</p>
           </div>
-        </div>
 
-        <div class="activity-card fade-in">
-          <div class="activity-icon">🗣️</div>
-          <div class="activity-content">
-            <h3>3. Language Integration</h3>
-            <p>KACM is committed to reaching every child in a language they understand. While some churches teach in English, many of our programmes utilise national languages — particularly Luganda and Runyakitara — using carefully translated materials to ensure the Gospel and life lessons reach every child effectively, regardless of their language background.</p>
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;">
+            <div class="wwd-badge"><i class="fas fa-language"></i></div>
+            <h4>Language Integration</h4>
+            <p>Reaching every child in English, Luganda, and Runyakitara.</p>
           </div>
-        </div>
 
-        <div class="activity-card fade-in">
-          <div class="activity-icon">🎁</div>
-          <div class="activity-content">
-            <h3>4. Offertory and Giving</h3>
-            <p>Children at KACM are encouraged to bring a small offering to church, teaching them from an early age the biblical principle of generosity. Through this practice, children learn the importance of giving, supporting the work of the Church, and trusting God as their provider.</p>
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(201,168,76,0.35) 0%, rgba(26,26,46,0.92) 100%), url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;">
+            <div class="wwd-badge"><i class="fas fa-gift"></i></div>
+            <h4>Offertory & Giving</h4>
+            <p>Teaching children the biblical principle of generosity.</p>
           </div>
-        </div>
 
-        <div class="activity-card fade-in">
-          <div class="activity-icon">🎉</div>
-          <div class="activity-content">
-            <h3>5. Children's Sundays</h3>
-            <p>Once a month, or at least once per quarter, churches within the Kazo Archdeaconry dedicate an entire Sunday service to the children. On these special days, the youth fully lead the service — including praise, worship, scripture reading, and prayer. Children's Sundays are a powerful celebration of the faith and gifts of the next generation.</p>
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;">
+            <div class="wwd-badge"><i class="fas fa-calendar-check"></i></div>
+            <h4>Children's Sundays</h4>
+            <p>Monthly youth-led services celebrating the next generation.</p>
           </div>
-        </div>
 
-        <div class="activity-card fade-in">
-          <div class="activity-icon">💙</div>
-          <div class="activity-content">
-            <h3>6. Child Psychosocial and Legal Support</h3>
-            <div class="scripture-block" style="margin:8px 0 16px;">"He heals the brokenhearted and binds up their wounds." — Psalm 147:3</div>
-            <p>KACM provides psychosocial and legal support to child survivors of violence, abuse, and exploitation. Our goal is to mitigate the long-term impact of trauma, restore dignity, and improve access to health and justice services for affected children.</p>
-            <ul style="margin-top:12px;">
-              <li style="padding:6px 0; padding-left:20px; position:relative; font-size:15px;"><span style="position:absolute; left:0; color:var(--secondary);">•</span> Counselling services delivered in partnership with CBOs and trained community volunteers</li>
-              <li style="padding:6px 0; padding-left:20px; position:relative; font-size:15px;"><span style="position:absolute; left:0; color:var(--secondary);">•</span> Rehabilitation support for children who have experienced rights abuse</li>
-              <li style="padding:6px 0; padding-left:20px; position:relative; font-size:15px;"><span style="position:absolute; left:0; color:var(--secondary);">•</span> Referral pathways to health services, legal aid, and safe shelter</li>
-              <li style="padding:6px 0; padding-left:20px; position:relative; font-size:15px;"><span style="position:absolute; left:0; color:var(--secondary);">•</span> Family sensitisation and community awareness to prevent future violence</li>
-            </ul>
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;">
+            <div class="wwd-badge"><i class="fas fa-heart"></i></div>
+            <h4>Psychosocial Support</h4>
+            <p>Counselling and legal support for child survivors of violence.</p>
           </div>
-        </div>
 
-        <div class="activity-card fade-in">
-          <div class="activity-icon">⚖️</div>
-          <div class="activity-content">
-            <h3>7. Child Rights Advocacy</h3>
-            <p>KACM actively advocates for the rights and welfare of children within the legal and policy frameworks of Uganda. We engage with local government, community leaders, and church authorities to promote child-friendly laws, policies, and practices — and to hold accountable those who violate the rights of children.</p>
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;">
+            <div class="wwd-badge"><i class="fas fa-balance-scale"></i></div>
+            <h4>Child Rights Advocacy</h4>
+            <p>Promoting child-friendly laws across the Archdeaconry.</p>
           </div>
-        </div>
 
+          <!-- Duplicates for seamless loop -->
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('https://images.unsplash.com/photo-1473177104440-fbb6db3e0c08?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;">
+            <div class="wwd-badge"><i class="fas fa-pray"></i></div>
+            <h4>Prayer & Fellowship</h4>
+            <p>Teaching children to pray and build Christ-centred friendships.</p>
+          </div>
+
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('https://images.unsplash.com/photo-1497633762265-9d769a7919a6?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;">
+            <div class="wwd-badge"><i class="fas fa-star"></i></div>
+            <h4>Life Skills</h4>
+            <p>Building character through interactive activities and group discussions.</p>
+          </div>
+
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;">
+            <div class="wwd-badge"><i class="fas fa-language"></i></div>
+            <h4>Language Integration</h4>
+            <p>Reaching every child in English, Luganda, and Runyakitara.</p>
+          </div>
+
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(201,168,76,0.35) 0%, rgba(26,26,46,0.92) 100%), url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;">
+            <div class="wwd-badge"><i class="fas fa-gift"></i></div>
+            <h4>Offertory & Giving</h4>
+            <p>Teaching children the biblical principle of generosity.</p>
+          </div>
+
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;">
+            <div class="wwd-badge"><i class="fas fa-calendar-check"></i></div>
+            <h4>Children's Sundays</h4>
+            <p>Monthly youth-led services celebrating the next generation.</p>
+          </div>
+
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;">
+            <div class="wwd-badge"><i class="fas fa-heart"></i></div>
+            <h4>Psychosocial Support</h4>
+            <p>Counselling and legal support for child survivors of violence.</p>
+          </div>
+
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;">
+            <div class="wwd-badge"><i class="fas fa-balance-scale"></i></div>
+            <h4>Child Rights Advocacy</h4>
+            <p>Promoting child-friendly laws across the Archdeaconry.</p>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== PROGRAM AREAS ===== -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header fade-in">
-        <h2>Our Program Areas</h2>
-      </div>
-      <div class="scripture-block fade-in" style="margin:0 auto 32px; text-align:center; border-left:none; max-width:700px;">
-        "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters." — Colossians 3:23
-      </div>
-
-      <div class="program-section fade-in">
-        <div class="program-image">⚽</div>
-        <div class="program-details">
-          <h2>Sports Ministry</h2>
-          <p>At KACM, we believe that sport is a powerful tool for sharing the Gospel. Through football, netball, athletics, and other sports activities, we create safe spaces where children and youth engage in healthy competition while learning values of teamwork, discipline, and respect — all rooted in the teachings of Christ.</p>
-          <h4 style="margin-top:20px;">Key Activities</h4>
-          <ul>
-            <li>Regular sports events organised across parishes in Kazo Archdeaconry</li>
-            <li>Sports tournaments used as platforms for Gospel outreach and evangelism</li>
-            <li>Children coached by trained volunteers who integrate Biblical teachings</li>
-            <li>Inter-parish sports competitions to promote unity across the Archdeaconry</li>
-          </ul>
-        </div>
-      </div>
+  <!-- ===== PROGRAM DETAIL MODAL ===== -->
+  <div class="modal-overlay" id="program-modal">
+    <div class="modal-dialog" style="max-width:700px;">
+      <button class="modal-close" id="program-modal-close">&times;</button>
+      <img src="" alt="" id="program-modal-img" style="width:100%; height:250px; object-fit:cover; border-radius:var(--radius-md); margin-bottom:20px;">
+      <h2 id="program-modal-title"></h2>
+      <p id="program-modal-desc" style="margin-bottom:16px; color:var(--text-dark);"></p>
+      <h4 style="margin-bottom:8px;">Key Activities</h4>
+      <ul id="program-modal-list" style="padding-left:0;"></ul>
     </div>
-  </section>
-
-  <section class="section-alt">
-    <div class="container">
-      <div class="program-section fade-in">
-        <div class="program-details">
-          <h2>Music, Drama, Dance & Poetry</h2>
-          <p>Music, Drama, Dance, and Poetry are powerful expressions of faith. KACM uses the performing arts to communicate the Gospel creatively, giving children and youth a platform to express their faith, develop their God-given talents, and minister to their communities with confidence and joy.</p>
-          <h4 style="margin-top:20px;">Key Activities</h4>
-          <ul>
-            <li>Drama performances enacting Biblical stories and moral lessons</li>
-            <li>Children's choirs leading worship in parish churches and community events</li>
-            <li>Poetry and spoken word competitions for children to express their faith</li>
-            <li>Dance groups performing at outreaches, Children's Sundays, and special events</li>
-            <li>MDD&P activities conducted in English, Luganda, and Runyakitara</li>
-          </ul>
-        </div>
-        <div class="program-image">🎵</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="program-section fade-in">
-        <div class="program-image">🤝</div>
-        <div class="program-details">
-          <h2>Community Outreaches</h2>
-          <p>Each year, KACM organises scheduled outreaches into communities across the Kazo Archdeaconry. These outreaches are moments of tangible grace — where the love of Christ is shown through practical action: food distribution, healthcare, education support, and prayer.</p>
-          <h4 style="margin-top:20px;">Key Activities</h4>
-          <ul>
-            <li>Distribution of food, clothing, and essential supplies to vulnerable families</li>
-            <li>Free medical and health awareness camps in underserved communities</li>
-            <li>School visits and educational awareness campaigns to reduce dropout rates</li>
-            <li>Child protection sensitisation for parents, teachers, and community leaders</li>
-            <li>Prayer and evangelism sessions in homes, schools, and public spaces</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
 
   <!-- ===== FEATURED TESTIMONY ===== -->
-  <section class="section">
+  <section class="section-alt">
     <div class="container">
       <div class="section-header fade-in">
         <h2>Stories of Transformation</h2>
       </div>
       <div class="testimonial-carousel fade-in">
         <div class="testimonial-slide active">
-          <div class="testimonial-avatar" style="background:linear-gradient(135deg,#5B2D8E,#7B4DB8); color:white;">SM</div>
-          <p class="quote">"Sponsoring a child through KACM has been one of the most rewarding decisions of my life. I receive regular updates and see the direct impact of my support on my sponsored child's education and wellbeing."</p>
-          <p class="author">— Sarah M., Sponsor from the United Kingdom</p>
+          <div class="t-card">
+            <div class="t-quote-icon"><i class="fas fa-quote-right"></i></div>
+            <img src="https://i.pravatar.cc/120?img=47" alt="Sponsor" class="t-avatar">
+            <p class="t-quote">Sponsoring a child through KACM has been one of the most rewarding decisions of my life. I receive regular updates and see the direct impact of my support on my sponsored child's education and wellbeing.</p>
+            <div class="t-author">
+              <strong>Sarah M.</strong>
+              <span>Sponsor · United Kingdom</span>
+            </div>
+          </div>
         </div>
         <div class="testimonial-slide">
-          <div class="testimonial-avatar" style="background:linear-gradient(135deg,#C9A84C,#DBC06E); color:white;">PK</div>
-          <p class="quote">"Before KACM, I could not afford school fees. Now I am in Senior 3, and I dream of becoming a doctor. KACM gave me hope when I had none."</p>
-          <p class="author">— Peter, Sponsored Child, Kazo</p>
+          <div class="t-card">
+            <div class="t-quote-icon"><i class="fas fa-quote-right"></i></div>
+            <img src="https://i.pravatar.cc/120?img=12" alt="Sponsored child" class="t-avatar">
+            <p class="t-quote">Before KACM, I could not afford school fees. Now I am in Senior 3, and I dream of becoming a doctor. KACM gave me hope when I had none.</p>
+            <div class="t-author">
+              <strong>Peter</strong>
+              <span>Sponsored Child · Kazo</span>
+            </div>
+          </div>
         </div>
         <div class="testimonial-slide">
-          <div class="testimonial-avatar" style="background:linear-gradient(135deg,#4CAF50,#81C784); color:white;">JT</div>
-          <p class="quote">"The Farm to Fork project has transformed our community. Children who were malnourished now have access to nutritious food, and families are learning sustainable farming."</p>
-          <p class="author">— Rev. James T., Parish Coordinator</p>
+          <div class="t-card">
+            <div class="t-quote-icon"><i class="fas fa-quote-right"></i></div>
+            <img src="https://i.pravatar.cc/120?img=33" alt="Parish coordinator" class="t-avatar">
+            <p class="t-quote">The Farm to Fork project has transformed our community. Children who were malnourished now have access to nutritious food, and families are learning sustainable farming.</p>
+            <div class="t-author">
+              <strong>Rev. James T.</strong>
+              <span>Parish Coordinator</span>
+            </div>
+          </div>
         </div>
         <div class="carousel-dots"></div>
       </div>
@@ -273,7 +296,7 @@
   </section>
 
   <!-- ===== MEDIA & UPDATES ===== -->
-  <section class="section-alt">
+  <section class="section" id="media">
     <div class="container">
       <div class="section-header fade-in">
         <h2>Media & Updates</h2>
@@ -283,65 +306,95 @@
       </div>
       <!-- Tabs -->
       <div class="tabs-nav">
-        <button class="tab-btn active" data-tab="tab-press">Press Releases</button>
-        <button class="tab-btn" data-tab="tab-articles">Articles</button>
-        <button class="tab-btn" data-tab="tab-events">Events</button>
-        <button class="tab-btn" data-tab="tab-gallery">Gallery</button>
-        <button class="tab-btn" data-tab="tab-library">Library</button>
-        <button class="tab-btn" data-tab="tab-stories">Success Stories</button>
-        <button class="tab-btn" data-tab="tab-newsletter">Newsletter</button>
+        <button class="tab-btn active" data-tab="tab-articles"><i class="fas fa-newspaper"></i> Articles</button>
+        <button class="tab-btn" data-tab="tab-press"><i class="fas fa-bullhorn"></i> Press</button>
+        <button class="tab-btn" data-tab="tab-events"><i class="fas fa-calendar-alt"></i> Events</button>
+        <button class="tab-btn" data-tab="tab-gallery"><i class="fas fa-images"></i> Gallery</button>
+        <button class="tab-btn" data-tab="tab-library"><i class="fas fa-book"></i> Library</button>
+        <button class="tab-btn" data-tab="tab-stories"><i class="fas fa-star"></i> Stories</button>
+        <button class="tab-btn" data-tab="tab-newsletter"><i class="fas fa-envelope-open-text"></i> Newsletter</button>
       </div>
 
-      <!-- Press Releases -->
-      <div class="tab-panel active" id="tab-press">
-        <div style="display:flex; flex-direction:column; gap:16px;">
-          <div class="resource-item fade-in">
-            <div class="resource-info"><h4>KACM 2024 Annual Report Released</h4><p>March 10, 2025 — Comprehensive report on programme impact and financial stewardship.</p></div>
-            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — link to actual report when available.'); return false;"><i class="fas fa-download"></i> PDF</a>
+      <!-- Articles -->
+      <div class="tab-panel active" id="tab-articles">
+        <div class="card-grid-3">
+          <div class="media-card media-overlay fade-in" style="background: linear-gradient(180deg, transparent 40%, rgba(26,26,46,0.9) 100%), url('https://images.unsplash.com/photo-1497633762265-9d769a7919a6?auto=format&fit=crop&w=600&q=80') center/cover no-repeat;">
+            <div class="media-overlay-content">
+              <span class="media-tag">Feb 14, 2025</span>
+              <h4>Why Child Sponsorship Works</h4>
+              <p>How child sponsorship transforms entire communities, not just individual children.</p>
+            </div>
           </div>
-          <div class="resource-item fade-in">
-            <div class="resource-info"><h4>Namirembe Diocese Endorses Child Protection Policy</h4><p>January 22, 2025 — Official diocesan statement affirming KACM's child safeguarding framework.</p></div>
-            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — link to actual document when available.'); return false;"><i class="fas fa-download"></i> PDF</a>
+          <div class="media-card media-overlay fade-in" style="background: linear-gradient(180deg, transparent 40%, rgba(26,26,46,0.9) 100%), url('https://images.unsplash.com/photo-1473177104440-fbb6db3e0c08?auto=format&fit=crop&w=600&q=80') center/cover no-repeat;">
+            <div class="media-overlay-content">
+              <span class="media-tag">Dec 8, 2024</span>
+              <h4>Integrating Faith and Education</h4>
+              <p>How KACM combines spiritual formation with educational support.</p>
+            </div>
           </div>
-          <div class="resource-item fade-in">
-            <div class="resource-info"><h4>Farm to Fork Project Wins Community Impact Award</h4><p>November 5, 2024 — KACM recognised for innovative approach to tackling child malnutrition.</p></div>
-            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — link to actual document when available.'); return false;"><i class="fas fa-download"></i> PDF</a>
+          <div class="media-card media-overlay fade-in" style="background: linear-gradient(180deg, transparent 40%, rgba(26,26,46,0.9) 100%), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80') center/cover no-repeat;">
+            <div class="media-overlay-content">
+              <span class="media-tag">Oct 20, 2024</span>
+              <h4>Child Rights in Uganda</h4>
+              <p>An overview of child welfare policy and the role of faith-based organisations.</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Articles -->
-      <div class="tab-panel" id="tab-articles">
-        <div class="card-grid-3">
-          <div class="media-card fade-in">
-            <div class="media-thumb" style="background:linear-gradient(135deg,#5B2D8E,#7B4DB8); display:flex; align-items:center; justify-content:center; color:white; font-size:40px;">📖</div>
-            <div class="media-body"><div class="media-date">February 14, 2025</div><h4>Why Child Sponsorship Works: Evidence from Kazo</h4><p>An in-depth look at how child sponsorship transforms entire communities, not just individual children.</p></div>
+      <!-- Press Releases -->
+      <div class="tab-panel" id="tab-press">
+        <div class="press-list">
+          <div class="press-item fade-in">
+            <div class="press-date">Mar 10, 2025</div>
+            <div class="press-content">
+              <h4>KACM 2024 Annual Report Released</h4>
+              <p>Comprehensive report on programme impact and financial stewardship.</p>
+            </div>
+            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — coming soon.'); return false;"><i class="fas fa-download"></i> PDF</a>
           </div>
-          <div class="media-card fade-in">
-            <div class="media-thumb" style="background:linear-gradient(135deg,#C9A84C,#DBC06E); display:flex; align-items:center; justify-content:center; color:white; font-size:40px;">📝</div>
-            <div class="media-body"><div class="media-date">December 8, 2024</div><h4>Integrating Faith and Education: The KACM Model</h4><p>How KACM combines spiritual formation with educational support to develop the whole child.</p></div>
+          <div class="press-item fade-in">
+            <div class="press-date">Jan 22, 2025</div>
+            <div class="press-content">
+              <h4>Namirembe Diocese Endorses Child Protection Policy</h4>
+              <p>Official diocesan statement affirming KACM's child safeguarding framework.</p>
+            </div>
+            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — coming soon.'); return false;"><i class="fas fa-download"></i> PDF</a>
           </div>
-          <div class="media-card fade-in">
-            <div class="media-thumb" style="background:linear-gradient(135deg,#1A1A2E,#555); display:flex; align-items:center; justify-content:center; color:white; font-size:40px;">🌍</div>
-            <div class="media-body"><div class="media-date">October 20, 2024</div><h4>Child Rights in Uganda: Progress and Challenges</h4><p>An overview of child welfare policy in Uganda and the role of faith-based organisations like KACM.</p></div>
+          <div class="press-item fade-in">
+            <div class="press-date">Nov 5, 2024</div>
+            <div class="press-content">
+              <h4>Farm to Fork Project Wins Community Impact Award</h4>
+              <p>KACM recognised for innovative approach to tackling child malnutrition.</p>
+            </div>
+            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — coming soon.'); return false;"><i class="fas fa-download"></i> PDF</a>
           </div>
         </div>
       </div>
 
       <!-- Events -->
       <div class="tab-panel" id="tab-events">
-        <div style="display:flex; flex-direction:column; gap:12px;">
-          <div class="event-item fade-in">
-            <div class="event-date"><span class="day">15</span><span class="month">Mar</span></div>
-            <div class="event-body"><h4>Children's Sunday — All Parishes</h4><p>Kazo Archdeaconry-wide Children's Sunday. Youth-led services across all 12 parishes. <strong>Location:</strong> Various parishes | <strong>Time:</strong> 9:00 AM</p></div>
+        <div class="events-grid">
+          <div class="event-card fade-in">
+            <div class="event-card-date"><span>15</span><small>Mar</small></div>
+            <div class="event-card-body">
+              <h4>Children's Sunday — All Parishes</h4>
+              <p>Youth-led services across all parishes. <strong>9:00 AM</strong></p>
+            </div>
           </div>
-          <div class="event-item fade-in">
-            <div class="event-date"><span class="day">05</span><span class="month">Apr</span></div>
-            <div class="event-body"><h4>Easter Sports Tournament</h4><p>Annual Easter football and netball tournament for children across the Archdeaconry. <strong>Location:</strong> Kazo Sports Ground | <strong>Time:</strong> 8:00 AM</p></div>
+          <div class="event-card fade-in">
+            <div class="event-card-date"><span>05</span><small>Apr</small></div>
+            <div class="event-card-body">
+              <h4>Easter Sports Tournament</h4>
+              <p>Annual football & netball tournament. <strong>Kazo Sports Ground · 8:00 AM</strong></p>
+            </div>
           </div>
-          <div class="event-item fade-in">
-            <div class="event-date"><span class="day">28</span><span class="month">Apr</span></div>
-            <div class="event-body"><h4>Child Protection Training Workshop</h4><p>Training for Sunday school teachers and parish coordinators on child safeguarding. <strong>Location:</strong> Kazo Archdeaconry HQ | <strong>Time:</strong> 10:00 AM</p></div>
+          <div class="event-card fade-in">
+            <div class="event-card-date"><span>28</span><small>Apr</small></div>
+            <div class="event-card-body">
+              <h4>Child Protection Training</h4>
+              <p>Training for Sunday school teachers on safeguarding. <strong>KACM HQ · 10:00 AM</strong></p>
+            </div>
           </div>
         </div>
       </div>
@@ -349,28 +402,38 @@
       <!-- Gallery -->
       <div class="tab-panel" id="tab-gallery">
         <div class="gallery-grid">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%235B2D8E' width='400' height='300'/%3E%3Ctext x='200' y='155' text-anchor='middle' fill='white' font-size='48'%3E%F0%9F%8F%9F%EF%B8%8F%3C/text%3E%3Ctext x='200' y='195' text-anchor='middle' fill='white' font-size='14'%3EChildren's Sunday%3C/text%3E%3C/svg%3E" alt="Children's Sunday celebration" class="lightbox-trigger">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%234CAF50' width='400' height='300'/%3E%3Ctext x='200' y='155' text-anchor='middle' fill='white' font-size='48'%3E%E2%9A%BD%3C/text%3E%3Ctext x='200' y='195' text-anchor='middle' fill='white' font-size='14'%3ESports Tournament%3C/text%3E%3C/svg%3E" alt="Sports tournament" class="lightbox-trigger">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23C9A84C' width='400' height='300'/%3E%3Ctext x='200' y='155' text-anchor='middle' fill='white' font-size='48'%3E%F0%9F%8E%B5%3C/text%3E%3Ctext x='200' y='195' text-anchor='middle' fill='white' font-size='14'%3EMDD%26P Performance%3C/text%3E%3C/svg%3E" alt="MDD&P performance" class="lightbox-trigger">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23FF9800' width='400' height='300'/%3E%3Ctext x='200' y='155' text-anchor='middle' fill='white' font-size='48'%3E%F0%9F%8C%BE%3C/text%3E%3Ctext x='200' y='195' text-anchor='middle' fill='white' font-size='14'%3EFarm to Fork%3C/text%3E%3C/svg%3E" alt="Farm to Fork project" class="lightbox-trigger">
+          <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80" alt="Children at KACM" class="lightbox-trigger">
+          <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80" alt="Sports at KACM" class="lightbox-trigger">
+          <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=600&q=80" alt="Music and dance at KACM" class="lightbox-trigger">
+          <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=600&q=80" alt="Community outreach" class="lightbox-trigger">
+          <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=600&q=80" alt="Farm to Fork project" class="lightbox-trigger">
+          <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=600&q=80" alt="Resource Centre computers" class="lightbox-trigger">
+          <img src="https://images.unsplash.com/photo-1497633762265-9d769a7919a6?auto=format&fit=crop&w=600&q=80" alt="Children learning" class="lightbox-trigger">
+          <img src="https://images.unsplash.com/photo-1473177104440-fbb6db3e0c08?auto=format&fit=crop&w=600&q=80" alt="Church service" class="lightbox-trigger">
         </div>
         <p style="text-align:center; margin-top:16px; font-size:13px; color:var(--text-gray);">Click any image to view larger. More photos coming soon.</p>
       </div>
 
       <!-- Library -->
       <div class="tab-panel" id="tab-library">
-        <div style="display:flex; flex-direction:column; gap:12px;">
-          <div class="resource-item fade-in">
-            <div class="resource-info"><h4>KACM Programme Impact Report 2024</h4><p>Comprehensive data on all programme areas and outcomes.</p></div>
-            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — link to actual report when available.'); return false;"><i class="fas fa-download"></i> Download</a>
+        <div class="library-grid">
+          <div class="library-card fade-in">
+            <div class="library-icon"><i class="fas fa-file-pdf"></i></div>
+            <h4>Programme Impact Report 2024</h4>
+            <p>Comprehensive data on all programme areas and outcomes.</p>
+            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — coming soon.'); return false;"><i class="fas fa-download"></i> Download</a>
           </div>
-          <div class="resource-item fade-in">
-            <div class="resource-info"><h4>Child Safeguarding Policy</h4><p>KACM's official child protection and safeguarding framework document.</p></div>
-            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — link to actual document when available.'); return false;"><i class="fas fa-download"></i> Download</a>
+          <div class="library-card fade-in">
+            <div class="library-icon"><i class="fas fa-shield-alt"></i></div>
+            <h4>Child Safeguarding Policy</h4>
+            <p>Official child protection and safeguarding framework document.</p>
+            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — coming soon.'); return false;"><i class="fas fa-download"></i> Download</a>
           </div>
-          <div class="resource-item fade-in">
-            <div class="resource-info"><h4>Sunday School Teaching Guide</h4><p>Curriculum and activity guide for Sunday school teachers across parishes.</p></div>
-            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — link to actual document when available.'); return false;"><i class="fas fa-download"></i> Download</a>
+          <div class="library-card fade-in">
+            <div class="library-icon"><i class="fas fa-book-open"></i></div>
+            <h4>Sunday School Teaching Guide</h4>
+            <p>Curriculum and activity guide for teachers across parishes.</p>
+            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — coming soon.'); return false;"><i class="fas fa-download"></i> Download</a>
           </div>
         </div>
       </div>
@@ -378,17 +441,29 @@
       <!-- Success Stories -->
       <div class="tab-panel" id="tab-stories">
         <div class="card-grid-3">
-          <div class="media-card fade-in">
-            <div class="media-thumb" style="background:linear-gradient(135deg,#5B2D8E,#7B4DB8); display:flex; align-items:center; justify-content:center; color:white; font-size:40px;">🎓</div>
-            <div class="media-body"><div class="media-date">January 2025</div><h4>From Dropout to University: Grace's Story</h4><p>How the Sponsor a Child programme helped Grace overcome poverty and secure a university placement.</p><a href="testimonies.html" style="color:var(--primary); font-weight:600; font-size:14px;">Read More →</a></div>
+          <div class="media-card media-overlay fade-in" style="background: linear-gradient(180deg, transparent 30%, rgba(91,45,142,0.95) 100%), url('https://images.unsplash.com/photo-1497633762265-9d769a7919a6?auto=format&fit=crop&w=600&q=80') center/cover no-repeat;">
+            <div class="media-overlay-content">
+              <span class="media-tag">Jan 2025</span>
+              <h4>From Dropout to University: Grace's Story</h4>
+              <p>How the Sponsor a Child programme helped Grace overcome poverty.</p>
+              <a href="testimonies.html">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
           </div>
-          <div class="media-card fade-in">
-            <div class="media-thumb" style="background:linear-gradient(135deg,#4CAF50,#81C784); display:flex; align-items:center; justify-content:center; color:white; font-size:40px;">🌾</div>
-            <div class="media-body"><div class="media-date">November 2024</div><h4>Farm to Fork Transforms Family Livelihoods</h4><p>Three families share how sustainable farming skills learned through KACM changed their lives.</p><a href="testimonies.html" style="color:var(--primary); font-weight:600; font-size:14px;">Read More →</a></div>
+          <div class="media-card media-overlay fade-in" style="background: linear-gradient(180deg, transparent 30%, rgba(201,168,76,0.95) 100%), url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=600&q=80') center/cover no-repeat;">
+            <div class="media-overlay-content">
+              <span class="media-tag">Nov 2024</span>
+              <h4>Farm to Fork Transforms Livelihoods</h4>
+              <p>Three families share how sustainable farming changed their lives.</p>
+              <a href="testimonies.html">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
           </div>
-          <div class="media-card fade-in">
-            <div class="media-thumb" style="background:linear-gradient(135deg,#C9A84C,#DBC06E); display:flex; align-items:center; justify-content:center; color:white; font-size:40px;">💻</div>
-            <div class="media-body"><div class="media-date">September 2024</div><h4>ICT Skills Open Doors for Rural Youth</h4><p>How the Resource Centre is equipping young people with digital skills for the modern economy.</p><a href="testimonies.html" style="color:var(--primary); font-weight:600; font-size:14px;">Read More →</a></div>
+          <div class="media-card media-overlay fade-in" style="background: linear-gradient(180deg, transparent 30%, rgba(26,26,46,0.95) 100%), url('https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=600&q=80') center/cover no-repeat;">
+            <div class="media-overlay-content">
+              <span class="media-tag">Sep 2024</span>
+              <h4>ICT Skills Open Doors for Youth</h4>
+              <p>How the Resource Centre is equipping young people with digital skills.</p>
+              <a href="testimonies.html">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
           </div>
         </div>
       </div>
@@ -397,11 +472,10 @@
       <div class="tab-panel" id="tab-newsletter">
         <div class="section-header"><h2>Subscribe to Our Newsletter</h2><p>Stay connected with KACM — get updates delivered to your inbox.</p></div>
         <form class="newsletter-form fade-in">
-          <input type="text" placeholder="Your Name" style="flex:1; padding:14px 18px; border:2px solid #ddd; border-radius:6px; font-size:15px;">
-          <input type="email" placeholder="Email Address" required style="flex:2;">
+          <input type="email" placeholder="Email Address" required style="flex:1;">
           <button type="submit" class="btn btn-primary">Subscribe</button>
         </form>
-        <p class="privacy-note" style="margin-top:8px;">We respect your privacy. Unsubscribe anytime.</p>
+        <p class="privacy-note">We respect your privacy. Unsubscribe anytime.</p>
         <div style="margin-top:40px;">
           <h4 style="margin-bottom:12px;">Past Newsletters</h4>
           <div class="resource-item"><div class="resource-info"><h4>KACM Quarterly — Q1 2025</h4><p>Children's Sunday highlights, new sponsors, Farm to Fork harvest report.</p></div><a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('Newsletter archive — coming soon.'); return false;">View</a></div>
@@ -412,63 +486,40 @@
   </section>
 
   <!-- ===== CONTACT US ===== -->
-  <section class="section-alt">
+  <section class="section-alt" id="contact">
     <div class="container">
       <div class="section-header fade-in">
         <h2>Contact Us</h2>
         <p>We'd love to hear from you — reach out and let's connect.</p>
       </div>
-      <div class="scripture-block fade-in" style="margin:0 auto 32px; text-align:center; border-left:none; max-width:700px;">
-        "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you." — Matthew 7:7
+
+      <!-- Compact Contact Details -->
+      <div class="contact-strip fade-in">
+        <span><i class="fas fa-map-marker-alt"></i> Lugoba Road, Kazo - Kawempe, Kampala, Uganda</span>
+        <span><i class="fas fa-envelope"></i> info@kacm.org</span>
+        <span><i class="fas fa-envelope"></i> sponsorship@kacm.org</span>
+        <span><i class="fas fa-phone"></i> +256 700 000000</span>
+        <span><i class="fas fa-globe"></i> www.kacm.org</span>
       </div>
-      <div class="contact-details-grid fade-in">
-        <div class="contact-detail">
-          <div class="cd-icon">📍</div>
-          <div><h4>Physical Address</h4><p>Kazo Archdeaconry Headquarters, Kazo, Kiruhura District, Western Uganda</p></div>
-        </div>
-        <div class="contact-detail">
-          <div class="cd-icon">📧</div>
-          <div><h4>General Enquiries</h4><p><a href="mailto:info@kacm.org" style="color:var(--primary);">info@kacm.org</a></p></div>
-        </div>
-        <div class="contact-detail">
-          <div class="cd-icon">📧</div>
-          <div><h4>Sponsorship Team</h4><p><a href="mailto:sponsorship@kacm.org" style="color:var(--primary);">sponsorship@kacm.org</a></p></div>
-        </div>
-        <div class="contact-detail">
-          <div class="cd-icon">📞</div>
-          <div><h4>Phone / WhatsApp</h4><p>+256 700 000000</p></div>
-        </div>
-        <div class="contact-detail">
-          <div class="cd-icon">🌐</div>
-          <div><h4>Website</h4><p>www.kacm.org</p></div>
-        </div>
-        <div class="contact-detail">
-          <div class="cd-icon">📘</div>
-          <div><h4>Social Media</h4><p>Facebook: facebook.com/KACMUganda<br>Instagram: @KACMUganda<br>YouTube: youtube.com/KACMUganda</p></div>
-        </div>
-      </div>
-      <div class="contact-layout fade-in" style="margin-top:32px;">
-        <div class="contact-form-wrapper">
-          <h3 style="margin-bottom:20px;">Send Us a Message</h3>
+
+      <!-- Contact Form + Map -->
+      <div class="contact-layout">
+        <div class="contact-form-wrapper fade-in">
+          <h4 style="margin-bottom:10px;">Send Us a Message</h4>
           <form id="contact-form">
-            <div class="form-group">
-              <label for="contact-name">Full Name *</label>
-              <input type="text" id="contact-name" placeholder="Enter your full name" required>
-              <span class="error-msg">Please enter your full name (at least 2 characters).</span>
+            <div style="display:flex; gap:10px;">
+              <div class="form-group" style="flex:1; margin-bottom:8px;">
+                <input type="text" id="contact-name" placeholder="Full Name *" required>
+                <span class="error-msg">Please enter your full name.</span>
+              </div>
+              <div class="form-group" style="flex:1; margin-bottom:8px;">
+                <input type="email" id="contact-email" placeholder="Email Address *" required>
+                <span class="error-msg">Please enter a valid email.</span>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="contact-email">Email Address *</label>
-              <input type="email" id="contact-email" placeholder="Enter your email address" required>
-              <span class="error-msg">Please enter a valid email address.</span>
-            </div>
-            <div class="form-group">
-              <label for="contact-phone">Phone Number</label>
-              <input type="tel" id="contact-phone" placeholder="Enter your phone number (optional)">
-            </div>
-            <div class="form-group">
-              <label for="contact-subject">Subject *</label>
+            <div class="form-group" style="margin-bottom:8px;">
               <select id="contact-subject" required>
-                <option value="">Select a subject...</option>
+                <option value="">Subject...</option>
                 <option value="general">General Enquiry</option>
                 <option value="sponsorship">Sponsorship</option>
                 <option value="donation">Donation</option>
@@ -477,45 +528,34 @@
                 <option value="other">Other</option>
               </select>
             </div>
-            <div class="form-group">
-              <label for="contact-message">Message *</label>
-              <textarea id="contact-message" placeholder="Write your message here (minimum 20 characters)..." required></textarea>
+            <div class="form-group" style="margin-bottom:10px;">
+              <textarea id="contact-message" placeholder="Your message..." required rows="2"></textarea>
               <span class="error-msg">Please enter a message (minimum 20 characters).</span>
             </div>
-            <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+            <button type="submit" class="btn btn-primary btn-sm" style="width:100%;">Send Message</button>
           </form>
           <div class="form-success" id="form-success">
-            <i class="fas fa-check-circle" style="font-size:24px; display:block; margin-bottom:8px;"></i>
-            Thank you for your message! We will get back to you within 48 hours. God bless you.
+            <i class="fas fa-check-circle" style="font-size:16px; display:block; margin-bottom:4px;"></i>
+            Thank you! We'll get back within 48 hours.
           </div>
         </div>
-        <div>
-          <div class="map-container">
-            <div class="map-icon">📍</div>
-            <p style="font-weight:600; color:var(--text-dark);">Kazo Archdeaconry Headquarters — KACM</p>
-            <p>Kazo, Kiruhura District, Western Uganda</p>
-            <p style="font-size:12px; margin-top:8px;">Kazo is located in Kiruhura District, Western Uganda, approximately 300km from Kampala.</p>
+
+        <div class="fade-in">
+          <div class="map-container" style="padding:0; background:none;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.81!2d32.5495!3d0.3476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbc8b2c8e6b3d%3A0x5f3c8b9ea6e8b5c7!2sKawempe%2C%20Kampala!5e0!3m2!1sen!2sug!4v1700000000000" width="100%" height="100%" style="border:0; border-radius:var(--radius-md); position:absolute; top:0; left:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="St. Luke Church Kazo — Lugoba Road, Kawempe, Kampala"></iframe>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close">&times;</button>
-    <img src="" alt="" id="lightbox-img">
-  </div>
-
   <!-- ===== NEWSLETTER SIGNUP ===== -->
-  <section class="section" style="background: var(--bg-light-purple);">
+  <section class="cta-strip" style="background:var(--bg-light-purple);">
     <div class="container fade-in">
-      <div class="section-header">
-        <h2>Stay Connected</h2>
-        <p>Get KACM updates in your inbox. We respect your privacy — unsubscribe anytime.</p>
-      </div>
-      <form class="newsletter-form">
-        <input type="email" placeholder="Enter your email address" required>
+      <h2 style="color:var(--primary);">Stay Connected</h2>
+      <p style="color:var(--text-dark);">Get KACM updates, stories, and prayer requests delivered to your inbox.</p>
+      <form class="newsletter-form" style="margin:0 auto;">
+        <input type="email" placeholder="Email Address" required style="flex:1;">
         <button type="submit" class="btn btn-primary">Subscribe</button>
       </form>
       <p class="privacy-note">We respect your privacy. Unsubscribe anytime.</p>
@@ -528,7 +568,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="footer-logo">
-            <span class="logo-icon">✝</span>
+            <span class="logo-icon"><i class="fas fa-cross"></i></span>
             <span>Kazo Archdeaconry Children's Ministry</span>
           </div>
           <p class="footer-tagline">Nurturing Every Child in the Love of Christ</p>
@@ -543,9 +583,10 @@
           <ul class="footer-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="programs.html">Programs</a></li>
+            <li><a href="team.html">Our Team</a></li>
             <li><a href="projects.html">Projects</a></li>
             <li><a href="donate.html">Donate</a></li>
+            <li><a href="testimonies.html">Testimonies</a></li>
           </ul>
         </div>
         <div>
@@ -562,7 +603,7 @@
             <p>Church of Uganda</p>
             <p>Namirembe Diocese</p>
             <p>Kazo Archdeaconry</p>
-            <p>Kiruhura District, Uganda</p>
+            <p>Kawempe, Kampala, Uganda</p>
           </div>
         </div>
       </div>
@@ -577,8 +618,14 @@
     </div>
   </footer>
 
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close">&times;</button>
+    <img src="" alt="" id="lightbox-img">
+  </div>
+
   <!-- ===== FLOATING WHATSAPP ===== -->
-  <a href="#" class="whatsapp-float" data-phone="+256700000000" aria-label="Chat on WhatsApp" title="Chat with us on WhatsApp">
+  <a href="#" class="whatsapp-float" data-phone="+256700000000" aria-label="Chat on WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
 
