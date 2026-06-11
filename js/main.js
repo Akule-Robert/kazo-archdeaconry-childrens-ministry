@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // ========================================================
   // 1. MOBILE HAMBURGER MENU
   // ========================================================
-  const hamburger = document.querySelector('.hamburger');
-  const navLinks = document.querySelector('.nav-links');
+  var hamburger = document.querySelector('.hamburger');
+  var navLinks = document.querySelector('.nav-links');
 
   if (hamburger && navLinks) {
     hamburger.addEventListener('click', function () {
@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
       navLinks.classList.toggle('active');
     });
 
-    // Close menu when a nav link is clicked
     navLinks.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
         hamburger.classList.remove('active');
@@ -25,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', function (e) {
       if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
         hamburger.classList.remove('active');
@@ -37,8 +35,11 @@ document.addEventListener('DOMContentLoaded', function () {
   // ========================================================
   // 2. STICKY NAV SCROLL EFFECT
   // ========================================================
-  const navbar = document.querySelector('.navbar');
+  var navbar = document.querySelector('.navbar');
   if (navbar) {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    }
     window.addEventListener('scroll', function () {
       if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
@@ -76,12 +77,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var suffix = el.getAttribute('data-suffix') || '+';
     var duration = 2000;
     var startTime = null;
-    var startVal = 0;
 
     function step(timestamp) {
       if (!startTime) startTime = timestamp;
       var progress = Math.min((timestamp - startTime) / duration, 1);
-      // Ease-out
       var eased = 1 - Math.pow(1 - progress, 3);
       var current = Math.floor(eased * target);
       el.textContent = current + suffix;
@@ -96,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if (countUpElements.length > 0) {
-    var observer = new IntersectionObserver(function (entries) {
+    var countObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           var el = entry.target;
@@ -109,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }, { threshold: 0.5 });
 
-    countUpElements.forEach(function (el) { observer.observe(el); });
+    countUpElements.forEach(function (el) { countObserver.observe(el); });
   }
 
   // ========================================================
@@ -122,7 +121,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var currentSlide = 0;
     var slideInterval;
 
-    // Create dots
     if (dotsContainer && slides.length > 1) {
       slides.forEach(function (_, i) {
         var dot = document.createElement('button');
@@ -162,19 +160,15 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ========================================================
-  // 6. TABS SYSTEM (Media page)
+  // 6. TABS SYSTEM (Media page / homepage)
   // ========================================================
   var tabsNav = document.querySelector('.tabs-nav');
   if (tabsNav) {
     tabsNav.querySelectorAll('.tab-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var tabId = this.getAttribute('data-tab');
-
-        // Deactivate all
         tabsNav.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
         document.querySelectorAll('.tab-panel').forEach(function (p) { p.classList.remove('active'); });
-
-        // Activate selected
         this.classList.add('active');
         var panel = document.getElementById(tabId);
         if (panel) panel.classList.add('active');
@@ -221,7 +215,6 @@ document.addEventListener('DOMContentLoaded', function () {
       e.preventDefault();
       var valid = true;
 
-      // Validate name
       var nameField = document.getElementById('contact-name');
       var nameGroup = nameField ? nameField.closest('.form-group') : null;
       if (nameField && nameField.value.trim().length < 2) {
@@ -231,7 +224,6 @@ document.addEventListener('DOMContentLoaded', function () {
         nameGroup.classList.remove('error');
       }
 
-      // Validate email
       var emailField = document.getElementById('contact-email');
       var emailGroup = emailField ? emailField.closest('.form-group') : null;
       var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -242,7 +234,6 @@ document.addEventListener('DOMContentLoaded', function () {
         emailGroup.classList.remove('error');
       }
 
-      // Validate message
       var msgField = document.getElementById('contact-message');
       var msgGroup = msgField ? msgField.closest('.form-group') : null;
       if (msgField && msgField.value.trim().length < 20) {
@@ -257,13 +248,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (successMsg) {
           successMsg.style.display = 'block';
           contactForm.reset();
-          // Hide success after 5 seconds
           setTimeout(function () { successMsg.style.display = 'none'; }, 5000);
         }
       }
     });
 
-    // Clear errors on input
     contactForm.querySelectorAll('input, textarea, select').forEach(function (field) {
       field.addEventListener('input', function () {
         var group = this.closest('.form-group');
@@ -283,7 +272,6 @@ document.addEventListener('DOMContentLoaded', function () {
       var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
       if (email && emailRegex.test(email)) {
-        // Show inline success
         var btn = form.querySelector('button');
         var originalText = btn ? btn.textContent : 'Subscribe';
         if (btn) {
@@ -344,7 +332,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // ========================================================
-  // 13. STATIC NEWSLETTER ARCHIVE TOGGLE (Media page)
+  // 13. STATIC NEWSLETTER ARCHIVE TOGGLE
   // ========================================================
   var archiveToggles = document.querySelectorAll('.archive-toggle');
   archiveToggles.forEach(function (btn) {
@@ -357,5 +345,233 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  // ========================================================
+  // 14. FLUTTERWAVE DONATION MODAL
+  // ========================================================
+  var donateModal = document.getElementById('donate-modal');
+  if (donateModal) {
+    var openBtn = document.getElementById('open-donate-modal');
+    var closeBtn = document.getElementById('modal-close');
+    var selectedAmount = 20;
+    var selectedMethod = '';
+
+    var stepAmount = document.getElementById('modal-step-amount');
+    var stepPayment = document.getElementById('modal-step-payment');
+    var stepProcessing = document.getElementById('modal-processing');
+    var stepSuccess = document.getElementById('modal-success');
+    var stepError = document.getElementById('modal-error');
+
+    var btnToPayment = document.getElementById('btn-to-payment');
+    var btnProcessDonation = document.getElementById('btn-process-donation');
+    var btnBackToAmount = document.getElementById('btn-back-to-amount');
+    var btnCloseSuccess = document.getElementById('btn-close-success');
+    var btnRetry = document.getElementById('btn-retry');
+    var customAmountInput = document.getElementById('custom-amount');
+    var amountDisplay = document.getElementById('selected-amount-display');
+    var donatedAmount = document.getElementById('donated-amount');
+
+    function resetModal() {
+      stepAmount.style.display = 'block';
+      stepPayment.style.display = 'none';
+      stepProcessing.classList.remove('active');
+      stepSuccess.classList.remove('active');
+      stepError.classList.remove('active');
+      donateModal.querySelectorAll('.amount-btn').forEach(function (b) { b.classList.remove('selected'); });
+      donateModal.querySelectorAll('.pm-btn').forEach(function (b) { b.classList.remove('selected'); });
+      selectedAmount = 20;
+      selectedMethod = '';
+      btnToPayment.disabled = true;
+      btnProcessDonation.disabled = true;
+      if (customAmountInput) customAmountInput.value = '';
+      var defaultBtn = donateModal.querySelector('.amount-btn[data-amount="20"]');
+      if (defaultBtn) defaultBtn.classList.add('selected');
+    }
+
+    openBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      resetModal();
+      donateModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeModal() {
+      donateModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    donateModal.addEventListener('click', function (e) {
+      if (e.target === donateModal) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && donateModal.classList.contains('active')) closeModal();
+    });
+
+    donateModal.querySelectorAll('.amount-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        donateModal.querySelectorAll('.amount-btn').forEach(function (b) { b.classList.remove('selected'); });
+        this.classList.add('selected');
+        selectedAmount = parseInt(this.getAttribute('data-amount'));
+        if (customAmountInput) customAmountInput.value = '';
+        btnToPayment.disabled = false;
+      });
+    });
+
+    if (customAmountInput) {
+      customAmountInput.addEventListener('input', function () {
+        var val = parseInt(this.value);
+        if (val && val > 0) {
+          donateModal.querySelectorAll('.amount-btn').forEach(function (b) { b.classList.remove('selected'); });
+          selectedAmount = val;
+          btnToPayment.disabled = false;
+        } else if (!this.value) {
+          btnToPayment.disabled = true;
+        }
+      });
+    }
+
+    btnToPayment.addEventListener('click', function () {
+      stepAmount.style.display = 'none';
+      stepPayment.style.display = 'block';
+      amountDisplay.textContent = '$' + selectedAmount;
+      btnProcessDonation.disabled = true;
+    });
+
+    btnBackToAmount.addEventListener('click', function () {
+      stepPayment.style.display = 'none';
+      stepAmount.style.display = 'block';
+    });
+
+    donateModal.querySelectorAll('.pm-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        donateModal.querySelectorAll('.pm-btn').forEach(function (b) { b.classList.remove('selected'); });
+        this.classList.add('selected');
+        selectedMethod = this.getAttribute('data-method');
+        btnProcessDonation.disabled = false;
+      });
+    });
+
+    btnProcessDonation.addEventListener('click', function () {
+      stepPayment.style.display = 'none';
+      stepProcessing.classList.add('active');
+
+      setTimeout(function () {
+        stepProcessing.classList.remove('active');
+        var isSuccess = Math.random() < 0.9;
+        if (isSuccess) {
+          donatedAmount.textContent = '$' + selectedAmount;
+          stepSuccess.classList.add('active');
+        } else {
+          stepError.classList.add('active');
+        }
+      }, 2000);
+    });
+
+    btnCloseSuccess.addEventListener('click', function () {
+      closeModal();
+      setTimeout(function () {
+        window.scrollBy({ top: 300, behavior: 'smooth' });
+      }, 300);
+    });
+
+    btnRetry.addEventListener('click', function () {
+      stepError.classList.remove('active');
+      stepPayment.style.display = 'block';
+      btnProcessDonation.disabled = !selectedMethod;
+    });
+  }
+
+  // ========================================================
+  // 15. PROGRAM DETAIL MODAL
+  // ========================================================
+  var programModal = document.getElementById('program-modal');
+  if (programModal) {
+    var programData = {
+      sports: {
+        title: 'Sports Ministry',
+        img: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=80',
+        desc: 'At KACM, we believe that sport is a powerful tool for sharing the Gospel. Through football, netball, athletics, and other sports activities, we create safe spaces where children and youth engage in healthy competition while learning values of teamwork, discipline, and respect — all rooted in the teachings of Christ.',
+        list: [
+          'Regular sports events organised across parishes in Kazo Archdeaconry',
+          'Sports tournaments used as platforms for Gospel outreach and evangelism',
+          'Children coached by trained volunteers who integrate Biblical teachings',
+          'Inter-parish sports competitions to promote unity across the Archdeaconry'
+        ]
+      },
+      mddp: {
+        title: 'Music, Drama, Dance & Poetry',
+        img: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=800&q=80',
+        desc: 'Music, Drama, Dance, and Poetry are powerful expressions of faith. KACM uses the performing arts to communicate the Gospel creatively, giving children and youth a platform to express their faith, develop their God-given talents, and minister to their communities with confidence and joy.',
+        list: [
+          'Drama performances enacting Biblical stories and moral lessons',
+          "Children's choirs leading worship in parish churches and community events",
+          'Poetry and spoken word competitions for children to express their faith',
+          'Dance groups performing at outreaches, Children\'s Sundays, and special events',
+          'MDD&P activities conducted in English, Luganda, and Runyakitara'
+        ]
+      },
+      outreach: {
+        title: 'Community Outreaches',
+        img: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=800&q=80',
+        desc: 'Each year, KACM organises scheduled outreaches into communities across the Kazo Archdeaconry. These outreaches are moments of tangible grace — where the love of Christ is shown through practical action: food distribution, healthcare, education support, and prayer.',
+        list: [
+          'Distribution of food, clothing, and essential supplies to vulnerable families',
+          'Free medical and health awareness camps in underserved communities',
+          'School visits and educational awareness campaigns to reduce dropout rates',
+          'Child protection sensitisation for parents, teachers, and community leaders',
+          'Prayer and evangelism sessions in homes, schools, and public spaces'
+        ]
+      }
+    };
+
+    var modalTitle = document.getElementById('program-modal-title');
+    var modalImg = document.getElementById('program-modal-img');
+    var modalDesc = document.getElementById('program-modal-desc');
+    var modalList = document.getElementById('program-modal-list');
+    var modalClose = document.getElementById('program-modal-close');
+
+    function openProgramModal(programKey) {
+      var data = programData[programKey];
+      if (!data) return;
+      modalTitle.textContent = data.title;
+      modalImg.src = data.img;
+      modalImg.alt = data.title;
+      modalDesc.textContent = data.desc;
+      modalList.innerHTML = '';
+      data.list.forEach(function (item) {
+        var li = document.createElement('li');
+        li.textContent = item;
+        li.style.cssText = 'padding:8px 0; padding-left:24px; position:relative; font-size:15px;';
+        var bullet = document.createElement('span');
+        bullet.style.cssText = 'position:absolute; left:0; top:16px; width:8px; height:8px; background:var(--secondary); border-radius:50%;';
+        li.appendChild(bullet);
+        modalList.appendChild(li);
+      });
+      programModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProgramModal() {
+      programModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.program-learn-more').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var program = this.getAttribute('data-program');
+        openProgramModal(program);
+      });
+    });
+
+    modalClose.addEventListener('click', closeProgramModal);
+    programModal.addEventListener('click', function (e) {
+      if (e.target === programModal) closeProgramModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && programModal.classList.contains('active')) closeProgramModal();
+    });
+  }
 
 });
