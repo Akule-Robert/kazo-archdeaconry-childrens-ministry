@@ -14,7 +14,7 @@
 <body>
   <nav class="navbar">
     <div class="container">
-      <a href="index.html" class="nav-logo"><span class="logo-icon">✝</span><span>Kazo Archdeaconry Children's Ministry</span></a>
+      <a href="index.html" class="nav-logo"><span class="logo-icon"><i class="fas fa-cross"></i></span><span>Kazo Archdeaconry Children's Ministry</span></a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="team.html">Our Team</a></li>
         <li><a href="projects.html">Our Projects</a></li>
@@ -61,7 +61,7 @@
       <div class="section-header fade-in"><h2>Donating to KACM is Safe, Simple and Secure</h2><p>Powered by Flutterwave</p></div>
       <div class="payment-grid fade-in">
         <div class="payment-col">
-          <h3>🇺🇬 Local Donors (Uganda)</h3>
+          <h3><i class="fas fa-map-marker-alt"></i> Local Donors (Uganda)</h3>
           <div class="payment-methods">
             <span class="payment-method">MTN Mobile Money</span>
             <span class="payment-method">Airtel Money</span>
@@ -70,7 +70,7 @@
           </div>
         </div>
         <div class="payment-col">
-          <h3>🌍 International Donors</h3>
+          <h3><i class="fas fa-globe-africa"></i> International Donors</h3>
           <div class="payment-methods">
             <span class="payment-method">Visa</span>
             <span class="payment-method">Mastercard</span>
@@ -81,7 +81,7 @@
       </div>
 
       <div style="text-align:center; margin-top:40px;" class="fade-in">
-        <a href="#" class="btn btn-secondary btn-lg" onclick="alert('Flutterwave payment gateway — integrate with KACM Flutterwave account for live donations.'); return false;">
+        <a href="#" class="btn btn-secondary btn-lg" id="open-donate-modal">
           <i class="fas fa-heart" style="margin-right:8px;"></i> Donate Now
         </a>
         <p style="margin-top:12px; font-size:13px; color:var(--text-gray);"><i class="fas fa-lock"></i> Secure payments powered by Flutterwave</p>
@@ -96,10 +96,10 @@
       <div class="scripture-block fade-in">"Whoever can be trusted with very little can also be trusted with much." — Luke 16:10</div>
       <p class="page-intro fade-in">KACM is a registered ministry of the Church of Uganda under the Namirembe Diocese. Annual financial summaries and programme impact reports are available to all donors upon request. Every sponsoring donor receives regular updates on the child or project they are supporting.</p>
       <div class="trust-badges fade-in">
-        <div class="trust-badge"><div class="badge-icon">⛪</div>Church of Uganda Affiliation</div>
-        <div class="trust-badge"><div class="badge-icon">🏛️</div>Namirembe Diocese Seal</div>
-        <div class="trust-badge"><div class="badge-icon">🔒</div>Flutterwave Secure Payments</div>
-        <div class="trust-badge"><div class="badge-icon">📋</div>Annual Reports Available</div>
+        <div class="trust-badge"><div class="badge-icon"><i class="fas fa-church"></i></div>Church of Uganda Affiliation</div>
+        <div class="trust-badge"><div class="badge-icon"><i class="fas fa-place-of-worship"></i></div>Namirembe Diocese Seal</div>
+        <div class="trust-badge"><div class="badge-icon"><i class="fas fa-shield-alt"></i></div>Flutterwave Secure Payments</div>
+        <div class="trust-badge"><div class="badge-icon"><i class="fas fa-file-alt"></i></div>Annual Reports Available</div>
       </div>
     </div>
   </section>
@@ -108,7 +108,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <div class="footer-logo"><span class="logo-icon">✝</span><span>Kazo Archdeaconry Children's Ministry</span></div>
+          <div class="footer-logo"><span class="logo-icon"><i class="fas fa-cross"></i></span><span>Kazo Archdeaconry Children's Ministry</span></div>
           <p class="footer-tagline">Nurturing Every Child in the Love of Christ</p>
           <div class="footer-social">
             <a href="https://facebook.com/KACMUganda" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -116,9 +116,9 @@
             <a href="https://youtube.com/KACMUganda" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
-        <div><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="programs.html">Programs</a></li><li><a href="projects.html">Projects</a></li><li><a href="donate.html">Donate</a></li></ul></div>
+        <div><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="team.html">Our Team</a></li><li><a href="projects.html">Projects</a></li><li><a href="testimonies.html">Testimonies</a></li><li><a href="donate.html">Donate</a></li></ul></div>
         <div><h4>Contact</h4><div class="footer-contact"><p><i class="fas fa-envelope"></i> info@kacm.org</p><p><i class="fas fa-envelope"></i> sponsorship@kacm.org</p><p><i class="fab fa-whatsapp"></i> +256 700 000000</p></div></div>
-        <div><h4>Affiliation</h4><div class="footer-contact"><p>Church of Uganda</p><p>Namirembe Diocese</p><p>Kazo Archdeaconry</p><p>Kiruhura District, Uganda</p></div></div>
+        <div><h4>Affiliation</h4><div class="footer-contact"><p>Church of Uganda</p><p>Namirembe Diocese</p><p>Kazo Archdeaconry</p><p>Kawempe, Kampala, Uganda</p></div></div>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2025 Kazo Archdeaconry Children's Ministry. Registered under Church of Uganda, Namirembe Diocese.</p>
@@ -126,6 +126,70 @@
       </div>
     </div>
   </footer>
+
+  <!-- ===== FLUTTERWAVE DONATION MODAL ===== -->
+  <div class="modal-overlay" id="donate-modal">
+    <div class="modal-dialog">
+      <button class="modal-close" id="modal-close">&times;</button>
+
+      <!-- Step 1: Select Amount -->
+      <div id="modal-step-amount">
+        <h2>Choose Your Impact</h2>
+        <p class="modal-subtitle">Every dollar makes a tangible difference in a child's life.</p>
+        <div class="amount-grid">
+          <button class="amount-btn" data-amount="20">$20<span style="display:block;font-size:11px;font-weight:400;">Primary School</span></button>
+          <button class="amount-btn" data-amount="30">$30<span style="display:block;font-size:11px;font-weight:400;">Primary Full</span></button>
+          <button class="amount-btn" data-amount="40">$40<span style="display:block;font-size:11px;font-weight:400;">Secondary</span></button>
+          <button class="amount-btn" data-amount="70">$70<span style="display:block;font-size:11px;font-weight:400;">Boarding</span></button>
+          <button class="amount-btn" data-amount="75">$75<span style="display:block;font-size:11px;font-weight:400;">Vocational</span></button>
+          <button class="amount-btn" data-amount="116">$116<span style="display:block;font-size:11px;font-weight:400;">University</span></button>
+        </div>
+        <p style="text-align:center; font-size:13px; color:var(--text-gray); margin-bottom:20px;">Or enter a custom amount:</p>
+        <div class="form-group">
+          <input type="number" id="custom-amount" placeholder="Enter custom amount (USD)" min="1" step="1" style="text-align:center; font-size:18px; font-weight:700; color:var(--primary);">
+        </div>
+        <button class="btn btn-primary modal-donate-btn" id="btn-to-payment" disabled>Continue to Payment</button>
+      </div>
+
+      <!-- Step 2: Payment Method -->
+      <div id="modal-step-payment" style="display:none;">
+        <h2>Select Payment Method</h2>
+        <p class="modal-subtitle">Donating <strong id="selected-amount-display">$20</strong> — powered by Flutterwave</p>
+        <div class="payment-method-select">
+          <button class="pm-btn" data-method="mtn"><i class="fas fa-mobile-alt"></i> MTN Mobile Money</button>
+          <button class="pm-btn" data-method="airtel"><i class="fas fa-mobile-alt"></i> Airtel Money</button>
+          <button class="pm-btn" data-method="visa"><i class="fab fa-cc-visa"></i> Visa</button>
+          <button class="pm-btn" data-method="mastercard"><i class="fab fa-cc-mastercard"></i> Mastercard</button>
+        </div>
+        <button class="btn btn-secondary modal-donate-btn" id="btn-process-donation" disabled>Complete Donation</button>
+        <button class="btn btn-outline-dark modal-donate-btn" id="btn-back-to-amount" style="margin-top:8px;">Back</button>
+        <p class="modal-secure-badge"><i class="fas fa-lock"></i> Secured by Flutterwave — PCI DSS Compliant</p>
+      </div>
+
+      <!-- Processing -->
+      <div class="flw-progress" id="modal-processing">
+        <div class="flw-spinner"></div>
+        <p style="font-weight:600; color:var(--text-dark);">Processing your donation...</p>
+        <p style="font-size:13px; color:var(--text-gray);">Please wait — this will only take a moment.</p>
+      </div>
+
+      <!-- Success -->
+      <div class="flw-success" id="modal-success">
+        <div class="success-icon"><i class="fas fa-check"></i></div>
+        <h2 style="color:#2e7d32; margin-bottom:8px;">Donation Successful!</h2>
+        <p style="color:var(--text-gray); margin-bottom:16px;">Thank you for your generous gift of <strong id="donated-amount">$20</strong>. A confirmation email will be sent shortly. Your donation will change a child's life.</p>
+        <div class="scripture-block" style="margin:0 auto; text-align:center; border-left:none; max-width:400px;">"God loves a cheerful giver." — 2 Corinthians 9:7</div>
+        <button class="btn btn-primary modal-donate-btn" id="btn-close-success" style="margin-top:20px;">Close</button>
+      </div>
+
+      <!-- Error -->
+      <div class="flw-error" id="modal-error">
+        <p style="font-size:18px; font-weight:600;">Transaction Failed</p>
+        <p style="font-size:14px;">There was an issue processing your donation. Please try again or use a different payment method.</p>
+        <button class="btn btn-outline-dark modal-donate-btn" id="btn-retry" style="margin-top:16px;">Try Again</button>
+      </div>
+    </div>
+  </div>
 
   <a href="#" class="whatsapp-float" data-phone="+256700000000" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
   <script src="js/main.js"></script>
