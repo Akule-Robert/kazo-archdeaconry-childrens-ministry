@@ -25,82 +25,179 @@
     </div>
   </nav>
 
-  <!-- Donate Hero -->
-  <header class="hero" style="min-height:auto; padding: calc(var(--nav-height) + 40px) 0 40px;">
-    <div class="container">
-      <h1>Change a Child's Life Today</h1>
-      <p class="hero-subtitle">Behind every statistic is a real child with a name, a dream, and a future that depends on your generosity.</p>
-      <div class="hero-scripture" style="color:var(--secondary-light);">"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver." — 2 Corinthians 9:7</div>
+  <!-- ===== HERO ===== -->
+  <header class="hero" style="min-height:75vh; background: linear-gradient(135deg, rgba(69,32,107,0.92), rgba(91,45,142,0.88)), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;">
+    <div class="container" style="max-width:720px;">
+      <h1 style="font-size:clamp(36px, 5vw, 52px);">Change a Child's Life Today</h1>
+      <p class="hero-subtitle" style="font-size:18px; margin-bottom:12px;">Your generosity puts a child in school, feeds a hungry belly, and shares the love of Christ.</p>
+      <div class="hero-scripture" style="color:var(--secondary); border-left-color:var(--secondary); margin-bottom:28px;">"Each of you should give what you have decided in your heart to give, for God loves a cheerful giver." — 2 Corinthians 9:7</div>
+      <a href="#" class="btn btn-secondary btn-lg" id="open-donate-modal" style="font-size:18px; padding:18px 48px;">
+        <i class="fas fa-heart" style="margin-right:10px;"></i> Donate Now
+      </a>
     </div>
   </header>
 
-  <!-- Impact Donation Table -->
+  <!-- ===== HOW IT WORKS ===== -->
   <section class="section">
     <div class="container">
-      <div class="section-header fade-in"><h2>Your Impact</h2><p>Every dollar makes a tangible difference in a child's life.</p></div>
-      <div class="table-wrapper fade-in">
-        <table class="donation-table">
-          <thead><tr><th>Monthly Amount</th><th>What It Does</th></tr></thead>
-          <tbody>
-            <tr><td>$20 / month</td><td>Keeps one child in primary school for a full month</td></tr>
-            <tr><td>$30 / month</td><td>Covers a primary school child's fees, uniform, and books</td></tr>
-            <tr><td>$40 / month</td><td>Pays secondary school fees and requirements for one child</td></tr>
-            <tr><td>$70 / month</td><td>Fully sponsors a child in a secondary boarding school</td></tr>
-            <tr><td>$75 / month</td><td>Funds vocational education — giving a young person a trade and a future</td></tr>
-            <tr><td>$116 / month</td><td>Covers one month of university tuition — a life-changing investment</td></tr>
-            <tr><td>Any amount</td><td>Supports Farm to Fork, the Resource Centre, or community outreach activities</td></tr>
-          </tbody>
-        </table>
+      <div class="section-header fade-in"><h2>How It Works</h2><p>Three simple steps to change a child's future.</p></div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:800px; margin:0 auto;">
+        <div class="card" style="padding:32px 24px; text-align:center;">
+          <div style="width:48px;height:48px;background:var(--bg-light-purple);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:20px;color:var(--primary);font-weight:700;">1</div>
+          <h4 style="margin-bottom:4px;">Choose an Amount</h4>
+          <p style="font-size:13px;color:var(--text-gray);margin:0;">Select a sponsorship tier or enter a custom donation amount.</p>
+        </div>
+        <div class="card" style="padding:32px 24px; text-align:center;">
+          <div style="width:48px;height:48px;background:var(--bg-light-purple);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:20px;color:var(--primary);font-weight:700;">2</div>
+          <h4 style="margin-bottom:4px;">Pick Payment Method</h4>
+          <p style="font-size:13px;color:var(--text-gray);margin:0;">Pay with MTN, Airtel, Visa, or Mastercard — secure via Flutterwave.</p>
+        </div>
+        <div class="card" style="padding:32px 24px; text-align:center;">
+          <div style="width:48px;height:48px;background:var(--bg-light-purple);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:20px;color:var(--primary);font-weight:700;">3</div>
+          <h4 style="margin-bottom:4px;">Receive Updates</h4>
+          <p style="font-size:13px;color:var(--text-gray);margin:0;">Get progress reports, photos, and academic updates on your sponsored child.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Payment Methods -->
+  <!-- ===== IMPACT CARDS ===== -->
   <section class="section-alt">
     <div class="container">
-      <div class="section-header fade-in"><h2>Donating to KACM is Safe, Simple and Secure</h2><p>Powered by Flutterwave</p></div>
-      <div class="payment-grid fade-in">
-        <div class="payment-col">
-          <h3><i class="fas fa-map-marker-alt"></i> Local Donors (Uganda)</h3>
-          <div class="payment-methods">
-            <span class="payment-method">MTN Mobile Money</span>
-            <span class="payment-method">Airtel Money</span>
-            <span class="payment-method">Visa</span>
-            <span class="payment-method">Mastercard</span>
-          </div>
+      <div class="section-header fade-in"><h2>Choose Your Impact</h2><p>Every dollar you give goes directly to transforming a child's life.</p></div>
+      <div class="impact-cards fade-in">
+        <div class="impact-card" data-amount="20" onclick="selectDonateCard(this)">
+          <div class="ic-amount">$20<small style="font-size:11px;font-weight:400;color:var(--text-gray);display:block;">/ month</small></div>
+          <div class="ic-label">Primary — Fees Only</div>
+          <div class="ic-desc">School fees paid directly to school</div>
+          <div class="ic-check"><i class="fas fa-check"></i></div>
         </div>
-        <div class="payment-col">
-          <h3><i class="fas fa-globe-africa"></i> International Donors</h3>
-          <div class="payment-methods">
-            <span class="payment-method">Visa</span>
-            <span class="payment-method">Mastercard</span>
-            <span class="payment-method">American Express</span>
-            <span class="payment-method">PayPal</span>
-          </div>
+        <div class="impact-card" data-amount="30" onclick="selectDonateCard(this)">
+          <div class="ic-amount">$30<small style="font-size:11px;font-weight:400;color:var(--text-gray);display:block;">/ month</small></div>
+          <div class="ic-label">Primary — Full Package</div>
+          <div class="ic-desc">Fees + books, uniform, pens, geometry set</div>
+          <div class="ic-check"><i class="fas fa-check"></i></div>
+        </div>
+        <div class="impact-card" data-amount="35" onclick="selectDonateCard(this)">
+          <div class="ic-amount">$35<small style="font-size:11px;font-weight:400;color:var(--text-gray);display:block;">/ month</small></div>
+          <div class="ic-label">Secondary — Fees Only</div>
+          <div class="ic-desc">Secondary school fees only</div>
+          <div class="ic-check"><i class="fas fa-check"></i></div>
+        </div>
+        <div class="impact-card" data-amount="40" onclick="selectDonateCard(this)">
+          <div class="ic-amount">$40<small style="font-size:11px;font-weight:400;color:var(--text-gray);display:block;">/ month</small></div>
+          <div class="ic-label">Secondary — Full Package</div>
+          <div class="ic-desc">Fees + requirements</div>
+          <div class="ic-check"><i class="fas fa-check"></i></div>
+        </div>
+        <div class="impact-card" data-amount="70" onclick="selectDonateCard(this)">
+          <div class="ic-amount">$70<small style="font-size:11px;font-weight:400;color:var(--text-gray);display:block;">/ month</small></div>
+          <div class="ic-label">Secondary — Boarding</div>
+          <div class="ic-desc">Full boarding school package</div>
+          <div class="ic-check"><i class="fas fa-check"></i></div>
+        </div>
+        <div class="impact-card" data-amount="75" onclick="selectDonateCard(this)">
+          <div class="ic-amount">$75<small style="font-size:11px;font-weight:400;color:var(--text-gray);display:block;">/ month</small></div>
+          <div class="ic-label">Vocational / Tertiary</div>
+          <div class="ic-desc">Vocational or tertiary education fees</div>
+          <div class="ic-check"><i class="fas fa-check"></i></div>
+        </div>
+        <div class="impact-card" data-amount="116" onclick="selectDonateCard(this)">
+          <div class="ic-amount">$116<small style="font-size:11px;font-weight:400;color:var(--text-gray);display:block;">/ month</small></div>
+          <div class="ic-label">University Tuition</div>
+          <div class="ic-desc">Average university tuition (varies by course)</div>
+          <div class="ic-check"><i class="fas fa-check"></i></div>
+        </div>
+        <div class="impact-card impact-project" onclick="selectDonateCard(this); document.getElementById('custom-amount').focus();">
+          <div class="ic-amount"><i class="fas fa-seedling" style="font-size:22px;"></i></div>
+          <div class="ic-label">Farm to Fork</div>
+          <div class="ic-desc">Support organic farming & fight child malnutrition</div>
+          <div class="ic-check"><i class="fas fa-check"></i></div>
+        </div>
+        <div class="impact-card impact-project" onclick="selectDonateCard(this); document.getElementById('custom-amount').focus();">
+          <div class="ic-amount"><i class="fas fa-laptop-code" style="font-size:22px;"></i></div>
+          <div class="ic-label">Resource Centre</div>
+          <div class="ic-desc">Equip youth with ICT & digital skills</div>
+          <div class="ic-check"><i class="fas fa-check"></i></div>
         </div>
       </div>
-
-      <div style="text-align:center; margin-top:40px;" class="fade-in">
-        <a href="#" class="btn btn-secondary btn-lg" id="open-donate-modal">
-          <i class="fas fa-heart" style="margin-right:8px;"></i> Donate Now
+      <div style="text-align:center; margin-top:28px;" class="fade-in">
+        <a href="#" class="btn btn-primary btn-lg" id="open-donate-modal-2" style="font-size:17px; padding:16px 40px;">
+          <i class="fas fa-heart" style="margin-right:8px;"></i> Sponsor a Child Now
         </a>
-        <p style="margin-top:12px; font-size:13px; color:var(--text-gray);"><i class="fas fa-lock"></i> Secure payments powered by Flutterwave</p>
       </div>
     </div>
   </section>
 
-  <!-- Transparency -->
+  <!-- ===== PAYMENT METHODS ===== -->
   <section class="section">
     <div class="container">
+      <div class="section-header fade-in"><h2>Secure Payment Methods</h2><p>Your donation is processed securely through Flutterwave — PCI DSS compliant.</p></div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px;" class="fade-in">
+        <div style="background:var(--white);border-radius:var(--radius-md);padding:24px;box-shadow:var(--shadow-sm);">
+          <h4 style="margin-bottom:16px;"><i class="fas fa-map-marker-alt" style="color:var(--primary);margin-right:6px;"></i> Local Donors (Uganda)</h4>
+          <div class="payment-logos">
+            <div class="pm-card" data-method="mtn" onclick="selectPayment(this)">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRko_FkN7hOVR7-FO-VYe3Kkul5Ke4QXvc5zw&s" alt="MTN" width="100" height="26" style="object-fit:contain;">
+              <span>MTN Mobile Money</span>
+            </div>
+            <div class="pm-card" data-method="airtel" onclick="selectPayment(this)">
+              <img src="https://pbs.twimg.com/profile_images/1422229945317744642/1f6bLEh__400x400.jpg" alt="Airtel" width="100" height="26" style="object-fit:contain;">
+              <span>Airtel Money</span>
+            </div>
+            <div class="pm-card" data-method="visa" onclick="selectPayment(this)">
+              <img src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/cards/visa.svg" alt="Visa" width="100" height="26">
+              <span>Visa</span>
+            </div>
+            <div class="pm-card" data-method="mastercard" onclick="selectPayment(this)">
+              <img src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/cards/mastercard.svg" alt="Mastercard" width="100" height="26">
+              <span>Mastercard</span>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--white);border-radius:var(--radius-md);padding:24px;box-shadow:var(--shadow-sm);">
+          <h4 style="margin-bottom:16px;"><i class="fas fa-globe-africa" style="color:var(--primary);margin-right:6px;"></i> International Donors</h4>
+          <div class="payment-logos">
+            <div class="pm-card" data-method="visa" onclick="selectPayment(this)">
+              <img src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/cards/visa.svg" alt="Visa" width="100" height="26">
+              <span>Visa</span>
+            </div>
+            <div class="pm-card" data-method="mastercard" onclick="selectPayment(this)">
+              <img src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/cards/mastercard.svg" alt="Mastercard" width="100" height="26">
+              <span>Mastercard</span>
+            </div>
+            <div class="pm-card" data-method="amex" onclick="selectPayment(this)">
+              <svg viewBox="0 0 140 28" width="100" height="26"><rect width="140" height="28" rx="4" fill="#2E77BC"/><text x="8" y="14" font-size="8" font-weight="700" fill="#FFF" font-family="Arial" letter-spacing="0.5">AMERICAN</text><text x="8" y="22" font-size="8" font-weight="700" fill="#FFF" font-family="Arial" letter-spacing="0.5">EXPRESS</text></svg>
+              <span>American Express</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:13px;color:var(--text-gray);margin-top:20px;"><i class="fas fa-lock" style="color:var(--secondary);margin-right:4px;"></i> All transactions are encrypted and PCI DSS compliant. Powered by Flutterwave.</p>
+    </div>
+  </section>
+
+  <!-- ===== TRANSPARENCY ===== -->
+  <section class="section-alt">
+    <div class="container">
       <div class="section-header fade-in"><h2>Transparency & Accountability</h2></div>
-      <div class="scripture-block fade-in">"Whoever can be trusted with very little can also be trusted with much." — Luke 16:10</div>
-      <p class="page-intro fade-in">KACM is a registered ministry of the Church of Uganda under the Namirembe Diocese. Annual financial summaries and programme impact reports are available to all donors upon request. Every sponsoring donor receives regular updates on the child or project they are supporting.</p>
+      <div class="scripture-block fade-in" style="margin:0 auto 24px; text-align:center; border-left:none; max-width:600px;">"Whoever can be trusted with very little can also be trusted with much." — Luke 16:10</div>
+      <p class="page-intro fade-in" style="max-width:650px;">KACM is a registered ministry of the Church of Uganda under the Namirembe Diocese. Annual financial summaries and programme impact reports are available to all donors upon request. Every sponsoring donor receives regular updates on the child or project they are supporting.</p>
       <div class="trust-badges fade-in">
         <div class="trust-badge"><div class="badge-icon"><i class="fas fa-church"></i></div>Church of Uganda Affiliation</div>
-        <div class="trust-badge"><div class="badge-icon"><i class="fas fa-place-of-worship"></i></div>Namirembe Diocese Seal</div>
-        <div class="trust-badge"><div class="badge-icon"><i class="fas fa-shield-alt"></i></div>Flutterwave Secure Payments</div>
-        <div class="trust-badge"><div class="badge-icon"><i class="fas fa-file-alt"></i></div>Annual Reports Available</div>
+        <div class="trust-badge"><div class="badge-icon"><i class="fas fa-place-of-worship"></i></div>Namirembe Diocese</div>
+        <div class="trust-badge"><div class="badge-icon"><i class="fas fa-shield-alt"></i></div>Flutterwave Secured</div>
+        <div class="trust-badge"><div class="badge-icon"><i class="fas fa-file-alt"></i></div>Annual Reports</div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BANNER ===== -->
+  <section class="cta-strip">
+    <div class="container fade-in">
+      <h2 style="color:var(--text-dark);">Be the Reason a Child Smiles Today</h2>
+      <p style="color:var(--text-dark); opacity:0.8; max-width:550px; margin:0 auto 20px;">For as little as $20 a month, you can keep a child in school, fed, and loved. Join over 200 sponsors already making a difference.</p>
+      <a href="projects.html#sponsor" class="btn btn-primary btn-lg">Learn About Sponsorship</a>
     </div>
   </section>
 
@@ -132,15 +229,15 @@
     <div class="modal-dialog">
       <button class="modal-close" id="modal-close">&times;</button>
 
-      <!-- Step 1: Select Amount -->
       <div id="modal-step-amount">
         <h2>Choose Your Impact</h2>
         <p class="modal-subtitle">Every dollar makes a tangible difference in a child's life.</p>
         <div class="amount-grid">
-          <button class="amount-btn" data-amount="20">$20<span style="display:block;font-size:11px;font-weight:400;">Primary School</span></button>
-          <button class="amount-btn" data-amount="30">$30<span style="display:block;font-size:11px;font-weight:400;">Primary Full</span></button>
-          <button class="amount-btn" data-amount="40">$40<span style="display:block;font-size:11px;font-weight:400;">Secondary</span></button>
-          <button class="amount-btn" data-amount="70">$70<span style="display:block;font-size:11px;font-weight:400;">Boarding</span></button>
+          <button class="amount-btn" data-amount="20">$20<span style="display:block;font-size:11px;font-weight:400;">Primary Fees Only</span></button>
+          <button class="amount-btn" data-amount="30">$30<span style="display:block;font-size:11px;font-weight:400;">Primary Full Pkg</span></button>
+          <button class="amount-btn" data-amount="35">$35<span style="display:block;font-size:11px;font-weight:400;">Secondary Fees</span></button>
+          <button class="amount-btn" data-amount="40">$40<span style="display:block;font-size:11px;font-weight:400;">Secondary Full</span></button>
+          <button class="amount-btn" data-amount="70">$70<span style="display:block;font-size:11px;font-weight:400;">Secondary Boarding</span></button>
           <button class="amount-btn" data-amount="75">$75<span style="display:block;font-size:11px;font-weight:400;">Vocational</span></button>
           <button class="amount-btn" data-amount="116">$116<span style="display:block;font-size:11px;font-weight:400;">University</span></button>
         </div>
@@ -151,7 +248,6 @@
         <button class="btn btn-primary modal-donate-btn" id="btn-to-payment" disabled>Continue to Payment</button>
       </div>
 
-      <!-- Step 2: Payment Method -->
       <div id="modal-step-payment" style="display:none;">
         <h2>Select Payment Method</h2>
         <p class="modal-subtitle">Donating <strong id="selected-amount-display">$20</strong> — powered by Flutterwave</p>
@@ -166,14 +262,12 @@
         <p class="modal-secure-badge"><i class="fas fa-lock"></i> Secured by Flutterwave — PCI DSS Compliant</p>
       </div>
 
-      <!-- Processing -->
       <div class="flw-progress" id="modal-processing">
         <div class="flw-spinner"></div>
         <p style="font-weight:600; color:var(--text-dark);">Processing your donation...</p>
         <p style="font-size:13px; color:var(--text-gray);">Please wait — this will only take a moment.</p>
       </div>
 
-      <!-- Success -->
       <div class="flw-success" id="modal-success">
         <div class="success-icon"><i class="fas fa-check"></i></div>
         <h2 style="color:#2e7d32; margin-bottom:8px;">Donation Successful!</h2>
@@ -182,7 +276,6 @@
         <button class="btn btn-primary modal-donate-btn" id="btn-close-success" style="margin-top:20px;">Close</button>
       </div>
 
-      <!-- Error -->
       <div class="flw-error" id="modal-error">
         <p style="font-size:18px; font-weight:600;">Transaction Failed</p>
         <p style="font-size:14px;">There was an issue processing your donation. Please try again or use a different payment method.</p>
@@ -192,6 +285,20 @@
   </div>
 
   <a href="#" class="whatsapp-float" data-phone="+256700000000" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+  <script>
+    // Wire up the second donate button to the same modal
+    document.addEventListener('DOMContentLoaded', function () {
+      var btn2 = document.getElementById('open-donate-modal-2');
+      var btn1 = document.getElementById('open-donate-modal');
+      if (btn2 && btn1) {
+        btn2.addEventListener('click', function (e) {
+          e.preventDefault();
+          btn1.click();
+        });
+      }
+    });
+  </script>
   <script src="js/main.js"></script>
 </body>
 </html>
