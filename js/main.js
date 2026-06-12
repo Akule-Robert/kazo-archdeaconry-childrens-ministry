@@ -391,6 +391,17 @@ document.addEventListener('DOMContentLoaded', function () {
     openBtn.addEventListener('click', function (e) {
       e.preventDefault();
       resetModal();
+      // Check if a card was preselected on the donate page
+      var preselected = document.querySelector('.impact-card.selected');
+      if (preselected) {
+        var amt = parseInt(preselected.getAttribute('data-amount'));
+        selectedAmount = amt || 20;
+        btnToPayment.disabled = false;
+        // Auto-select the matching modal amount button
+        donateModal.querySelectorAll('.amount-btn').forEach(function (b) { b.classList.remove('selected'); });
+        var match = donateModal.querySelector('.amount-btn[data-amount="' + selectedAmount + '"]');
+        if (match) match.classList.add('selected');
+      }
       donateModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
@@ -575,3 +586,21 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 });
+
+/* Global: select an impact card on the donate page */
+function selectDonateCard(el) {
+  document.querySelectorAll('.impact-card').forEach(function (c) { c.classList.remove('selected'); });
+  el.classList.add('selected');
+}
+
+/* Global: select a payment method card and open the modal */
+function selectPayment(el) {
+  document.querySelectorAll('.pm-card').forEach(function (c) { c.classList.remove('selected'); });
+  el.classList.add('selected');
+  // Open the donate modal
+  var modal = document.getElementById('donate-modal');
+  var openBtn = document.getElementById('open-donate-modal');
+  if (modal && openBtn) {
+    openBtn.click();
+  }
+}
