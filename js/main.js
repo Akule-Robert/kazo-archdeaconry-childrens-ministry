@@ -585,6 +585,66 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // ========================================================
+  // 16. GALLERY MODAL
+  // ========================================================
+  var galleryModal = document.getElementById('gallery-modal');
+  if (galleryModal) {
+    var galleryOpenBtn = document.getElementById('open-gallery-modal');
+    var galleryCloseBtn = document.getElementById('gallery-modal-close');
+
+    galleryOpenBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      galleryModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeGalleryModal() {
+      galleryModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    galleryCloseBtn.addEventListener('click', closeGalleryModal);
+    galleryModal.addEventListener('click', function (e) {
+      if (e.target === galleryModal) closeGalleryModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && galleryModal.classList.contains('active')) closeGalleryModal();
+    });
+
+    // Gallery item click — show preview overlay
+    var gmPreview = document.getElementById('gm-preview');
+    var gmPreviewImg = document.getElementById('gm-preview-img');
+    var gmPreviewLabel = document.getElementById('gm-preview-label');
+    var gmPreviewClose = document.getElementById('gm-preview-close');
+
+    galleryModal.querySelectorAll('.gm-item').forEach(function (item) {
+      item.addEventListener('click', function () {
+        var imgUrl = this.getAttribute('data-img');
+        var label = this.getAttribute('data-label');
+        if (imgUrl) {
+          gmPreviewImg.src = imgUrl;
+          gmPreviewImg.alt = label || '';
+          if (gmPreviewLabel) gmPreviewLabel.textContent = label || '';
+          gmPreview.style.display = 'flex';
+        }
+      });
+    });
+
+    if (gmPreviewClose) {
+      gmPreviewClose.addEventListener('click', function () {
+        gmPreview.style.display = 'none';
+      });
+    }
+    if (gmPreview) {
+      gmPreview.addEventListener('click', function (e) {
+        if (e.target === gmPreview) {
+          gmPreview.style.display = 'none';
+        }
+      });
+    }
+  }
+
 });
 
 /* Global: select an impact card on the donate page */
