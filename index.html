@@ -295,6 +295,52 @@
     </div>
   </section>
 
+  <section class="section" id="gallery">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Our Gallery</h2>
+        <p>Moments captured across our programmes and outreaches.</p>
+      </div>
+      <div class="gallery-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="gallery-item fade-in">
+          <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80" alt="Children at KACM" class="lightbox-trigger">
+          <div class="gallery-overlay"><span>Children's Programme</span></div>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80" alt="Sports" class="lightbox-trigger">
+          <div class="gallery-overlay"><span>Sports Ministry</span></div>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=600&q=80" alt="Music and dance" class="lightbox-trigger">
+          <div class="gallery-overlay"><span>Music Dance & Drama</span></div>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=600&q=80" alt="Community outreach" class="lightbox-trigger">
+          <div class="gallery-overlay"><span>Community Outreach</span></div>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=600&q=80" alt="Farm to Fork" class="lightbox-trigger">
+          <div class="gallery-overlay"><span>Farm to Fork</span></div>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=600&q=80" alt="Resource Centre" class="lightbox-trigger">
+          <div class="gallery-overlay"><span>Resource Centre</span></div>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://images.unsplash.com/photo-1497633762265-9d769a7919a6?auto=format&fit=crop&w=600&q=80" alt="Children learning" class="lightbox-trigger">
+          <div class="gallery-overlay"><span>Education Support</span></div>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://images.unsplash.com/photo-1473177104440-fbb6db3e0c08?auto=format&fit=crop&w=600&q=80" alt="Church service" class="lightbox-trigger">
+          <div class="gallery-overlay"><span>Worship & Fellowship</span></div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:24px;">
+        <a href="#" class="btn btn-outline-dark" id="open-gallery-modal">View Gallery</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== MEDIA & UPDATES ===== -->
   <section class="section" id="media">
     <div class="container">
@@ -309,7 +355,6 @@
         <button class="tab-btn active" data-tab="tab-articles"><i class="fas fa-newspaper"></i> Articles</button>
         <button class="tab-btn" data-tab="tab-press"><i class="fas fa-bullhorn"></i> Press</button>
         <button class="tab-btn" data-tab="tab-events"><i class="fas fa-calendar-alt"></i> Events</button>
-        <button class="tab-btn" data-tab="tab-gallery"><i class="fas fa-images"></i> Gallery</button>
         <button class="tab-btn" data-tab="tab-library"><i class="fas fa-book"></i> Library</button>
         <button class="tab-btn" data-tab="tab-stories"><i class="fas fa-star"></i> Stories</button>
         <button class="tab-btn" data-tab="tab-newsletter"><i class="fas fa-envelope-open-text"></i> Newsletter</button>
@@ -397,21 +442,6 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Gallery -->
-      <div class="tab-panel" id="tab-gallery">
-        <div class="gallery-grid">
-          <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80" alt="Children at KACM" class="lightbox-trigger">
-          <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80" alt="Sports at KACM" class="lightbox-trigger">
-          <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=600&q=80" alt="Music and dance at KACM" class="lightbox-trigger">
-          <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=600&q=80" alt="Community outreach" class="lightbox-trigger">
-          <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=600&q=80" alt="Farm to Fork project" class="lightbox-trigger">
-          <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=600&q=80" alt="Resource Centre computers" class="lightbox-trigger">
-          <img src="https://images.unsplash.com/photo-1497633762265-9d769a7919a6?auto=format&fit=crop&w=600&q=80" alt="Children learning" class="lightbox-trigger">
-          <img src="https://images.unsplash.com/photo-1473177104440-fbb6db3e0c08?auto=format&fit=crop&w=600&q=80" alt="Church service" class="lightbox-trigger">
-        </div>
-        <p style="text-align:center; margin-top:16px; font-size:13px; color:var(--text-gray);">Click any image to view larger. More photos coming soon.</p>
       </div>
 
       <!-- Library -->
@@ -617,6 +647,44 @@
       </div>
     </div>
   </footer>
+
+  <!-- ===== GALLERY MODAL ===== -->
+  <div class="modal-overlay" id="gallery-modal" style="background:rgba(0,0,0,0.85); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px);">
+    <div class="gallery-modal-box">
+      <button class="modal-close" id="gallery-modal-close" style="color:#fff; font-size:32px; top:16px; right:20px;">&times;</button>
+      <div class="gallery-modal-header">
+        <h2>Our Gallery</h2>
+        <p>Click any photo to view full size</p>
+      </div>
+      <div class="gm-preview" id="gm-preview" style="display:none;">
+        <img src="" alt="" id="gm-preview-img">
+        <div class="gm-preview-close" id="gm-preview-close"><i class="fas fa-times"></i></div>
+        <div class="gm-preview-label" id="gm-preview-label"></div>
+      </div>
+      <div class="gallery-modal-grid">
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80" data-label="Children's Programme"><img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80" alt="Children at KACM"><span class="gm-label">Children's Programme</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=80" data-label="Sports Ministry"><img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80" alt="Sports"><span class="gm-label">Sports Ministry</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=1200&q=80" data-label="Music & Dance"><img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=600&q=80" alt="Music"><span class="gm-label">Music & Dance</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=1200&q=80" data-label="Community Outreach"><img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=600&q=80" alt="Outreach"><span class="gm-label">Community Outreach</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=1200&q=80" data-label="Farm to Fork"><img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=600&q=80" alt="Farm"><span class="gm-label">Farm to Fork</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=1200&q=80" data-label="Resource Centre"><img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=600&q=80" alt="Computers"><span class="gm-label">Resource Centre</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1497633762265-9d769a7919a6?auto=format&fit=crop&w=1200&q=80" data-label="Education Support"><img src="https://images.unsplash.com/photo-1497633762265-9d769a7919a6?auto=format&fit=crop&w=600&q=80" alt="Learning"><span class="gm-label">Education Support</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1473177104440-fbb6db3e0c08?auto=format&fit=crop&w=1200&q=80" data-label="Worship & Fellowship"><img src="https://images.unsplash.com/photo-1473177104440-fbb6db3e0c08?auto=format&fit=crop&w=600&q=80" alt="Church"><span class="gm-label">Worship & Fellowship</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1524502397804-7a0f191c2c0e?auto=format&fit=crop&w=1200&q=80" data-label="Kids Programme"><img src="https://images.unsplash.com/photo-1524502397804-7a0f191c2c0e?auto=format&fit=crop&w=600&q=80" alt="Children"><span class="gm-label">Kids Programme</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=1200&q=80" data-label="Group Activities"><img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=600&q=80" alt="Activities"><span class="gm-label">Group Activities</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1516627147297-af6962b6f3e6?auto=format&fit=crop&w=1200&q=80" data-label="Prayer Session"><img src="https://images.unsplash.com/photo-1516627147297-af6962b6f3e6?auto=format&fit=crop&w=600&q=80" alt="Prayer"><span class="gm-label">Prayer Session</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=1200&q=80" data-label="Community Event"><img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=600&q=80" alt="Community"><span class="gm-label">Community Event</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80" data-label="ICT Training"><img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" alt="Coding"><span class="gm-label">ICT Training</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80" data-label="Outdoor Play"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80" alt="Kids playing"><span class="gm-label">Outdoor Play</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80" data-label="Youth Programme"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Youth"><span class="gm-label">Youth Programme</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&q=80" data-label="Scholarship Kids"><img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=600&q=80" alt="Students"><span class="gm-label">Scholarship Kids</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=1200&q=80" data-label="Donation Drive"><img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=600&q=80" alt="Donation"><span class="gm-label">Donation Drive</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80" data-label="Team Activity"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Team work"><span class="gm-label">Team Activity</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80" data-label="Workshop Session"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80" alt="Workshop"><span class="gm-label">Workshop Session</span></div>
+        <div class="gm-item" data-img="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" data-label="Volunteer Team"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Volunteers"><span class="gm-label">Volunteer Team</span></div>
+      </div>
+    </div>
+  </div>
 
   <!-- ===== LIGHTBOX ===== -->
   <div class="lightbox" id="lightbox">
