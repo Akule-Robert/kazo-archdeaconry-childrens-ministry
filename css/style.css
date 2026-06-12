@@ -970,6 +970,42 @@ table tbody tr:hover { background: var(--bg-light-gold); }
 }
 .gallery-grid img:hover { transform: scale(1.03); opacity: 0.9; }
 
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.gallery-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: all 0.4s ease;
+  background: var(--bg-light-purple);
+  display: block;
+}
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(91,45,142,0.9) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+.gallery-overlay span {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
 /* --- STEPS / PROCESS --- */
 .steps {
   display: grid;
@@ -1776,6 +1812,122 @@ table tbody tr:hover { background: var(--bg-light-gold); }
 }
 .impact-project .ic-amount i {
   color: var(--primary);
+}
+
+/* --- GALLERY MODAL --- */
+.gallery-modal-box {
+  background: #111;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  max-width: 960px;
+  width: 95%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+.gallery-modal-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.gallery-modal-header h2 {
+  color: #fff;
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+.gallery-modal-header p {
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+}
+.gallery-modal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.gm-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+  aspect-ratio: 3 / 2;
+}
+.gm-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+.gm-item:hover img {
+  transform: scale(1.1);
+}
+.gm-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 8px 6px;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.8));
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.gm-item:hover .gm-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+.gallery-modal-box::-webkit-scrollbar {
+  width: 4px;
+}
+.gallery-modal-box::-webkit-scrollbar-track {
+  background: #222;
+}
+.gallery-modal-box::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+/* --- GALLERY MODAL PREVIEW --- */
+.gm-preview {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 999;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+.gm-preview img {
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: var(--radius-md);
+  object-fit: contain;
+}
+.gm-preview-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 36px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+.gm-preview-close:hover { opacity: 1; }
+.gm-preview-label {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.6);
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* --- PAYMENT LOGOS --- */
