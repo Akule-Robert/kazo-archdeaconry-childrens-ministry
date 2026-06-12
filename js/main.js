@@ -6,6 +6,20 @@
 document.addEventListener('DOMContentLoaded', function () {
 
   // ========================================================
+  // 0. HERO SLIDESHOW
+  // ========================================================
+  var heroSlides = document.querySelectorAll('.hero-slide');
+  if (heroSlides.length > 0) {
+    var heroCurrent = 0;
+    heroSlides[0].classList.add('active');
+    setInterval(function () {
+      heroSlides[heroCurrent].classList.remove('active');
+      heroCurrent = (heroCurrent + 1) % heroSlides.length;
+      heroSlides[heroCurrent].classList.add('active');
+    }, 5000);
+  }
+
+  // ========================================================
   // 1. MOBILE HAMBURGER MENU
   // ========================================================
   var hamburger = document.querySelector('.hamburger');
