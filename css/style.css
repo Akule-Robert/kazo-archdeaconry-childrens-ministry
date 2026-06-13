@@ -1617,7 +1617,7 @@ table tbody tr:hover { background: var(--bg-light-gold); }
 
 /* --- SPONSOR SECTION (Projects Page) --- */
 .sponsor-banner {
-  background: linear-gradient(135deg, rgba(91,45,142,0.92), rgba(26,26,46,0.88)), url('https://images.pexels.com/photos/1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1000&q=80') center/cover;
+  background: linear-gradient(135deg, rgba(91,45,142,0.92), rgba(26,26,46,0.88)), url('assets/sports/a group of students celebrating with a trophy.jpeg') center/cover;
   border-radius: var(--radius-lg);
   padding: 50px 40px;
   text-align: center;
