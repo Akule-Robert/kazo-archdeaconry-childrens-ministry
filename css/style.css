@@ -1623,25 +1623,68 @@ table tbody tr:hover { background: var(--bg-light-gold); }
 .program-card-content .program-learn-more:hover {
   gap: 10px;
 }
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px 24px;
+
+/* --- CONTACT INFO GRID --- */
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
   margin-bottom: 32px;
-  font-size: 14px;
-  color: var(--text-dark);
 }
-.contact-strip span {
-  display: inline-flex;
+.ci-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  white-space: nowrap;
+  gap: 14px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.contact-strip i {
-  color: var(--primary);
+.ci-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.ci-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+.ci-card h4 {
   font-size: 13px;
-  width: 18px;
-  text-align: center;
+  margin-bottom: 2px;
+}
+.ci-card p {
+  font-size: 12px;
+  color: var(--text-gray);
+  margin: 0;
+}
+.ci-card p a {
+  color: var(--primary);
+  font-weight: 600;
+}
+.ci-card p a:hover {
+  text-decoration: underline;
+}
+
+/* --- CONTACT CARD (form/map) --- */
+.contact-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+.contact-card-top {
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 3px 3px 0 0;
+  margin: -20px -20px 16px;
 }
 
 /* --- MEDIA & UPDATES REDESIGN --- */
@@ -2286,6 +2329,7 @@ table tbody tr:hover { background: var(--bg-light-gold); }
   .steps { grid-template-columns: repeat(2, 1fr); }
   .program-section { grid-template-columns: 1fr; }
   .contact-layout { grid-template-columns: 1fr; }
+  .contact-info-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery-grid { grid-template-columns: repeat(3, 1fr); }
   .payment-grid { grid-template-columns: 1fr; }
   .contact-details-grid { grid-template-columns: 1fr; }
@@ -2347,6 +2391,7 @@ table tbody tr:hover { background: var(--bg-light-gold); }
   .contact-layout { grid-template-columns: 1fr; }
   .contact-form-wrapper { padding: 24px; }
   .contact-details-grid { grid-template-columns: 1fr; }
+  .contact-info-grid { grid-template-columns: repeat(2, 1fr); }
 
   .impact-cards { grid-template-columns: repeat(2, 1fr); }
   .how-steps { grid-template-columns: 1fr !important; }
