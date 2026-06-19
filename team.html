@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
 </head>
 <body>
   <nav class="navbar">
@@ -27,7 +29,7 @@
     </div>
   </nav>
 
-  <section class="page-hero" style="background: linear-gradient(135deg, rgba(69,32,107,0.88), rgba(91,45,142,0.85)), url('assets/church interior.jpeg') center/cover no-repeat;">
+  <section class="page-hero" style="background: linear-gradient(135deg, rgba(69,32,107,0.88), rgba(91,45,142,0.85)), url('assets/sunday school children group photos/sunday school children all combined.jpeg') center/cover no-repeat;">
     <div class="container">
       <h1>Our Team</h1>
       <p class="breadcrumb"><a href="index.html">Home</a> &gt; Our Team</p>
@@ -40,40 +42,7 @@
       <p class="page-intro fade-in">KACM is led by a dedicated team of spiritual leaders, coordinators, and community volunteers who give their time and passion to serve the children of Kazo Archdeaconry.</p>
 
       <div class="section-header fade-in"><h2>Leadership</h2></div>
-
-      <!-- Bishop -->
-      <div class="card-grid-3" style="margin-bottom:40px;">
-        <div style="grid-column: 1/-1; max-width:450px; margin:0 auto;">
-          <div class="team-card team-card-featured fade-in">
-            <div class="team-photo" style="background:linear-gradient(135deg,#5B2D8E,#7B4DB8); color:white;"><i class="fas fa-user"></i></div>
-            <div class="team-name">Rt. Rev. Dr. Moses Banja</div>
-            <div class="team-role">Bishop, Namirembe Diocese</div>
-            <p class="team-bio">Rt. Rev. Dr. Moses Banja serves as the Bishop of Namirembe Diocese, providing spiritual oversight and apostolic leadership under which KACM operates. His visionary leadership continues to strengthen children's ministry across the diocese.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Core Leadership -->
-      <div class="card-grid-3">
-        <div class="team-card fade-in">
-          <div class="team-photo" style="background:linear-gradient(135deg,#C9A84C,#DBC06E); color:white;"><i class="fas fa-user"></i></div>
-          <div class="team-name">Ven. Canon John Gitta Kavuma</div>
-          <div class="team-role">Archdeacon, Kazo Archdeaconry</div>
-          <p class="team-bio">Ven. Canon John Gitta Kavuma serves as the Archdeacon of Kazo Archdeaconry, providing spiritual leadership across all parishes and championing the cause of children's welfare throughout the Archdeaconry.</p>
-        </div>
-        <div class="team-card fade-in">
-          <div class="team-photo" style="background:linear-gradient(135deg,#5B2D8E,#45206B); color:white;"><i class="fas fa-user"></i></div>
-          <div class="team-name">Rev. Semei Sebina Sekiziyivu</div>
-          <div class="team-role">KACM Rev. Coordinator</div>
-          <p class="team-bio">Rev. Semei Sebina Sekiziyivu coordinates all KACM activities across parishes, working tirelessly to ensure every programme aligns with our mission of nurturing children in the love of Christ.</p>
-        </div>
-        <div class="team-card fade-in">
-          <div class="team-photo" style="background:linear-gradient(135deg,#1A1A2E,#555); color:white;"><i class="fas fa-user"></i></div>
-          <div class="team-name">Ms. Betty Kibirango</div>
-          <div class="team-role">Council Coordinator</div>
-          <p class="team-bio">Ms. Betty Kibirango leads the KACM Council, ensuring effective governance, strategic planning, and accountability across all ministry operations and partnerships.</p>
-        </div>
-      </div>
+      <div id="team-leadership" class="card-grid-3" style="margin-bottom:40px;"></div>
     </div>
   </section>
 
@@ -81,32 +50,7 @@
   <section class="section-alt">
     <div class="container">
       <div class="section-header fade-in"><h2>Executive Members</h2></div>
-      <div class="card-grid-4">
-        <div class="team-card fade-in">
-          <div class="team-photo" style="background:var(--bg-light-purple);"><i class="fas fa-user"></i></div>
-          <div class="team-name">Mrs. Agnes K. Nantume</div>
-          <div class="team-role">Secretary</div>
-          <p class="team-bio">Oversees all administrative records, meeting minutes, and official correspondence for KACM.</p>
-        </div>
-        <div class="team-card fade-in">
-          <div class="team-photo" style="background:var(--bg-light-purple);"><i class="fas fa-user"></i></div>
-          <div class="team-name">Mr. Robert M. Byaruhanga</div>
-          <div class="team-role">Treasurer</div>
-          <p class="team-bio">Manages KACM's finances with transparency, ensuring every donation is stewarded faithfully.</p>
-        </div>
-        <div class="team-card fade-in">
-          <div class="team-photo" style="background:var(--bg-light-purple);"><i class="fas fa-user"></i></div>
-          <div class="team-name">Mrs. Florence A. Kansiime</div>
-          <div class="team-role">Programs Coordinator</div>
-          <p class="team-bio">Leads the design and implementation of all child-focused programmes across the Archdeaconry.</p>
-        </div>
-        <div class="team-card fade-in">
-          <div class="team-photo" style="background:var(--bg-light-purple);"><i class="fas fa-user"></i></div>
-          <div class="team-name">Mr. Patrick K. Turyamureeba</div>
-          <div class="team-role">Sponsorship Lead</div>
-          <p class="team-bio">Coordinates the Sponsor a Child programme, matching children in need with generous sponsors worldwide.</p>
-        </div>
-      </div>
+      <div id="team-executive" class="card-grid-4"></div>
     </div>
   </section>
 
@@ -114,68 +58,7 @@
   <section class="section">
     <div class="container">
       <div class="section-header fade-in"><h2>Parish Coordinators</h2></div>
-      <div class="card-grid-4">
-        <div class="team-card fade-in">
-          <div style="width:100%;height:220px;overflow:hidden;border-radius:var(--radius-md) var(--radius-md) 0 0;background:var(--bg-light-purple);display:flex;align-items:center;justify-content:center;">
-            <img src="assets/coordinators/kazo.jpeg" alt="Ssalongo Kato Emmanuel Ssonko" style="width:100%;height:100%;object-fit:contain;">
-          </div>
-          <div class="team-name">Ssalongo Kato Emmanuel Ssonko</div>
-          <div class="team-role">Kazo Parish</div>
-          <p class="team-bio">Coordinates all children's activities at the Archdeaconry headquarters parish.</p>
-        </div>
-        <div class="team-card fade-in">
-          <div style="width:100%;height:220px;overflow:hidden;border-radius:var(--radius-md) var(--radius-md) 0 0;background:var(--bg-light-gold);display:flex;align-items:center;justify-content:center;">
-            <img src="assets/coordinators/kawempe.jpeg" alt="Luyinda Enock" style="width:100%;height:100%;object-fit:contain;">
-          </div>
-          <div class="team-name">Luyinda Enock</div>
-          <div class="team-role">Kawempe Parish</div>
-          <p class="team-bio">Leads sports ministry and Sunday school programmes in Kawempe.</p>
-        </div>
-        <div class="team-card fade-in">
-          <div style="width:100%;height:220px;overflow:hidden;border-radius:var(--radius-md) var(--radius-md) 0 0;background:var(--bg-light-gold);display:flex;align-items:center;justify-content:center;">
-            <img src="assets/coordinators/maganjo.jpeg" alt="Harriet Ssenengo" style="width:100%;height:100%;object-fit:contain;">
-          </div>
-          <div class="team-name">Harriet Ssenengo</div>
-          <div class="team-role">Maganjo Parish</div>
-          <p class="team-bio">Champions community outreach and child sponsorship in Maganjo.</p>
-        </div>
-        <div class="team-card fade-in">
-          <div style="width:100%;height:220px;overflow:hidden;border-radius:var(--radius-md) var(--radius-md) 0 0;background:var(--bg-light-purple);display:flex;align-items:center;justify-content:center;">
-            <img src="assets/coordinators/kisasi.jpeg" alt="Kweronda Charity" style="width:100%;height:100%;object-fit:contain;">
-          </div>
-          <div class="team-name">Kweronda Charity</div>
-          <div class="team-role">Kisaasi Parish</div>
-          <p class="team-bio">Coordinates music, drama, and arts programmes for children.</p>
-        </div>
-        <div class="team-card fade-in">
-          <div style="width:100%;height:220px;overflow:hidden;border-radius:var(--radius-md) var(--radius-md) 0 0;background:var(--bg-light-purple);display:flex;align-items:center;justify-content:center;">
-            <img src="assets/coordinators/lwadda.jpeg" alt="Lwanga Fredrick" style="width:100%;height:100%;object-fit:contain;">
-          </div>
-          <div class="team-name">Lwanga Fredrick</div>
-          <div class="team-role">Lwadda Parish</div>
-          <p class="team-bio">Coordinates sponsorship and child welfare programmes across Lwadda.</p>
-        </div>
-        <div class="team-card fade-in">
-          <div style="width:100%;height:220px;overflow:hidden;border-radius:var(--radius-md) var(--radius-md) 0 0;background:var(--bg-light-purple);display:flex;align-items:center;justify-content:center;">
-            <img src="assets/coordinators/kawaala.jpeg" alt="Ayebale Loyce" style="width:100%;height:100%;object-fit:contain;">
-          </div>
-          <div class="team-name">Ayebale Loyce</div>
-          <div class="team-role">Kawaala Parish</div>
-          <p class="team-bio">Leads community outreach and children's ministry programmes in Kawaala.</p>
-        </div>
-        <div class="team-card fade-in">
-          <div class="team-photo" style="background:var(--bg-light-gold);"><i class="fas fa-user"></i></div>
-          <div class="team-name">Mr. Robert M. Byaruhanga</div>
-          <div class="team-role">Kawanda Parish</div>
-          <p class="team-bio">Coordinates Sunday school and youth activities in Kawanda.</p>
-        </div>
-        <div class="team-card fade-in">
-          <div class="team-photo" style="background:var(--bg-light-gold);"><i class="fas fa-user"></i></div>
-          <div class="team-name">Mrs. Agnes K. Nantume</div>
-          <div class="team-role">Mpwelerwe Parish</div>
-          <p class="team-bio">Oversees children's ministry administration across Mpwelerwe parishes.</p>
-        </div>
-      </div>
+      <div id="team-coordinator" class="card-grid-4"></div>
     </div>
   </section>
 
@@ -183,32 +66,8 @@
   <section class="section-alt">
     <div class="container">
       <div class="section-header fade-in"><h2>Sunday School Teachers</h2></div>
-      <div class="card-grid-4">
-        <div class="team-card fade-in">
-          <img src="assets/coordinators/sunday school teacher.jpeg" alt="Mrs. Annet K. Tibihika" style="width:100%;height:200px;object-fit:cover;border-radius:var(--radius-md) var(--radius-md) 0 0;">
-          <div class="team-name">Mrs. Annet K. Tibihika</div>
-          <div class="team-role">St. Luke Kazo, Kazo Parish</div>
-          <p class="team-bio">Dedicated teacher nurturing faith in young children through Bible stories and song.</p>
-        </div>
-        <div class="team-card fade-in">
-          <img src="assets/sunday school teachers/teachers pose while laughing.jpeg" alt="Mr. Richard T. Mugisha" style="width:100%;height:200px;object-fit:cover;border-radius:var(--radius-md) var(--radius-md) 0 0;">
-          <div class="team-name">Mr. Richard T. Mugisha</div>
-          <div class="team-role">All Saints Kawempe, Kawempe Parish</div>
-          <p class="team-bio">Passionate about teaching scripture through interactive drama and group activities.</p>
-        </div>
-        <div class="team-card fade-in">
-          <img src="assets/sunday school teachers/teachers pose with the bishop.jpeg" alt="Mr. Samuel B. Kamugisha" style="width:100%;height:200px;object-fit:cover;border-radius:var(--radius-md) var(--radius-md) 0 0;">
-          <div class="team-name">Mr. Samuel B. Kamugisha</div>
-          <div class="team-role">St. Peter's Kisaasi, Kisaasi Parish</div>
-          <p class="team-bio">Uses music and creative arts to make Bible lessons engaging and memorable for children.</p>
-        </div>
-        <div class="team-card fade-in">
-          <img src="assets/coordinators/tabitha.png" alt="Babirye Tabitha" style="width:100%;height:200px;object-fit:cover;border-radius:var(--radius-md) var(--radius-md) 0 0;">
-          <div class="team-name">Babirye Tabitha</div>
-          <div class="team-role">Sunday School Teacher</div>
-          <p class="team-bio">Dedicated teacher committed to nurturing children in faith and guiding them in the love of Christ.</p>
-        </div>
-      </div>
+      <p class="page-intro fade-in" style="margin-bottom:24px;">Our Sunday school teachers nurture children in faith across all 12 parishes of the Kazo Archdeaconry. Many of our executive members also serve as dedicated Sunday school teachers in their local churches.</p>
+      <div id="team-teacher" class="card-grid-4"></div>
     </div>
   </section>
 
@@ -233,9 +92,8 @@
         <div>
           <h4>Contact</h4>
           <div class="footer-contact">
-            <p><i class="fas fa-envelope"></i> info@kacm.org</p>
-            <p><i class="fas fa-envelope"></i> sponsorship@kacm.org</p>
-            <p><i class="fab fa-whatsapp"></i> +256 700 000000</p>
+            <p><i class="fas fa-envelope"></i> kazoarchdeaconry@yahoo.com</p>
+            <p><i class="fas fa-phone"></i> 0771 905 447 / 0709 754 900</p>
           </div>
         </div>
         <div>
@@ -247,12 +105,126 @@
       </div>
       <div class="footer-bottom">
         <p>&copy; 2025 Kazo Archdeaconry Children's Ministry. Registered under Church of Uganda, Namirembe Diocese.</p>
-        <div class="footer-badges"><span class="badge">Church of Uganda</span><span class="badge">Namirembe Diocese</span><span class="badge">Flutterwave Secure</span></div>
+        <div class="footer-badges"><span class="badge">Church of Uganda</span><span class="badge">Namirembe Diocese</span><span class="badge">Flutterwave Secure</span><a href="admin.html" class="badge admin-badge" style="text-decoration:none; cursor:pointer;"><i class="fas fa-lock"></i> Admin</a></div>
       </div>
     </div>
   </footer>
 
-  <a href="#" class="whatsapp-float" data-phone="+256700000000" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="#" class="whatsapp-float" data-phone="0771905447" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
   <script src="js/main.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', async function() {
+    const kacmSupabase = window.__kacmSupabase;
+    const { data: members, error } = await kacmSupabase
+      .from('team_members')
+      .select('*')
+      .eq('visible', true)
+      .order('display_order');
+
+    if (error) {
+      console.error('Failed to load team:', error);
+      return;
+    }
+
+    const categories = ['leadership', 'executive', 'coordinator', 'teacher'];
+    const containerIds = {
+      leadership: 'team-leadership',
+      executive: 'team-executive',
+      coordinator: 'team-coordinator',
+      teacher: 'team-teacher'
+    };
+
+    const categoryLabels = {
+      leadership: 'Leadership',
+      executive: 'Executive',
+      coordinator: 'Coordinator',
+      teacher: 'Teacher'
+    };
+
+    categories.forEach(function(cat) {
+      var container = document.getElementById(containerIds[cat]);
+      if (!container) return;
+
+      var catMembers = members.filter(function(m) { return m.category === cat; });
+      if (catMembers.length === 0) {
+        container.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#888;">No ' + categoryLabels[cat].toLowerCase() + ' members found.</p>';
+        return;
+      }
+
+      var isLeadership = (cat === 'leadership');
+      var html = '';
+
+      catMembers.forEach(function(m, idx) {
+        var hasImage = m.image && m.image.trim() !== '';
+        var imageHtml = '';
+        var imgSrc = m.image ? m.image : '';
+
+        if (isLeadership && idx === 0) {
+          // First leadership member — featured card in its own grid
+          var featuredImg = hasImage
+            ? '<img src="' + imgSrc + '" alt="' + escapeHtml(m.name) + '" style="width:100%;height:100%;object-fit:cover;">'
+            : '<i class="fas fa-user"></i>';
+          html += '<div style="grid-column: 1/-1; max-width:450px; margin:0 auto;">';
+          html += '<div class="team-card team-card-featured fade-in">';
+          html += '<div class="team-photo" style="overflow:hidden; background:linear-gradient(135deg,#5B2D8E,#7B4DB8);">' + featuredImg + '</div>';
+          html += '<div class="team-name">' + escapeHtml(m.name) + '</div>';
+          html += '<div class="team-role">' + escapeHtml(m.role_title) + '</div>';
+          html += '<p class="team-bio">' + escapeHtml(m.bio) + '</p>';
+          html += '</div></div>';
+          return;
+        }
+
+        // Regular card
+        html += '<div class="team-card fade-in">';
+
+        if (isLeadership) {
+          // Leadership cards get the colored gradient photo div
+          var colors = ['#C9A84C,#DBC06E', '#5B2D8E,#45206B', '#1A1A2E,#555'];
+          var colorIdx = (idx - 1) % colors.length;
+          if (hasImage) {
+            html += '<div class="team-photo" style="overflow:hidden; background:linear-gradient(135deg,' + colors[colorIdx] + ');"><img src="' + imgSrc + '" alt="' + escapeHtml(m.name) + '" style="width:100%;height:100%;object-fit:cover;"></div>';
+          } else {
+            html += '<div class="team-photo" style="background:linear-gradient(135deg,' + colors[colorIdx] + '); color:white;"><i class="fas fa-user"></i></div>';
+          }
+        } else if (cat === 'executive') {
+          if (hasImage) {
+            html += '<div class="team-photo" style="overflow:hidden;"><img src="' + imgSrc + '" alt="' + escapeHtml(m.name) + '" style="width:100%;height:100%;object-fit:cover;"></div>';
+          } else {
+            html += '<div class="team-photo" style="background:var(--bg-light-purple);"><i class="fas fa-user"></i></div>';
+          }
+        } else if (cat === 'coordinator') {
+          if (hasImage) {
+            var bg = (idx % 2 === 0) ? 'var(--bg-light-purple)' : 'var(--bg-light-gold)';
+            html += '<div style="width:100%;height:220px;overflow:hidden;border-radius:var(--radius-md) var(--radius-md) 0 0;background:' + bg + ';display:flex;align-items:center;justify-content:center;">';
+            html += '<img src="' + imgSrc + '" alt="' + escapeHtml(m.name) + '" style="width:100%;height:100%;object-fit:contain;"></div>';
+          } else {
+            var bg2 = (idx % 2 === 0) ? 'var(--bg-light-gold)' : 'var(--bg-light-purple)';
+            html += '<div class="team-photo" style="background:' + bg2 + ';"><i class="fas fa-user"></i></div>';
+          }
+        } else if (cat === 'teacher') {
+          if (hasImage) {
+            html += '<img src="' + imgSrc + '" alt="' + escapeHtml(m.name) + '" style="width:100%;height:200px;object-fit:cover;border-radius:var(--radius-md) var(--radius-md) 0 0;">';
+          } else {
+            html += '<div class="team-photo" style="background:var(--bg-light-purple);"><i class="fas fa-user"></i></div>';
+          }
+        }
+
+        html += '<div class="team-name">' + escapeHtml(m.name) + '</div>';
+        html += '<div class="team-role">' + escapeHtml(m.role_title) + '</div>';
+        html += '<p class="team-bio">' + escapeHtml(m.bio) + '</p>';
+        html += '</div>';
+      });
+
+      container.innerHTML += html;
+    });
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      var div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+  });
+  </script>
 </body>
 </html>

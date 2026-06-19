@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
 </head>
 <body>
   <nav class="navbar">
@@ -26,7 +28,7 @@
   </nav>
 
   <!-- ===== HERO ===== -->
-  <section class="page-hero" style="background: linear-gradient(135deg, rgba(69,32,107,0.88), rgba(91,45,142,0.85)), url('assets/church interior.jpeg') center/cover no-repeat;">
+  <section class="page-hero" style="background: linear-gradient(135deg, rgba(69,32,107,0.88), rgba(91,45,142,0.85)), url('assets/sunday school children group photos/sunday school children all combined.jpeg') center/cover no-repeat;">
     <div class="container">
       <h1>Testimonies</h1>
       <p class="breadcrumb"><a href="index.html">Home</a> &gt; Testimonies</p>
@@ -38,51 +40,7 @@
   <section class="section">
     <div class="container">
       <div class="section-header fade-in"><h2>From Our Sponsors</h2><p>Hear from those who give — and the joy they find in changing a child's life.</p></div>
-      <div class="test-grid">
-
-        <div class="t-card-lg fade-in">
-          <div class="t-card-lg-top" style="background: linear-gradient(135deg, #5B2D8E, #7B4DB8);">
-            <img src="assets/sunday school teachers/teachers pose while laughing.jpeg" alt="Sarah M.">
-          </div>
-          <div class="t-card-lg-body">
-            <span class="t-quote-mark"><i class="fas fa-quote-left"></i></span>
-            <p>"Sponsoring a child through KACM has been one of the most rewarding decisions of my life. I receive regular updates and see the direct impact of my support on my sponsored child's education and wellbeing. The transparency and personal connection is unlike any other organisation I've supported."</p>
-            <div class="t-card-lg-author">
-              <strong>Sarah M.</strong>
-              <span>Sponsor · United Kingdom</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="t-card-lg fade-in">
-          <div class="t-card-lg-top" style="background: linear-gradient(135deg, #C9A84C, #A88A35);">
-            <img src="assets/sunday school teachers/teachers pose while hugging each other.jpeg" alt="David K.">
-          </div>
-          <div class="t-card-lg-body">
-            <span class="t-quote-mark"><i class="fas fa-quote-left"></i></span>
-            <p>"I started sponsoring two children through KACM three years ago, and the transformation I've witnessed is incredible. From struggling to afford basic school supplies to now ranking among the top students — these children just needed someone to believe in them."</p>
-            <div class="t-card-lg-author">
-              <strong>David K.</strong>
-              <span>Sponsor · United States</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="t-card-lg fade-in">
-          <div class="t-card-lg-top" style="background: linear-gradient(135deg, #5B2D8E, #45206B);">
-            <img src="assets/sunday school teachers/teachers pose with the bishop.jpeg" alt="Rebecca T.">
-          </div>
-          <div class="t-card-lg-body">
-            <span class="t-quote-mark"><i class="fas fa-quote-left"></i></span>
-            <p>"What drew me to KACM was their holistic approach — they don't just pay school fees; they invest in the child's spiritual growth, nutrition, and emotional wellbeing. The letters I receive from my sponsored child are treasures. I visited Kazo last year and saw the love and dedication of the team."</p>
-            <div class="t-card-lg-author">
-              <strong>Rebecca T.</strong>
-              <span>Sponsor · Australia</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <div id="testimonials-sponsor" class="test-grid"></div>
     </div>
   </section>
 
@@ -90,51 +48,7 @@
   <section class="section-alt">
     <div class="container">
       <div class="section-header fade-in"><h2>From Sponsored Children</h2><p>In their own words — how sponsorship has changed their lives.</p></div>
-      <div class="test-grid">
-
-        <div class="t-card-lg fade-in">
-          <div class="t-card-lg-top" style="background: linear-gradient(135deg, #5B2D8E, #7B4DB8);">
-            <img src="assets/sunday school children group photos/sunday school children all combined.jpeg" alt="Peter">
-          </div>
-          <div class="t-card-lg-body">
-            <span class="t-quote-mark"><i class="fas fa-quote-left"></i></span>
-            <p>"Before KACM, I could not afford school fees. My mother tried her best, but it was never enough. Now I am in Senior 3, and I dream of becoming a doctor. KACM gave me hope when I had none. I thank God for my sponsor every day."</p>
-            <div class="t-card-lg-author">
-              <strong>Peter</strong>
-              <span>Senior 3 · Kazo Parish</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="t-card-lg fade-in">
-          <div class="t-card-lg-top" style="background: linear-gradient(135deg, #C9A84C, #A88A35);">
-            <img src="assets/sunday school children group photos/sunday school children blue red and green.jpeg" alt="Agnes">
-          </div>
-          <div class="t-card-lg-body">
-            <span class="t-quote-mark"><i class="fas fa-quote-left"></i></span>
-            <p>"I love school. When my father passed away, I thought my education was over. But KACM found me a sponsor, and now I have books, a uniform, and food at school. I want to become a teacher so I can help other children like me."</p>
-            <div class="t-card-lg-author">
-              <strong>Agnes</strong>
-              <span>Primary 6 · Kazo Parish</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="t-card-lg fade-in">
-          <div class="t-card-lg-top" style="background: linear-gradient(135deg, #5B2D8E, #45206B);">
-            <img src="assets/sunday school children group photos/sunday school children all raising hands up.jpeg" alt="Brian">
-          </div>
-          <div class="t-card-lg-body">
-            <span class="t-quote-mark"><i class="fas fa-quote-left"></i></span>
-            <p>"The Resource Centre changed everything for me. I had never touched a computer before. Now I am learning ICT skills that will help me in university and beyond. KACM showed me that being from a village doesn't limit my future."</p>
-            <div class="t-card-lg-author">
-              <strong>Brian</strong>
-              <span>Senior 5 · Kazo Parish</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <div id="testimonials-child" class="test-grid"></div>
     </div>
   </section>
 
@@ -142,51 +56,7 @@
   <section class="section">
     <div class="container">
       <div class="section-header fade-in"><h2>From Our Communities</h2><p>Parents, local leaders, and teachers share the impact of KACM.</p></div>
-      <div class="test-grid">
-
-        <div class="t-card-lg fade-in">
-          <div class="t-card-lg-top" style="background: linear-gradient(135deg, #5B2D8E, #7B4DB8);">
-            <img src="assets/sunday school teachers/teacher greetinga parent.jpeg" alt="Mrs. Jane Kyomugisha">
-          </div>
-          <div class="t-card-lg-body">
-            <span class="t-quote-mark"><i class="fas fa-quote-left"></i></span>
-            <p>"As a widow with five children, I was overwhelmed. KACM not only sponsors two of my children's education but also taught me farming techniques through Farm to Fork. Now I can feed my family and even sell surplus vegetables. KACM helped our whole family stand on our own feet."</p>
-            <div class="t-card-lg-author">
-              <strong>Mrs. Jane Kyomugisha</strong>
-              <span>Parent · Kazo</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="t-card-lg fade-in">
-          <div class="t-card-lg-top" style="background: linear-gradient(135deg, #C9A84C, #A88A35);">
-            <img src="assets/sunday school teachers/teacher hugging aparent.jpeg" alt="Mr. Charles Tumusiime">
-          </div>
-          <div class="t-card-lg-body">
-            <span class="t-quote-mark"><i class="fas fa-quote-left"></i></span>
-            <p>"KACM has brought real change to our village. The community outreaches bring healthcare and food to families who would otherwise go without. Their child protection sensitisation has reduced cases of child abuse in our area. As a local leader, I fully endorse their work."</p>
-            <div class="t-card-lg-author">
-              <strong>Mr. Charles Tumusiime</strong>
-              <span>LC1 Chairman · Kazo</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="t-card-lg fade-in">
-          <div class="t-card-lg-top" style="background: linear-gradient(135deg, #5B2D8E, #45206B);">
-            <img src="assets/sunday school teachers/teachers posing while lifting up hands.jpeg" alt="Mrs. Doreen Ninsiima">
-          </div>
-          <div class="t-card-lg-body">
-            <span class="t-quote-mark"><i class="fas fa-quote-left"></i></span>
-            <p>"Teaching Sunday school used to be a challenge — we had no materials, no training. KACM equipped us with teaching guides, translated resources in Runyakitara, and training workshops. Now our children are more engaged than ever. They lead worship, they pray boldly, and they are growing in faith."</p>
-            <div class="t-card-lg-author">
-              <strong>Mrs. Doreen Ninsiima</strong>
-              <span>Sunday School Teacher · Kazo</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <div id="testimonials-community" class="test-grid"></div>
     </div>
   </section>
 
@@ -212,17 +82,59 @@
           </div>
         </div>
         <div><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="team.html">Our Team</a></li><li><a href="projects.html">Projects</a></li><li><a href="testimonies.html">Testimonies</a></li><li><a href="donate.html">Donate</a></li></ul></div>
-        <div><h4>Contact</h4><div class="footer-contact"><p><i class="fas fa-envelope"></i> info@kacm.org</p><p><i class="fas fa-envelope"></i> sponsorship@kacm.org</p><p><i class="fab fa-whatsapp"></i> +256 700 000000</p></div></div>
+        <div><h4>Contact</h4><div class="footer-contact"><p><i class="fas fa-envelope"></i> kazoarchdeaconry@yahoo.com</p><p><i class="fas fa-phone"></i> 0771 905 447 / 0709 754 900</p></div></div>
         <div><h4>Affiliation</h4><div class="footer-contact"><p>Church of Uganda</p><p>Namirembe Diocese</p><p>Kazo Archdeaconry</p><p>Kawempe, Kampala, Uganda</p></div></div>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2025 Kazo Archdeaconry Children's Ministry. Registered under Church of Uganda, Namirembe Diocese.</p>
-        <div class="footer-badges"><span class="badge">Church of Uganda</span><span class="badge">Namirembe Diocese</span><span class="badge">Flutterwave Secure</span></div>
+        <div class="footer-badges"><span class="badge">Church of Uganda</span><span class="badge">Namirembe Diocese</span><span class="badge">Flutterwave Secure</span><a href="admin.html" class="badge admin-badge" style="text-decoration:none; cursor:pointer;"><i class="fas fa-lock"></i> Admin</a></div>
       </div>
     </div>
   </footer>
 
-  <a href="#" class="whatsapp-float" data-phone="+256700000000" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="#" class="whatsapp-float" data-phone="0771905447" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
   <script src="js/main.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', async function() {
+    const kacmSupabase = window.__kacmSupabase;
+    const { data: testimonials, error } = await kacmSupabase
+      .from('testimonials')
+      .select('*')
+      .eq('visible', true)
+      .order('display_order');
+
+    if (error) { console.error('Failed to load testimonials:', error); return; }
+
+    var categories = ['sponsor', 'child', 'community'];
+    var containerIds = { sponsor: 'testimonials-sponsor', child: 'testimonials-child', community: 'testimonials-community' };
+    var gradients = ['#5B2D8E,#7B4DB8', '#C9A84C,#A88A35', '#5B2D8E,#45206B'];
+
+    categories.forEach(function(cat) {
+      var container = document.getElementById(containerIds[cat]);
+      if (!container) return;
+      var items = testimonials.filter(function(t) { return t.category === cat; });
+      var html = '';
+      items.forEach(function(t, idx) {
+        var g = gradients[idx % gradients.length];
+        var imgHtml = t.image ? '<img src="' + escapeHtml(t.image) + '" alt="' + escapeHtml(t.author) + '">' : '';
+        html += '<div class="t-card-lg fade-in">';
+        html += '<div class="t-card-lg-top" style="background: linear-gradient(135deg, ' + g + ');">' + imgHtml + '</div>';
+        html += '<div class="t-card-lg-body">';
+        html += '<span class="t-quote-mark"><i class="fas fa-quote-left"></i></span>';
+        html += '<p>"' + escapeHtml(t.content) + '"</p>';
+        html += '<div class="t-card-lg-author"><strong>' + escapeHtml(t.author) + '</strong><span>' + escapeHtml(t.location) + '</span></div>';
+        html += '</div></div>';
+      });
+      container.innerHTML = html;
+    });
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      var div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+  });
+  </script>
 </body>
 </html>

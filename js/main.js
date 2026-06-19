@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var whatsappBtn = document.querySelector('.whatsapp-float');
   if (whatsappBtn) {
     whatsappBtn.addEventListener('click', function () {
-      var phone = this.getAttribute('data-phone') || '+256700000000';
+      var phone = this.getAttribute('data-phone') || '0771905447';
       var message = encodeURIComponent('Hello KACM! I would like to learn more about your ministry.');
       window.open('https://wa.me/' + phone.replace(/[^0-9]/g, '') + '?text=' + message, '_blank');
     });

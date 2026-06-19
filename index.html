@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
 </head>
 <body>
 
@@ -36,48 +38,9 @@
 
   <!-- ===== HERO SECTION ===== -->
   <header class="hero" id="hero">
-    <div class="hero-slide" style="background-image: url('assets/church interior.jpeg');"></div>
-    <div class="hero-slide" style="background-image: url('assets/sunday school children group photos/sunday school children all combined.jpeg');"></div>
-    <div class="hero-slide" style="background-image: url('assets/sports/a group of students celebrating with a trophy.jpeg');"></div>
-    <div class="hero-slide" style="background-image: url('assets/sunday school teachers/teacher greetinga parent.jpeg');"></div>
+    <div id="hero-slides-container"></div>
     <div class="hero-overlay"></div>
-    <div class="hero-content hero-content-0 active">
-      <p style="font-size:14px; font-weight:600; color:var(--secondary); text-transform:uppercase; letter-spacing:3px; margin-bottom:8px;">Welcome to</p>
-      <h1>Kazo Archdeaconry Children's Ministry</h1>
-      <p class="hero-subtitle">Nurturing Every Child in the Love of Christ — Kazo Archdeaconry, Uganda</p>
-      <div class="hero-scripture">"Train up a child in the way he should go; even when he is old he will not depart from it." — Proverbs 22:6</div>
-      <div class="hero-buttons">
-        <a href="projects.html#sponsor" class="btn btn-secondary btn-lg">Sponsor a Child</a>
-        <a href="about.html" class="btn btn-outline btn-lg">Learn More</a>
-      </div>
-    </div>
-    <div class="hero-content hero-content-1">
-      <h1>Give a Child the Gift of Education</h1>
-      <p class="hero-subtitle">For as little as $20 a month, you can keep a child in school, clothed, and fed.</p>
-      <div class="hero-scripture">"The fear of the Lord is the beginning of wisdom, and knowledge of the Holy One is understanding." — Proverbs 9:10</div>
-      <div class="hero-buttons">
-        <a href="projects.html#sponsor" class="btn btn-secondary btn-lg">Sponsor a Child</a>
-        <a href="donate.html" class="btn btn-outline btn-lg">Donate Now</a>
-      </div>
-    </div>
-    <div class="hero-content hero-content-2">
-      <h1>Building Character Through Sport</h1>
-      <p class="hero-subtitle">Through football, netball, athletics, and the arts, we share the Gospel and build confidence in every child.</p>
-      <div class="hero-scripture">"Whatever you do, work at it with all your heart, as working for the Lord, not for human masters." — Colossians 3:23</div>
-      <div class="hero-buttons">
-        <a href="index.html#sports" class="btn btn-secondary btn-lg">Explore Sports</a>
-        <a href="about.html" class="btn btn-outline btn-lg">About Us</a>
-      </div>
-    </div>
-    <div class="hero-content hero-content-3">
-      <h1>Bringing Hope to Vulnerable Families</h1>
-      <p class="hero-subtitle">Food distribution, healthcare, education support, and the Gospel — reaching every corner of the Archdeaconry.</p>
-      <div class="hero-scripture">"For I was hungry and you gave me food, I was thirsty and you gave me drink, I was a stranger and you welcomed me." — Matthew 25:35</div>
-      <div class="hero-buttons">
-        <a href="index.html#outreach" class="btn btn-secondary btn-lg">Our Outreach</a>
-        <a href="testimonies.html" class="btn btn-outline btn-lg">Read Stories</a>
-      </div>
-    </div>
+    <div id="hero-content-container"></div>
   </header>
 
   <!-- ===== ABOUT BRIEF ===== -->
@@ -120,14 +83,14 @@
   </section>
 
   <!-- ===== PROGRAM HIGHLIGHTS (3-Card Grid) ===== -->
-  <section class="section">
+  <section class="section" id="programs">
     <div class="container">
       <div class="section-header fade-in">
         <h2>Our Program Areas</h2>
         <p>Three pillars through which we reach every child across the Archdeaconry</p>
       </div>
       <div class="card-grid-3">
-        <div class="program-card fade-in" style="background: linear-gradient(180deg, rgba(91,45,142,0.15) 0%, rgba(26,26,46,0.85) 100%), url('assets/sports/a group of students celebrating with a trophy.jpeg') center/cover no-repeat;">
+        <div class="program-card fade-in" style="background: linear-gradient(180deg, rgba(91,45,142,0.15) 0%, rgba(26,26,46,0.85) 100%), url('assets/program-sports.jpg') center/cover no-repeat;">
           <div class="program-card-badge"><i class="fas fa-futbol"></i></div>
           <div class="program-card-content">
             <h3>Sports Ministry</h3>
@@ -135,7 +98,7 @@
             <a href="#" data-program="sports" class="program-learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
-        <div class="program-card fade-in" style="background: linear-gradient(180deg, rgba(201,168,76,0.2) 0%, rgba(26,26,46,0.85) 100%), url('assets/mdd/students in cultural wear.jpeg') center/cover no-repeat;">
+        <div class="program-card fade-in" style="background: linear-gradient(180deg, rgba(201,168,76,0.2) 0%, rgba(26,26,46,0.85) 100%), url('assets/program-arts.jpg') center/cover no-repeat;">
           <div class="program-card-badge"><i class="fas fa-music"></i></div>
           <div class="program-card-content">
             <h3>Arts & Expression</h3>
@@ -143,7 +106,7 @@
             <a href="#" data-program="mddp" class="program-learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
-        <div class="program-card fade-in" style="background: linear-gradient(180deg, rgba(91,45,142,0.2) 0%, rgba(26,26,46,0.85) 100%), url('assets/church interior.jpeg') center/cover no-repeat;">
+        <div class="program-card fade-in" style="background: linear-gradient(180deg, rgba(91,45,142,0.2) 0%, rgba(26,26,46,0.85) 100%), url('assets/program-outreach.jpg') center/cover no-repeat;">
           <div class="program-card-badge"><i class="fas fa-handshake"></i></div>
           <div class="program-card-content">
             <h3>Community Outreach</h3>
@@ -179,19 +142,19 @@
             <p>Building character through interactive activities and group discussions.</p>
           </div>
 
-          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('assets/church interior.jpeg') center/cover no-repeat;">
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('assets/children st luke nabweru.jpeg') center/cover no-repeat;">
             <div class="wwd-badge"><i class="fas fa-language"></i></div>
             <h4>Language Integration</h4>
             <p>Reaching every child in English, Luganda, and Runyakitara.</p>
           </div>
 
-          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(201,168,76,0.35) 0%, rgba(26,26,46,0.92) 100%), url('assets/church interior.jpeg') center/cover no-repeat;">
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(201,168,76,0.35) 0%, rgba(26,26,46,0.92) 100%), url('assets/Sunday school st paul Ebenezeri.jpeg') center/cover no-repeat;">
             <div class="wwd-badge"><i class="fas fa-gift"></i></div>
             <h4>Offertory & Giving</h4>
             <p>Teaching children the biblical principle of generosity.</p>
           </div>
 
-          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('assets/mdd/students in cultural wear.jpeg') center/cover no-repeat;">
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('assets/program-arts.jpg') center/cover no-repeat;">
             <div class="wwd-badge"><i class="fas fa-calendar-check"></i></div>
             <h4>Children's Sundays</h4>
             <p>Monthly youth-led services celebrating the next generation.</p>
@@ -203,7 +166,7 @@
             <p>Counselling and legal support for child survivors of violence.</p>
           </div>
 
-          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('assets/sports/a group of students celebrating with a trophy.jpeg') center/cover no-repeat;">
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('assets/program-sports.jpg') center/cover no-repeat;">
             <div class="wwd-badge"><i class="fas fa-balance-scale"></i></div>
             <h4>Child Rights Advocacy</h4>
             <p>Promoting child-friendly laws across the Archdeaconry.</p>
@@ -222,19 +185,19 @@
             <p>Building character through interactive activities and group discussions.</p>
           </div>
 
-          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('assets/church interior.jpeg') center/cover no-repeat;">
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('assets/children st luke nabweru.jpeg') center/cover no-repeat;">
             <div class="wwd-badge"><i class="fas fa-language"></i></div>
             <h4>Language Integration</h4>
             <p>Reaching every child in English, Luganda, and Runyakitara.</p>
           </div>
 
-          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(201,168,76,0.35) 0%, rgba(26,26,46,0.92) 100%), url('assets/church interior.jpeg') center/cover no-repeat;">
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(201,168,76,0.35) 0%, rgba(26,26,46,0.92) 100%), url('assets/Sunday school st paul Ebenezeri.jpeg') center/cover no-repeat;">
             <div class="wwd-badge"><i class="fas fa-gift"></i></div>
             <h4>Offertory & Giving</h4>
             <p>Teaching children the biblical principle of generosity.</p>
           </div>
 
-          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('assets/mdd/students in cultural wear.jpeg') center/cover no-repeat;">
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('assets/program-arts.jpg') center/cover no-repeat;">
             <div class="wwd-badge"><i class="fas fa-calendar-check"></i></div>
             <h4>Children's Sundays</h4>
             <p>Monthly youth-led services celebrating the next generation.</p>
@@ -246,7 +209,7 @@
             <p>Counselling and legal support for child survivors of violence.</p>
           </div>
 
-          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('assets/sports/a group of students celebrating with a trophy.jpeg') center/cover no-repeat;">
+          <div class="wwd-card" style="background: linear-gradient(180deg, rgba(91,45,142,0.3) 0%, rgba(26,26,46,0.92) 100%), url('assets/program-sports.jpg') center/cover no-repeat;">
             <div class="wwd-badge"><i class="fas fa-balance-scale"></i></div>
             <h4>Child Rights Advocacy</h4>
             <p>Promoting child-friendly laws across the Archdeaconry.</p>
@@ -275,42 +238,7 @@
       <div class="section-header fade-in">
         <h2>Stories of Transformation</h2>
       </div>
-      <div class="testimonial-carousel fade-in">
-        <div class="testimonial-slide active">
-          <div class="t-card">
-            <div class="t-quote-icon"><i class="fas fa-quote-right"></i></div>
-            <img src="assets/sunday school teachers/teachers pose while laughing.jpeg" alt="Sponsor" class="t-avatar">
-            <p class="t-quote">Sponsoring a child through KACM has been one of the most rewarding decisions of my life. I receive regular updates and see the direct impact of my support on my sponsored child's education and wellbeing.</p>
-            <div class="t-author">
-              <strong>Sarah M.</strong>
-              <span>Sponsor · United Kingdom</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-slide">
-          <div class="t-card">
-            <div class="t-quote-icon"><i class="fas fa-quote-right"></i></div>
-            <img src="assets/sunday school children group photos/sunday school children all combined.jpeg" alt="Sponsored child" class="t-avatar">
-            <p class="t-quote">Before KACM, I could not afford school fees. Now I am in Senior 3, and I dream of becoming a doctor. KACM gave me hope when I had none.</p>
-            <div class="t-author">
-              <strong>Peter</strong>
-              <span>Sponsored Child · Kazo</span>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-slide">
-          <div class="t-card">
-            <div class="t-quote-icon"><i class="fas fa-quote-right"></i></div>
-            <img src="assets/sunday school teachers/teachers pose with the bishop.jpeg" alt="Parish coordinator" class="t-avatar">
-            <p class="t-quote">The Farm to Fork project has transformed our community. Children who were malnourished now have access to nutritious food, and families are learning sustainable farming.</p>
-            <div class="t-author">
-              <strong>Rev. James T.</strong>
-              <span>Parish Coordinator</span>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-dots"></div>
-      </div>
+      <div id="home-testimonials" class="testimonial-carousel fade-in"></div>
       <div style="text-align:center; margin-top:24px;" class="fade-in">
         <a href="testimonies.html" class="btn btn-outline-dark">Read All Testimonies</a>
       </div>
@@ -372,40 +300,7 @@
         <h2>Our Gallery</h2>
         <p>Moments captured across our programmes and outreaches.</p>
       </div>
-      <div class="gallery-grid" style="grid-template-columns: repeat(4, 1fr);">
-        <div class="gallery-item fade-in">
-          <img src="assets/church interior.jpeg" alt="Children at KACM" class="lightbox-trigger">
-          <div class="gallery-overlay"><span>Children's Programme</span></div>
-        </div>
-        <div class="gallery-item fade-in">
-          <img src="assets/sports/a group of students celebrating with a trophy.jpeg" alt="Sports" class="lightbox-trigger">
-          <div class="gallery-overlay"><span>Sports Ministry</span></div>
-        </div>
-        <div class="gallery-item fade-in">
-          <img src="assets/mdd/students in cultural wear.jpeg" alt="Music and dance" class="lightbox-trigger">
-          <div class="gallery-overlay"><span>Music Dance & Drama</span></div>
-        </div>
-        <div class="gallery-item fade-in">
-          <img src="assets/church interior.jpeg" alt="Community outreach" class="lightbox-trigger">
-          <div class="gallery-overlay"><span>Community Outreach</span></div>
-        </div>
-        <div class="gallery-item fade-in">
-          <img src="assets/sunday school teachers/teacher hugging aparent.jpeg" alt="Farm to Fork" class="lightbox-trigger">
-          <div class="gallery-overlay"><span>Farm to Fork</span></div>
-        </div>
-        <div class="gallery-item fade-in">
-          <img src="assets/teaching drawing/students shading.jpeg" alt="Resource Centre" class="lightbox-trigger">
-          <div class="gallery-overlay"><span>Resource Centre</span></div>
-        </div>
-        <div class="gallery-item fade-in">
-          <img src="assets/sunday school children group photos/sunday school children all combined.jpeg" alt="Children learning" class="lightbox-trigger">
-          <div class="gallery-overlay"><span>Education Support</span></div>
-        </div>
-        <div class="gallery-item fade-in">
-          <img src="assets/sunday school children group photos/sunday school children all raising hands up.jpeg" alt="Church service" class="lightbox-trigger">
-          <div class="gallery-overlay"><span>Worship & Fellowship</span></div>
-        </div>
-      </div>
+      <div id="home-gallery" class="gallery-grid" style="grid-template-columns: repeat(4, 1fr);"></div>
       <div style="text-align:center; margin-top:24px;">
         <a href="#" class="btn btn-outline-dark" id="open-gallery-modal">View Gallery</a>
       </div>
@@ -431,143 +326,16 @@
         <button class="tab-btn" data-tab="tab-newsletter"><i class="fas fa-envelope-open-text"></i> Newsletter</button>
       </div>
 
-      <!-- Articles -->
-      <div class="tab-panel active" id="tab-articles">
-        <div class="card-grid-3">
-          <div class="media-card media-overlay fade-in" style="background: linear-gradient(180deg, transparent 40%, rgba(26,26,46,0.9) 100%), url('assets/sunday school children group photos/sunday school children all combined.jpeg') center/cover no-repeat;">
-            <div class="media-overlay-content">
-              <span class="media-tag">Feb 14, 2025</span>
-              <h4>Why Child Sponsorship Works</h4>
-              <p>How child sponsorship transforms entire communities, not just individual children.</p>
-            </div>
-          </div>
-          <div class="media-card media-overlay fade-in" style="background: linear-gradient(180deg, transparent 40%, rgba(26,26,46,0.9) 100%), url('assets/sunday school children group photos/sunday school children all raising hands up.jpeg') center/cover no-repeat;">
-            <div class="media-overlay-content">
-              <span class="media-tag">Dec 8, 2024</span>
-              <h4>Integrating Faith and Education</h4>
-              <p>How KACM combines spiritual formation with educational support.</p>
-            </div>
-          </div>
-          <div class="media-card media-overlay fade-in" style="background: linear-gradient(180deg, transparent 40%, rgba(26,26,46,0.9) 100%), url('assets/church interior.jpeg') center/cover no-repeat;">
-            <div class="media-overlay-content">
-              <span class="media-tag">Oct 20, 2024</span>
-              <h4>Child Rights in Uganda</h4>
-              <p>An overview of child welfare policy and the role of faith-based organisations.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Press Releases -->
-      <div class="tab-panel" id="tab-press">
-        <div class="press-list">
-          <div class="press-item fade-in">
-            <div class="press-date">Mar 10, 2025</div>
-            <div class="press-content">
-              <h4>KACM 2024 Annual Report Released</h4>
-              <p>Comprehensive report on programme impact and financial stewardship.</p>
-            </div>
-            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — coming soon.'); return false;"><i class="fas fa-download"></i> PDF</a>
-          </div>
-          <div class="press-item fade-in">
-            <div class="press-date">Jan 22, 2025</div>
-            <div class="press-content">
-              <h4>Namirembe Diocese Endorses Child Protection Policy</h4>
-              <p>Official diocesan statement affirming KACM's child safeguarding framework.</p>
-            </div>
-            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — coming soon.'); return false;"><i class="fas fa-download"></i> PDF</a>
-          </div>
-          <div class="press-item fade-in">
-            <div class="press-date">Nov 5, 2024</div>
-            <div class="press-content">
-              <h4>Farm to Fork Project Wins Community Impact Award</h4>
-              <p>KACM recognised for innovative approach to tackling child malnutrition.</p>
-            </div>
-            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — coming soon.'); return false;"><i class="fas fa-download"></i> PDF</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Events -->
-      <div class="tab-panel" id="tab-events">
-        <div class="events-grid">
-          <div class="event-card fade-in">
-            <div class="event-card-date"><span>15</span><small>Mar</small></div>
-            <div class="event-card-body">
-              <h4>Children's Sunday — All Parishes</h4>
-              <p>Youth-led services across all parishes. <strong>9:00 AM</strong></p>
-            </div>
-          </div>
-          <div class="event-card fade-in">
-            <div class="event-card-date"><span>05</span><small>Apr</small></div>
-            <div class="event-card-body">
-              <h4>Easter Sports Tournament</h4>
-              <p>Annual football & netball tournament. <strong>Kazo Sports Ground · 8:00 AM</strong></p>
-            </div>
-          </div>
-          <div class="event-card fade-in">
-            <div class="event-card-date"><span>28</span><small>Apr</small></div>
-            <div class="event-card-body">
-              <h4>Child Protection Training</h4>
-              <p>Training for Sunday school teachers on safeguarding. <strong>KACM HQ · 10:00 AM</strong></p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Library -->
-      <div class="tab-panel" id="tab-library">
-        <div class="library-grid">
-          <div class="library-card fade-in">
-            <div class="library-icon"><i class="fas fa-file-pdf"></i></div>
-            <h4>Programme Impact Report 2024</h4>
-            <p>Comprehensive data on all programme areas and outcomes.</p>
-            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — coming soon.'); return false;"><i class="fas fa-download"></i> Download</a>
-          </div>
-          <div class="library-card fade-in">
-            <div class="library-icon"><i class="fas fa-shield-alt"></i></div>
-            <h4>Child Safeguarding Policy</h4>
-            <p>Official child protection and safeguarding framework document.</p>
-            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — coming soon.'); return false;"><i class="fas fa-download"></i> Download</a>
-          </div>
-          <div class="library-card fade-in">
-            <div class="library-icon"><i class="fas fa-book-open"></i></div>
-            <h4>Sunday School Teaching Guide</h4>
-            <p>Curriculum and activity guide for teachers across parishes.</p>
-            <a href="#" class="btn btn-sm btn-outline-dark" onclick="alert('PDF download — coming soon.'); return false;"><i class="fas fa-download"></i> Download</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Success Stories -->
-      <div class="tab-panel" id="tab-stories">
-        <div class="card-grid-3">
-          <div class="media-card media-overlay fade-in" style="background: linear-gradient(180deg, transparent 30%, rgba(91,45,142,0.95) 100%), url('assets/sunday school children group photos/sunday school children all combined.jpeg') center/cover no-repeat;">
-            <div class="media-overlay-content">
-              <span class="media-tag">Jan 2025</span>
-              <h4>From Dropout to University: Grace's Story</h4>
-              <p>How the Sponsor a Child programme helped Grace overcome poverty.</p>
-              <a href="testimonies.html">Read More <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </div>
-          <div class="media-card media-overlay fade-in" style="background: linear-gradient(180deg, transparent 30%, rgba(201,168,76,0.95) 100%), url('assets/sunday school teachers/teacher hugging aparent.jpeg') center/cover no-repeat;">
-            <div class="media-overlay-content">
-              <span class="media-tag">Nov 2024</span>
-              <h4>Farm to Fork Transforms Livelihoods</h4>
-              <p>Three families share how sustainable farming changed their lives.</p>
-              <a href="testimonies.html">Read More <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </div>
-          <div class="media-card media-overlay fade-in" style="background: linear-gradient(180deg, transparent 30%, rgba(26,26,46,0.95) 100%), url('assets/teaching drawing/students shading.jpeg') center/cover no-repeat;">
-            <div class="media-overlay-content">
-              <span class="media-tag">Sep 2024</span>
-              <h4>ICT Skills Open Doors for Youth</h4>
-              <p>How the Resource Centre is equipping young people with digital skills.</p>
-              <a href="testimonies.html">Read More <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- Articles (dynamic) -->
+      <div class="tab-panel active" id="tab-articles"><div id="media-articles" class="card-grid-3"></div></div>
+      <!-- Press Releases (dynamic) -->
+      <div class="tab-panel" id="tab-press"><div id="media-press" class="press-list"></div></div>
+      <!-- Events (dynamic) -->
+      <div class="tab-panel" id="tab-events"><div id="media-events" class="events-grid"></div></div>
+      <!-- Library (dynamic) -->
+      <div class="tab-panel" id="tab-library"><div id="media-library" class="library-grid"></div></div>
+      <!-- Success Stories (dynamic) -->
+      <div class="tab-panel" id="tab-stories"><div id="media-stories" class="card-grid-3"></div></div>
 
       <!-- Newsletter -->
       <div class="tab-panel" id="tab-newsletter">
@@ -691,9 +459,8 @@
           <h4>Contact</h4>
           <div class="footer-contact">
             <p><i class="fas fa-map-marker-alt"></i> Lugoba Road, Kazo - Kawempe, Kampala</p>
-            <p><i class="fas fa-envelope"></i> info@kacm.org</p>
-            <p><i class="fas fa-envelope"></i> sponsorship@kacm.org</p>
-            <p><i class="fab fa-whatsapp"></i> +256 700 000000</p>
+            <p><i class="fas fa-envelope"></i> kazoarchdeaconry@yahoo.com</p>
+            <p><i class="fas fa-phone"></i> 0771 905 447 / 0709 754 900</p>
           </div>
         </div>
         <div>
@@ -708,6 +475,11 @@
       </div>
       <div class="footer-bottom">
         <p>&copy; 2025 Kazo Archdeaconry Children's Ministry. Registered under Church of Uganda, Namirembe Diocese.</p>
+        <div class="footer-badges">
+          <span class="badge">Church of Uganda</span>
+          <span class="badge">Namirembe Diocese</span>
+          <a href="admin.html" class="badge admin-badge" style="text-decoration:none; cursor:pointer;"><i class="fas fa-lock"></i> Admin</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -726,26 +498,64 @@
         <div class="gm-preview-label" id="gm-preview-label"></div>
       </div>
       <div class="gallery-modal-grid">
-        <div class="gm-item" data-img="assets/church interior.jpeg" data-label="Children's Programme"><img src="assets/church interior.jpeg" alt="Children at KACM"><span class="gm-label">Children's Programme</span></div>
-        <div class="gm-item" data-img="assets/sports/a group of students celebrating with a trophy.jpeg" data-label="Sports Ministry"><img src="assets/sports/a group of students celebrating with a trophy.jpeg" alt="Sports"><span class="gm-label">Sports Ministry</span></div>
-        <div class="gm-item" data-img="assets/mdd/students in cultural wear.jpeg" data-label="Music & Dance"><img src="assets/mdd/students in cultural wear.jpeg" alt="Music"><span class="gm-label">Music & Dance</span></div>
-        <div class="gm-item" data-img="assets/church interior.jpeg" data-label="Community Outreach"><img src="assets/church interior.jpeg" alt="Outreach"><span class="gm-label">Community Outreach</span></div>
-        <div class="gm-item" data-img="assets/sunday school teachers/teacher hugging aparent.jpeg" data-label="Farm to Fork"><img src="assets/sunday school teachers/teacher hugging aparent.jpeg" alt="Farm"><span class="gm-label">Farm to Fork</span></div>
-        <div class="gm-item" data-img="assets/teaching drawing/students shading.jpeg" data-label="Resource Centre"><img src="assets/teaching drawing/students shading.jpeg" alt="Computers"><span class="gm-label">Resource Centre</span></div>
-        <div class="gm-item" data-img="assets/sunday school children group photos/sunday school children all combined.jpeg" data-label="Education Support"><img src="assets/sunday school children group photos/sunday school children all combined.jpeg" alt="Learning"><span class="gm-label">Education Support</span></div>
-        <div class="gm-item" data-img="assets/sunday school children group photos/sunday school children all raising hands up.jpeg" data-label="Worship & Fellowship"><img src="assets/sunday school children group photos/sunday school children all raising hands up.jpeg" alt="Church"><span class="gm-label">Worship & Fellowship</span></div>
-        <div class="gm-item" data-img="assets/sunday school teachers/teacher greetinga parent.jpeg" data-label="Kids Programme"><img src="assets/sunday school teachers/teacher greetinga parent.jpeg" alt="Children"><span class="gm-label">Kids Programme</span></div>
-        <div class="gm-item" data-img="assets/sunday school children group photos/sunday school children blue red and green.jpeg" data-label="Group Activities"><img src="assets/sunday school children group photos/sunday school children blue red and green.jpeg" alt="Activities"><span class="gm-label">Group Activities</span></div>
-        <div class="gm-item" data-img="assets/sunday school children group photos/sunday school children all raising hands up.jpeg" data-label="Prayer Session"><img src="assets/sunday school children group photos/sunday school children all raising hands up.jpeg" alt="Prayer"><span class="gm-label">Prayer Session</span></div>
-        <div class="gm-item" data-img="assets/sunday school teachers/teachers pose with the bishop.jpeg" data-label="Community Event"><img src="assets/sunday school teachers/teachers pose with the bishop.jpeg" alt="Community"><span class="gm-label">Community Event</span></div>
-        <div class="gm-item" data-img="assets/teaching drawing/child smiling while shading.jpeg" data-label="ICT Training"><img src="assets/teaching drawing/child smiling while shading.jpeg" alt="Coding"><span class="gm-label">ICT Training</span></div>
-        <div class="gm-item" data-img="assets/sports/posing withthe trophy.jpeg" data-label="Outdoor Play"><img src="assets/sports/posing withthe trophy.jpeg" alt="Kids playing"><span class="gm-label">Outdoor Play</span></div>
-        <div class="gm-item" data-img="assets/mdd/students posing before a performance.jpeg" data-label="Youth Programme"><img src="assets/mdd/students posing before a performance.jpeg" alt="Youth"><span class="gm-label">Youth Programme</span></div>
-        <div class="gm-item" data-img="assets/sunday school children group photos/sunday school children all combined.jpeg" data-label="Scholarship Kids"><img src="assets/sunday school children group photos/sunday school children all combined.jpeg" alt="Students"><span class="gm-label">Scholarship Kids</span></div>
-        <div class="gm-item" data-img="assets/mdd/students in cultural wear.jpeg" data-label="Donation Drive"><img src="assets/mdd/students in cultural wear.jpeg" alt="Donation"><span class="gm-label">Donation Drive</span></div>
-        <div class="gm-item" data-img="assets/church interior.jpeg" data-label="Team Activity"><img src="assets/church interior.jpeg" alt="Team work"><span class="gm-label">Team Activity</span></div>
-        <div class="gm-item" data-img="assets/sunday school teachers/teacher hugging aparent.jpeg" data-label="Workshop Session"><img src="assets/sunday school teachers/teacher hugging aparent.jpeg" alt="Workshop"><span class="gm-label">Workshop Session</span></div>
-        <div class="gm-item" data-img="assets/teaching drawing/students shading.jpeg" data-label="Volunteer Team"><img src="assets/teaching drawing/students shading.jpeg" alt="Volunteers"><span class="gm-label">Volunteer Team</span></div>
+        <div class="gm-item" data-img="assets/Sunday school children kawanda parish.jpeg" data-label="Children's Programme"><img src="assets/Sunday school children kawanda parish.jpeg" alt="Children at KACM"><span class="gm-label">Children's Programme</span></div>
+        <div class="gm-item" data-img="assets/program-sports.jpg" data-label="Sports Ministry"><img src="assets/program-sports.jpg" alt="Sports"><span class="gm-label">Sports Ministry</span></div>
+        <div class="gm-item" data-img="assets/program-arts.jpg" data-label="Music & Dance"><img src="assets/program-arts.jpg" alt="Music"><span class="gm-label">Music & Dance</span></div>
+        <div class="gm-item" data-img="assets/Sunday school lwadda parish.jpeg" data-label="Community Outreach"><img src="assets/Sunday school lwadda parish.jpeg" alt="Outreach"><span class="gm-label">Community Outreach</span></div>
+        <div class="gm-item" data-img="assets/project-farming.jpg" data-label="Farm to Fork"><img src="assets/project-farming.jpg" alt="Farm"><span class="gm-label">Farm to Fork</span></div>
+        <div class="gm-item" data-img="assets/project-computer-lab.jpg" data-label="Resource Centre"><img src="assets/project-computer-lab.jpg" alt="Computers"><span class="gm-label">Resource Centre</span></div>
+        <div class="gm-item" data-img="assets/program-outreach.jpg" data-label="Community Care"><img src="assets/program-outreach.jpg" alt="Care"><span class="gm-label">Community Care</span></div>
+        <div class="gm-item" data-img="assets/project-sponsor-child.jpg" data-label="Sponsor a Child"><img src="assets/project-sponsor-child.jpg" alt="Sponsor"><span class="gm-label">Sponsor a Child</span></div>
+        <div class="gm-item" data-img="assets/media-sponsorship.jpg" data-label="Sponsorship"><img src="assets/media-sponsorship.jpg" alt="Sponsorship"><span class="gm-label">Sponsorship</span></div>
+        <div class="gm-item" data-img="assets/media-faith-education.jpg" data-label="Faith & Education"><img src="assets/media-faith-education.jpg" alt="Faith"><span class="gm-label">Faith & Education</span></div>
+        <div class="gm-item" data-img="assets/media-ict-skills.jpg" data-label="ICT Training"><img src="assets/media-ict-skills.jpg" alt="ICT"><span class="gm-label">ICT Training</span></div>
+        <div class="gm-item" data-img="assets/media-grace-story.jpg" data-label="Grace's Story"><img src="assets/media-grace-story.jpg" alt="Grace"><span class="gm-label">Grace's Story</span></div>
+        <div class="gm-item" data-img="assets/media-farm-fork.jpg" data-label="Farming Project"><img src="assets/media-farm-fork.jpg" alt="Farming"><span class="gm-label">Farming Project</span></div>
+        <div class="gm-item" data-img="assets/media-child-rights.jpg" data-label="Child Rights"><img src="assets/media-child-rights.jpg" alt="Rights"><span class="gm-label">Child Rights</span></div>
+        <div class="gm-item" data-img="assets/testimony-sponsor1.jpg" data-label="Sponsor Sarah"><img src="assets/testimony-sponsor1.jpg" alt="Sarah"><span class="gm-label">Sponsor Sarah</span></div>
+        <div class="gm-item" data-img="assets/testimony-sponsor2.jpg" data-label="Sponsor David"><img src="assets/testimony-sponsor2.jpg" alt="David"><span class="gm-label">Sponsor David</span></div>
+        <div class="gm-item" data-img="assets/testimony-sponsor3.jpg" data-label="Sponsor Rebecca"><img src="assets/testimony-sponsor3.jpg" alt="Rebecca"><span class="gm-label">Sponsor Rebecca</span></div>
+        <div class="gm-item" data-img="assets/testimony-child1.jpg" data-label="Student Peter"><img src="assets/testimony-child1.jpg" alt="Peter"><span class="gm-label">Student Peter</span></div>
+        <div class="gm-item" data-img="assets/testimony-child2.jpg" data-label="Student Agnes"><img src="assets/testimony-child2.jpg" alt="Agnes"><span class="gm-label">Student Agnes</span></div>
+        <div class="gm-item" data-img="assets/testimony-child3.jpg" data-label="Student Brian"><img src="assets/testimony-child3.jpg" alt="Brian"><span class="gm-label">Student Brian</span></div>
+        <div class="gm-item" data-img="assets/testimony-community1.jpg" data-label="Parent Jane"><img src="assets/testimony-community1.jpg" alt="Jane"><span class="gm-label">Parent Jane</span></div>
+        <div class="gm-item" data-img="assets/testimony-community2.jpg" data-label="LC1 Chairman"><img src="assets/testimony-community2.jpg" alt="Charles"><span class="gm-label">LC1 Chairman</span></div>
+        <div class="gm-item" data-img="assets/testimony-community3.jpg" data-label="Teacher Doreen"><img src="assets/testimony-community3.jpg" alt="Doreen"><span class="gm-label">Teacher Doreen</span></div>
+        <div class="gm-item" data-img="assets/bishop-banja.jpg" data-label="Bishop Banja"><img src="assets/bishop-banja.jpg" alt="Bishop"><span class="gm-label">Bishop Banja</span></div>
+        <div class="gm-item" data-img="assets/archdeacon-mpagi.jpg" data-label="Archdeacon Mpagi"><img src="assets/archdeacon-mpagi.jpg" alt="Archdeacon"><span class="gm-label">Archdeacon Mpagi</span></div>
+        <div class="gm-item" data-img="assets/Cordinator Rev semei.jpeg" data-label="Rev. Semei"><img src="assets/Cordinator Rev semei.jpeg" alt="Rev"><span class="gm-label">Rev. Semei</span></div>
+        <div class="gm-item" data-img="assets/chairperson.jpeg" data-label="Chairperson"><img src="assets/chairperson.jpeg" alt="Chair"><span class="gm-label">Chairperson</span></div>
+        <div class="gm-item" data-img="assets/publicity.jpeg" data-label="Publicity Secretary"><img src="assets/publicity.jpeg" alt="Publicity"><span class="gm-label">Publicity Secretary</span></div>
+        <div class="gm-item" data-img="assets/sports and mdd.jpeg" data-label="Sports & MDD"><img src="assets/sports and mdd.jpeg" alt="SportsMDD"><span class="gm-label">Sports & MDD</span></div>
+        <div class="gm-item" data-img="assets/good samaritan.jpeg" data-label="Good Samaritan"><img src="assets/good samaritan.jpeg" alt="Samaritan"><span class="gm-label">Good Samaritan</span></div>
+        <div class="gm-item" data-img="assets/transport.jpeg" data-label="Transport"><img src="assets/transport.jpeg" alt="Transport"><span class="gm-label">Transport</span></div>
+        <div class="gm-item" data-img="assets/Assistant games and sports.jpeg" data-label="Asst. Games"><img src="assets/Assistant games and sports.jpeg" alt="Games"><span class="gm-label">Asst. Games</span></div>
+        <div class="gm-item" data-img="assets/Development Tr Bogere Richard  part of executive and also Sunday school teachers at st apollo kivebulaya.jpeg" data-label="Development Richard"><img src="assets/Development Tr Bogere Richard  part of executive and also Sunday school teachers at st apollo kivebulaya.jpeg" alt="Richard"><span class="gm-label">Development Richard</span></div>
+        <div class="gm-item" data-img="assets/coordinators/tabitha.png" data-label="Disciplinary Tabitha"><img src="assets/coordinators/tabitha.png" alt="Tabitha"><span class="gm-label">Disciplinary Tabitha</span></div>
+        <div class="gm-item" data-img="assets/Sunday school children maganjo parish.jpeg" data-label="Maganjo Children"><img src="assets/Sunday school children maganjo parish.jpeg" alt="Maganjo"><span class="gm-label">Maganjo Children</span></div>
+        <div class="gm-item" data-img="assets/Sunday school children nabweru.jpeg" data-label="Nabweru Children"><img src="assets/Sunday school children nabweru.jpeg" alt="Nabweru"><span class="gm-label">Nabweru Children</span></div>
+        <div class="gm-item" data-img="assets/Sunday school st paul Ebenezeri.jpeg" data-label="St. Paul Ebenezeri"><img src="assets/Sunday school st paul Ebenezeri.jpeg" alt="Ebenezeri"><span class="gm-label">St. Paul Ebenezeri</span></div>
+        <div class="gm-item" data-img="assets/teachers st luke nabweru.jpeg" data-label="Nabweru Teachers"><img src="assets/teachers st luke nabweru.jpeg" alt="Teachers"><span class="gm-label">Nabweru Teachers</span></div>
+        <div class="gm-item" data-img="assets/children st luke nabweru.jpeg" data-label="Nabweru Kids"><img src="assets/children st luke nabweru.jpeg" alt="Kids"><span class="gm-label">Nabweru Kids</span></div>
+        <div class="gm-item" data-img="assets/kakeeto ivan sunday school teacher st jamesbwaise.jpeg" data-label="Teacher Kakeeto"><img src="assets/kakeeto ivan sunday school teacher st jamesbwaise.jpeg" alt="Kakeeto"><span class="gm-label">Teacher Kakeeto</span></div>
+        <div class="gm-item" data-img="assets/sunday school teachers/teachers pose while laughing.jpeg" data-label="Teachers Group"><img src="assets/sunday school teachers/teachers pose while laughing.jpeg" alt="Teachers"><span class="gm-label">Teachers Group</span></div>
+        <div class="gm-item" data-img="assets/sunday school teachers/teachers pose with the bishop.jpeg" data-label="Teachers & Bishop"><img src="assets/sunday school teachers/teachers pose with the bishop.jpeg" alt="Bishop"><span class="gm-label">Teachers & Bishop</span></div>
+        <div class="gm-item" data-img="assets/sunday school teachers/teachers pose while hugging each other.jpeg" data-label="Teachers Fellowship"><img src="assets/sunday school teachers/teachers pose while hugging each other.jpeg" alt="Fellowship"><span class="gm-label">Teachers Fellowship</span></div>
+        <div class="gm-item" data-img="assets/sunday school teachers/teachers posing while lifting up hands.jpeg" data-label="Teachers Worship"><img src="assets/sunday school teachers/teachers posing while lifting up hands.jpeg" alt="Worship"><span class="gm-label">Teachers Worship</span></div>
+        <div class="gm-item" data-img="assets/sunday school teachers/teacher greetinga parent.jpeg" data-label="Teacher & Parent"><img src="assets/sunday school teachers/teacher greetinga parent.jpeg" alt="Greeting"><span class="gm-label">Teacher & Parent</span></div>
+        <div class="gm-item" data-img="assets/sunday school teachers/teacher hugging aparent.jpeg" data-label="Teacher Hugging"><img src="assets/sunday school teachers/teacher hugging aparent.jpeg" alt="Hug"><span class="gm-label">Teacher Hugging</span></div>
+        <div class="gm-item" data-img="assets/sports/one student lifting a trophy.jpeg" data-label="Trophy Win"><img src="assets/sports/one student lifting a trophy.jpeg" alt="Trophy"><span class="gm-label">Trophy Win</span></div>
+        <div class="gm-item" data-img="assets/sports/posing withthe trophy.jpeg" data-label="Team Trophy"><img src="assets/sports/posing withthe trophy.jpeg" alt="Team"><span class="gm-label">Team Trophy</span></div>
+        <div class="gm-item" data-img="assets/mdd/students in cultural wear.jpeg" data-label="Cultural Dance"><img src="assets/mdd/students in cultural wear.jpeg" alt="Dance"><span class="gm-label">Cultural Dance</span></div>
+        <div class="gm-item" data-img="assets/mdd/students posing before a performance.jpeg" data-label="Performance"><img src="assets/mdd/students posing before a performance.jpeg" alt="Performance"><span class="gm-label">Performance</span></div>
+        <div class="gm-item" data-img="assets/teaching drawing/child smiling while shading.jpeg" data-label="Art Class"><img src="assets/teaching drawing/child smiling while shading.jpeg" alt="Art"><span class="gm-label">Art Class</span></div>
+        <div class="gm-item" data-img="assets/teaching drawing/students shading.jpeg" data-label="Students Drawing"><img src="assets/teaching drawing/students shading.jpeg" alt="Drawing"><span class="gm-label">Students Drawing</span></div>
+        <div class="gm-item" data-img="assets/sunday school children group photos/sunday school children all combined.jpeg" data-label="All Children"><img src="assets/sunday school children group photos/sunday school children all combined.jpeg" alt="Children"><span class="gm-label">All Children</span></div>
+        <div class="gm-item" data-img="assets/sunday school children group photos/sunday school children all raising hands up.jpeg" data-label="Praise Session"><img src="assets/sunday school children group photos/sunday school children all raising hands up.jpeg" alt="Praise"><span class="gm-label">Praise Session</span></div>
+        <div class="gm-item" data-img="assets/sunday school children group photos/sunday school children blue red and green.jpeg" data-label="Color Groups"><img src="assets/sunday school children group photos/sunday school children blue red and green.jpeg" alt="Groups"><span class="gm-label">Color Groups</span></div>
+        <div class="gm-item" data-img="assets/sunday school children group photos/sunday school children blue group.jpeg" data-label="Blue Group"><img src="assets/sunday school children group photos/sunday school children blue group.jpeg" alt="Blue"><span class="gm-label">Blue Group</span></div>
+        <div class="gm-item" data-img="assets/sunday school children group photos/sunday school children green group.jpeg" data-label="Green Group"><img src="assets/sunday school children group photos/sunday school children green group.jpeg" alt="Green"><span class="gm-label">Green Group</span></div>
+        <div class="gm-item" data-img="assets/sunday school children group photos/sunday school children red group.jpeg" data-label="Red Group"><img src="assets/sunday school children group photos/sunday school children red group.jpeg" alt="Red"><span class="gm-label">Red Group</span></div>
       </div>
     </div>
   </div>
@@ -757,10 +567,242 @@
   </div>
 
   <!-- ===== FLOATING WHATSAPP ===== -->
-  <a href="#" class="whatsapp-float" data-phone="+256700000000" aria-label="Chat on WhatsApp">
+  <a href="#" class="whatsapp-float" data-phone="0771905447" aria-label="Chat on WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
 
   <script src="js/main.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', async function() {
+    const kacmSupabase = window.__kacmSupabase;
+
+    // ===== Load Hero Slides =====
+    var { data: slides, error: slideErr } = await kacmSupabase
+      .from('hero_slides')
+      .select('*')
+      .eq('visible', true)
+      .order('display_order');
+
+    if (!slideErr && slides && slides.length > 0) {
+      var hero = document.getElementById('hero');
+      var slidesContainer = document.getElementById('hero-slides-container');
+      var contentContainer = document.getElementById('hero-content-container');
+
+      slides.forEach(function(s, i) {
+        // Slide background
+        var slideDiv = document.createElement('div');
+        slideDiv.className = 'hero-slide' + (i === 0 ? ' active' : '');
+        if (s.background_image) {
+          slideDiv.style.backgroundImage = "url('" + s.background_image + "')";
+        }
+        slidesContainer.appendChild(slideDiv);
+
+        // Content
+        var contentDiv = document.createElement('div');
+        contentDiv.className = 'hero-content hero-content-' + i + (i === 0 ? ' active' : '');
+        var welcomeHtml = i === 0 ? '<p style="font-size:14px; font-weight:600; color:var(--secondary); text-transform:uppercase; letter-spacing:3px; margin-bottom:8px;">Welcome to</p>' : '';
+        contentDiv.innerHTML = welcomeHtml +
+          '<h1>' + escapeHtml(s.heading) + '</h1>' +
+          '<p class="hero-subtitle">' + escapeHtml(s.subtitle) + '</p>' +
+          '<div class="hero-scripture">' + escapeHtml(s.scripture) + '</div>' +
+          '<div class="hero-buttons">' +
+          (s.button1_text ? '<a href="' + escapeHtml(s.button1_link) + '" class="btn btn-secondary btn-lg">' + escapeHtml(s.button1_text) + '</a>' : '') +
+          (s.button2_text ? '<a href="' + escapeHtml(s.button2_link) + '" class="btn btn-outline btn-lg">' + escapeHtml(s.button2_text) + '</a>' : '') +
+          '</div>';
+        contentContainer.appendChild(contentDiv);
+      });
+
+      // Trigger slideshow manually
+      initHeroSlideshow();
+    }
+
+    // ===== Load Testimonials for Homepage =====
+    var { data: testimonials, error: tErr } = await kacmSupabase
+      .from('testimonials')
+      .select('*')
+      .eq('visible', true)
+      .order('display_order');
+
+    if (!tErr && testimonials && testimonials.length > 0) {
+      var container = document.getElementById('home-testimonials');
+      if (container) {
+        // Pick first 3 for variety
+        var picks = [testimonials[0]];
+        for (var i = 1; i < testimonials.length; i++) {
+          if (picks.length >= 3) break;
+          if (testimonials[i].category !== picks[picks.length - 1].category) {
+            picks.push(testimonials[i]);
+          }
+        }
+        if (picks.length < 3) {
+          picks = testimonials.slice(0, 3);
+        }
+
+        var html = '';
+        picks.forEach(function(t, i) {
+          var avatar = t.image || 'assets/sunday school children group photos/sunday school children all combined.jpeg';
+          html += '<div class="testimonial-slide' + (i === 0 ? ' active' : '') + '">' +
+            '<div class="t-card">' +
+            '<div class="t-quote-icon"><i class="fas fa-quote-right"></i></div>' +
+            '<img src="' + escapeHtml(avatar) + '" alt="' + escapeHtml(t.author) + '" class="t-avatar">' +
+            '<p class="t-quote">"' + escapeHtml(t.content.substring(0, 250)) + '"</p>' +
+            '<div class="t-author"><strong>' + escapeHtml(t.author) + '</strong><span>' + escapeHtml(t.location) + '</span></div>' +
+            '</div></div>';
+        });
+        html += '<div class="carousel-dots"></div>';
+        container.innerHTML = html;
+
+        // Re-init carousel
+        initTestimonialCarousel();
+      }
+    }
+
+    function initHeroSlideshow() {
+      var heroSlides = document.querySelectorAll('.hero-slide');
+      var heroContents = document.querySelectorAll('.hero-content');
+      if (heroSlides.length > 0) {
+        var heroCurrent = 0;
+        setInterval(function() {
+          heroSlides[heroCurrent].classList.remove('active');
+          if (heroContents[heroCurrent]) heroContents[heroCurrent].classList.remove('active');
+          heroCurrent = (heroCurrent + 1) % heroSlides.length;
+          heroSlides[heroCurrent].classList.add('active');
+          if (heroContents[heroCurrent]) heroContents[heroCurrent].classList.add('active');
+        }, 5000);
+      }
+    }
+
+    function initTestimonialCarousel() {
+      var carousel = document.querySelector('.testimonial-carousel');
+      if (!carousel) return;
+      var slides = carousel.querySelectorAll('.testimonial-slide');
+      var dotsContainer = carousel.querySelector('.carousel-dots');
+      var currentSlide = 0;
+      var slideInterval;
+
+      if (dotsContainer && slides.length > 1) {
+        slides.forEach(function(_, i) {
+          var dot = document.createElement('button');
+          dot.setAttribute('aria-label', 'Testimonial ' + (i + 1));
+          if (i === 0) dot.classList.add('active');
+          dot.addEventListener('click', function() { goToSlide(i); });
+          dotsContainer.appendChild(dot);
+        });
+      }
+
+      function goToSlide(index) {
+        slides[currentSlide].classList.remove('active');
+        if (dotsContainer) dotsContainer.children[currentSlide].classList.remove('active');
+        currentSlide = index;
+        slides[currentSlide].classList.add('active');
+        if (dotsContainer) dotsContainer.children[currentSlide].classList.add('active');
+        resetInterval();
+      }
+
+      function nextSlide() { goToSlide((currentSlide + 1) % slides.length); }
+      function resetInterval() { clearInterval(slideInterval); slideInterval = setInterval(nextSlide, 5000); }
+
+      if (slides.length > 1) slideInterval = setInterval(nextSlide, 5000);
+    }
+
+    // ===== Load Media Articles =====
+    var { data: articles, error: artErr } = await kacmSupabase
+      .from('media_articles')
+      .select('*')
+      .eq('visible', true)
+      .order('article_date', { ascending: false });
+
+    if (!artErr && articles) {
+      var categories = {
+        'article': 'media-articles',
+        'press': 'media-press',
+        'event': 'media-events',
+        'story': 'media-stories',
+        'library': 'media-library'
+      };
+
+      Object.keys(categories).forEach(function(cat) {
+        var container = document.getElementById(categories[cat]);
+        if (!container) return;
+        var items = articles.filter(function(a) { return a.category === cat; });
+        if (items.length === 0) { container.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#888;">No ' + cat + 's found.</p>'; return; }
+
+        var html = '';
+        items.forEach(function(a) {
+          var pdfLink = a.link && a.link.trim() ? a.link : '#';
+          var pdfClick = a.link && a.link.trim() ? '' : ' onclick="alert(\'PDF coming soon.\'); return false;"';
+          var downloadIcon = '<i class="fas fa-download"></i>';
+
+          if (cat === 'press') {
+            // Press release layout
+            html += '<div class="press-item fade-in">';
+            html += '<div class="press-date">' + formatDate(a.article_date) + '</div>';
+            html += '<div class="press-content"><h4>' + escapeHtml(a.title) + '</h4><p>' + escapeHtml(a.excerpt) + '</p></div>';
+            html += '<a href="' + pdfLink + '" class="btn btn-sm btn-outline-dark"' + pdfClick + ' target="_blank">' + downloadIcon + ' PDF</a></div>';
+          } else if (cat === 'library') {
+            // Library card layout
+            html += '<div class="library-card fade-in">';
+            html += '<div class="library-icon"><i class="fas fa-file-pdf"></i></div>';
+            html += '<h4>' + escapeHtml(a.title) + '</h4>';
+            html += '<p>' + escapeHtml(a.excerpt) + '</p>';
+            html += '<a href="' + pdfLink + '" class="btn btn-sm btn-outline-dark"' + pdfClick + ' target="_blank">' + downloadIcon + ' Download</a></div>';
+          } else if (cat === 'event') {
+            // Event card layout
+            var d = a.article_date ? new Date(a.article_date) : null;
+            var day = d ? d.getDate() : '??';
+            var month = d ? d.toLocaleString('en', { month: 'short' }) : '???';
+            html += '<div class="event-card fade-in">';
+            html += '<div class="event-card-date"><span>' + day + '</span><small>' + month + '</small></div>';
+            html += '<div class="event-card-body"><h4>' + escapeHtml(a.title) + '</h4><p>' + escapeHtml(a.excerpt) + '</p></div></div>';
+          } else {
+            // Article / Story card with background image
+            var bgColor = cat === 'story' ? 'rgba(91,45,142,0.95)' : 'rgba(26,26,46,0.9)';
+            var bgImg = a.image ? "url('" + escapeHtml(a.image) + "')" : '';
+            html += '<div class="media-card media-overlay fade-in" style="background: linear-gradient(180deg, transparent 30%, ' + bgColor + ' 100%), ' + bgImg + ' center/cover no-repeat;">';
+            html += '<div class="media-overlay-content">';
+            html += '<span class="media-tag">' + formatDate(a.article_date) + '</span>';
+            html += '<h4>' + escapeHtml(a.title) + '</h4>';
+            html += '<p>' + escapeHtml(a.excerpt) + '</p>';
+            html += '<a href="testimonies.html">Read More <i class="fas fa-arrow-right"></i></a></div></div>';
+          }
+        });
+        container.innerHTML = html;
+      });
+    }
+
+    // ===== Load Gallery =====
+    var { data: galleryItems, error: galErr } = await kacmSupabase
+      .from('gallery')
+      .select('*')
+      .eq('visible', true)
+      .order('display_order');
+
+    if (!galErr && galleryItems && galleryItems.length > 0) {
+      var galleryContainer = document.getElementById('home-gallery');
+      if (galleryContainer) {
+        var gHtml = '';
+        galleryItems.forEach(function(g) {
+          gHtml += '<div class="gallery-item fade-in">';
+          gHtml += '<img src="' + escapeHtml(g.filename) + '" alt="' + escapeHtml(g.alt_text || g.label || '') + '" class="lightbox-trigger">';
+          gHtml += '<div class="gallery-overlay"><span>' + escapeHtml(g.label || '') + '</span></div></div>';
+        });
+        galleryContainer.innerHTML = gHtml;
+      }
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      var d = new Date(dateStr);
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      var div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+  });
+  </script>
 </body>
 </html>

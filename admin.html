@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KACM Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;0,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="admin/css/admin.css">
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <style>
+    .hidden { display: none !important; }
+    .login-loading { text-align: center; color: var(--gray-500); font-size: 14px; padding: 10px; }
+    #login-form { display: flex; flex-direction: column; align-items: center; }
+    #login-form .form-group { width: 100%; max-width: 320px; }
+  </style>
+</head>
+<body>
+  <!-- Toast notification -->
+  <div id="toast" class="toast"></div>
+
+  <!-- ============ LOGIN SCREEN ============ -->
+  <div id="login-screen">
+    <div class="login-box">
+      <div class="logo-icon"><i class="fas fa-cross"></i></div>
+      <h1>KACM Admin</h1>
+      <p>Kazo Archdeaconry Children's Ministry</p>
+
+      <div id="login-error" class="login-error" style="display:none;"></div>
+      <div id="login-loading" class="login-loading" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Signing in...</div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="admin@kacm.org" required autofocus>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter password" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="login-btn">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ DASHBOARD ============ -->
+  <div id="dashboard" class="hidden">
+    <!-- Admin header -->
+    <div class="admin-header">
+      <h1><i class="fas fa-cross"></i> KACM Admin</h1>
+      <div class="admin-user">
+        <span id="user-email"></span>
+        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </div>
+    </div>
+
+    <div class="admin-container">
+      <!-- Sidebar -->
+      <div class="admin-sidebar">
+        <a href="#" class="active" data-section="team"><i class="fas fa-users"></i> Team Members</a>
+        <a href="#" data-section="testimonials"><i class="fas fa-quote-right"></i> Testimonials</a>
+        <a href="#" data-section="projects"><i class="fas fa-project-diagram"></i> Projects</a>
+        <a href="#" data-section="hero"><i class="fas fa-images"></i> Hero Slides</a>
+        <a href="#" data-section="media"><i class="fas fa-newspaper"></i> Media</a>
+        <a href="#" data-section="gallery"><i class="fas fa-camera"></i> Gallery</a>
+        <a href="#" data-section="settings"><i class="fas fa-cog"></i> Settings</a>
+        <a href="index.html" target="_blank"><i class="fas fa-external-link-alt"></i> View Site</a>
+      </div>
+
+      <!-- Main content -->
+      <div class="admin-content">
+        <!-- Team Members Section -->
+        <div id="section-team">
+          <div class="page-header">
+            <h2><i class="fas fa-users"></i> Team Members</h2>
+            <button class="btn btn-primary" id="add-member-btn"><i class="fas fa-plus"></i> Add Member</button>
+          </div>
+
+          <!-- Filter tabs -->
+          <div class="filter-tabs">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="leadership">Leadership</button>
+            <button class="filter-btn" data-filter="executive">Executive</button>
+            <button class="filter-btn" data-filter="coordinator">Coordinators</button>
+            <button class="filter-btn" data-filter="teacher">Teachers</button>
+          </div>
+
+          <!-- Table -->
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:40px;">#</th>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Category</th>
+                  <th>Parish</th>
+                  <th>Image</th>
+                  <th>Order</th>
+                  <th class="actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="team-table-body">
+                <tr><td colspan="8" style="text-align:center;padding:30px;color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Testimonials Section -->
+        <div id="section-testimonials" class="hidden">
+          <div class="page-header">
+            <h2><i class="fas fa-quote-right"></i> Testimonials</h2>
+            <button class="btn btn-primary" id="add-testimonial-btn"><i class="fas fa-plus"></i> Add Testimonial</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:40px;">#</th>
+                  <th>Author</th>
+                  <th>Category</th>
+                  <th>Location</th>
+                  <th>Content</th>
+                  <th class="actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="testimonials-table-body">
+                <tr><td colspan="6" style="text-align:center;padding:30px;color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Projects Section -->
+        <div id="section-projects" class="hidden">
+          <div class="page-header">
+            <h2><i class="fas fa-project-diagram"></i> Projects</h2>
+            <button class="btn btn-primary" id="add-project-btn"><i class="fas fa-plus"></i> Add Project</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:40px;">#</th>
+                  <th>Title</th>
+                  <th>Tagline</th>
+                  <th>Image</th>
+                  <th>Order</th>
+                  <th class="actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="projects-table-body">
+                <tr><td colspan="6" style="text-align:center;padding:30px;color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Hero Slides Section -->
+        <div id="section-hero" class="hidden">
+          <div class="page-header">
+            <h2><i class="fas fa-images"></i> Hero Slides</h2>
+            <button class="btn btn-primary" id="add-hero-btn"><i class="fas fa-plus"></i> Add Slide</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:40px;">#</th>
+                  <th>Heading</th>
+                  <th>Buttons</th>
+                  <th>Image</th>
+                  <th>Order</th>
+                  <th class="actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="hero-table-body">
+                <tr><td colspan="6" style="text-align:center;padding:30px;color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Media Section -->
+        <div id="section-media" class="hidden">
+          <div class="page-header">
+            <h2><i class="fas fa-newspaper"></i> Media Articles</h2>
+            <button class="btn btn-primary" id="add-media-btn"><i class="fas fa-plus"></i> Add Article</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:40px;">#</th>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Date</th>
+                  <th>Image</th>
+                  <th class="actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="media-table-body">
+                <tr><td colspan="6" style="text-align:center;padding:30px;color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div id="section-gallery" class="hidden">
+          <div class="page-header">
+            <h2><i class="fas fa-camera"></i> Gallery</h2>
+            <button class="btn btn-primary" id="add-gallery-btn"><i class="fas fa-plus"></i> Add Image</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:40px;">#</th>
+                  <th>Image</th>
+                  <th>Label</th>
+                  <th>Order</th>
+                  <th class="actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="gallery-table-body">
+                <tr><td colspan="5" style="text-align:center;padding:30px;color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Settings Section -->
+        <div id="section-settings" class="hidden">
+          <div class="page-header">
+            <h2><i class="fas fa-cog"></i> Site Settings</h2>
+          </div>
+          <div class="card" id="settings-content">
+            <p style="color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading settings...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ADD/EDIT MEMBER MODAL ============ -->
+  <div class="modal-overlay" id="member-modal">
+    <div class="modal-box">
+      <h2 id="modal-title">Add Team Member</h2>
+      <form id="member-form">
+        <input type="hidden" id="member-id">
+
+        <div class="form-group">
+          <label for="m-name">Full Name *</label>
+          <input type="text" id="m-name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="m-category">Category *</label>
+          <select id="m-category" required>
+            <option value="">Select category...</option>
+            <option value="leadership">Leadership</option>
+            <option value="executive">Executive Member</option>
+            <option value="coordinator">Parish Coordinator</option>
+            <option value="teacher">Sunday School Teacher</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="m-role">Role Title</label>
+          <input type="text" id="m-role" placeholder="e.g. Bishop, Secretary, Kazo Parish">
+        </div>
+
+        <div class="form-group">
+          <label for="m-bio">Bio / Description</label>
+          <textarea id="m-bio" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="m-image">Image</label>
+          <div style="display:flex;gap:8px;">
+            <input type="text" id="m-image" placeholder="URL or path (or use Browse)" style="flex:1;">
+            <button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('m-file-input').click();" style="white-space:nowrap;"><i class="fas fa-upload"></i> Browse</button>
+          </div>
+          <input type="file" id="m-file-input" accept="image/jpeg,image/png,image/gif,image/webp" style="display:none;">
+          <div id="m-upload-status" style="font-size:12px;margin-top:4px;"></div>
+          <div class="help-text">Click Browse to upload a new image from your computer.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="m-parish">Parish</label>
+          <input type="text" id="m-parish" placeholder="e.g. Kazo">
+        </div>
+
+        <div class="form-group">
+          <label for="m-church">Church</label>
+          <input type="text" id="m-church" placeholder="e.g. St. Luke Kazo">
+        </div>
+
+        <div class="form-group">
+          <label for="m-order">Display Order</label>
+          <input type="number" id="m-order" value="0" min="0">
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" id="modal-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="modal-save">Save Member</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ DELETE CONFIRM MODAL ============ -->
+  <div class="modal-overlay" id="delete-modal">
+    <div class="modal-box" style="max-width:400px;text-align:center;">
+      <h2 style="color:#dc2626;">Delete Member?</h2>
+      <p style="color:#555;margin-bottom:20px;" id="delete-member-name">Are you sure?</p>
+      <div class="modal-actions" style="justify-content:center;">
+        <button class="btn btn-secondary" id="delete-cancel">Cancel</button>
+        <button class="btn btn-danger" id="delete-confirm">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  // ============================================================
+  // ADMIN APP
+  // ============================================================
+
+  let currentUser = null;
+  let allMembers = [];
+  let currentFilter = 'all';
+  let memberToDelete = null;
+  let settingsChanged = false;
+
+  // DOM refs
+  const loginScreen = document.getElementById('login-screen');
+  const dashboard = document.getElementById('dashboard');
+  const loginForm = document.getElementById('login-form');
+  const loginError = document.getElementById('login-error');
+  const loginLoading = document.getElementById('login-loading');
+  const loginBtn = document.getElementById('login-btn');
+  const userEmail = document.getElementById('user-email');
+  const logoutBtn = document.getElementById('logout-btn');
+  const teamBody = document.getElementById('team-table-body');
+  const addMemberBtn = document.getElementById('add-member-btn');
+  const memberModal = document.getElementById('member-modal');
+  const modalTitle = document.getElementById('modal-title');
+  const memberForm = document.getElementById('member-form');
+  const modalCancel = document.getElementById('modal-cancel');
+  const memberId = document.getElementById('member-id');
+  const mName = document.getElementById('m-name');
+  const mCategory = document.getElementById('m-category');
+  const mRole = document.getElementById('m-role');
+  const mBio = document.getElementById('m-bio');
+  const mImage = document.getElementById('m-image');
+  const mParish = document.getElementById('m-parish');
+  const mChurch = document.getElementById('m-church');
+  const mOrder = document.getElementById('m-order');
+  const deleteModal = document.getElementById('delete-modal');
+  const deleteMemberName = document.getElementById('delete-member-name');
+  const deleteConfirm = document.getElementById('delete-confirm');
+  const deleteCancel = document.getElementById('delete-cancel');
+  const toast = document.getElementById('toast');
+  const settingsContent = document.getElementById('settings-content');
+
+  // ============================================================
+  // Supabase client reference
+  // ============================================================
+  var kacmSupabase = window.__kacmSupabase;
+
+  // ============================================================
+  // CHECK AUTH ON LOAD
+  // ============================================================
+  kacmSupabase.auth.onAuthStateChange(function(event, session) {
+    if (session && session.user) {
+      currentUser = session.user;
+      showDashboard();
+    } else {
+      currentUser = null;
+      showLogin();
+    }
+  });
+
+  // Also try to get session immediately
+  kacmSupabase.auth.getSession().then(function(result) {
+    if (result.data.session) {
+      currentUser = result.data.session.user;
+      showDashboard();
+    }
+  });
+
+  // ============================================================
+  // LOGIN
+  // ============================================================
+  loginForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    loginError.style.display = 'none';
+    loginLoading.style.display = 'block';
+    loginBtn.disabled = true;
+
+    var email = document.getElementById('email').value.trim();
+    var password = document.getElementById('password').value;
+
+    var result = await kacmSupabase.auth.signInWithPassword({ email: email, password: password });
+
+    loginLoading.style.display = 'none';
+    loginBtn.disabled = false;
+
+    if (result.error) {
+      loginError.textContent = result.error.message === 'Invalid login credentials'
+        ? 'Invalid email or password. Please try again.'
+        : result.error.message;
+      loginError.style.display = 'block';
+    } else {
+      currentUser = result.data.user;
+      showDashboard();
+    }
+  });
+
+  // ============================================================
+  // LOGOUT
+  // ============================================================
+  logoutBtn.addEventListener('click', async function(e) {
+    e.preventDefault();
+    await kacmSupabase.auth.signOut();
+    currentUser = null;
+    showLogin();
+  });
+
+  // ============================================================
+  // UI HELPERS
+  // ============================================================
+  function showLogin() {
+    loginScreen.style.display = 'flex';
+    dashboard.classList.add('hidden');
+    loginForm.reset();
+    loginError.style.display = 'none';
+  }
+
+  function showDashboard() {
+    loginScreen.style.display = 'none';
+    dashboard.classList.remove('hidden');
+    userEmail.textContent = currentUser.email;
+    loadTeamMembers(); // Only load team on startup (default tab)
+  }
+
+  function showToast(message, type) {
+    toast.textContent = message;
+    toast.className = 'toast ' + type + ' show';
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(function() { toast.classList.remove('show'); }, 3500);
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function getCategoryBadge(cat) {
+    var labels = { leadership: 'Leadership', executive: 'Executive', coordinator: 'Coordinator', teacher: 'Teacher' };
+    return '<span class="category-badge badge-' + cat + '">' + (labels[cat] || cat) + '</span>';
+  }
+
+  // ============================================================
+  // SIDEBAR NAV
+  // ============================================================
+  document.querySelectorAll('.admin-sidebar a[data-section]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelectorAll('.admin-sidebar a').forEach(function(a) { a.classList.remove('active'); });
+      this.classList.add('active');
+      var section = this.getAttribute('data-section');
+      document.getElementById('section-team').classList.add('hidden');
+      document.getElementById('section-testimonials').classList.add('hidden');
+      document.getElementById('section-projects').classList.add('hidden');
+      document.getElementById('section-hero').classList.add('hidden');
+      document.getElementById('section-media').classList.add('hidden');
+      document.getElementById('section-gallery').classList.add('hidden');
+      document.getElementById('section-settings').classList.add('hidden');
+      document.getElementById('section-' + section).classList.remove('hidden');
+      // Load section data on demand (lazy load)
+      if (section === 'testimonials') loadTestimonials();
+      else if (section === 'projects') loadProjects();
+      else if (section === 'hero') loadHeroSlides();
+      else if (section === 'media') loadMedia();
+      else if (section === 'gallery') loadGallery();
+      else if (section === 'settings') loadSettings();
+      else if (section === 'team') loadTeamMembers();
+    });
+  });
+
+  // ============================================================
+  // CATEGORY FILTER
+  // ============================================================
+  document.querySelectorAll('.filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      currentFilter = this.getAttribute('data-filter');
+      renderTeamTable();
+    });
+  });
+
+  // ============================================================
+  // LOAD TEAM MEMBERS
+  // ============================================================
+  async function loadTeamMembers() {
+    teamBody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:30px;color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
+    var result = await kacmSupabase.from('team_members').select('*').order('display_order');
+    if (result.error) {
+      teamBody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:30px;color:#dc2626;">Error loading members: ' + escapeHtml(result.error.message) + '</td></tr>';
+      return;
+    }
+    allMembers = result.data || [];
+    renderTeamTable();
+  }
+
+  function renderTeamTable() {
+    var filtered = currentFilter === 'all' ? allMembers : allMembers.filter(function(m) { return m.category === currentFilter; });
+
+    if (filtered.length === 0) {
+      teamBody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:40px;color:#888;"><i class="fas fa-users" style="font-size:32px;display:block;margin-bottom:8px;"></i>No team members found in this category.</td></tr>';
+      return;
+    }
+
+    var html = '';
+    filtered.forEach(function(m, idx) {
+      var hasImage = m.image && m.image.trim() !== '';
+      var imgHtml = hasImage
+        ? '<img src="' + escapeHtml(m.image) + '" alt="' + escapeHtml(m.name) + '" class="img-preview" style="width:50px;height:35px;object-fit:cover;border-radius:4px;">'
+        : '<span style="color:#bbb;"><i class="fas fa-user"></i></span>';
+
+      html += '<tr data-category="' + m.category + '">';
+      html += '<td>' + (idx + 1) + '</td>';
+      html += '<td><strong>' + escapeHtml(m.name) + '</strong></td>';
+      html += '<td>' + escapeHtml(m.role_title) + '</td>';
+      html += '<td>' + getCategoryBadge(m.category) + '</td>';
+      html += '<td>' + escapeHtml(m.parish || '') + '</td>';
+      html += '<td>' + imgHtml + '</td>';
+      html += '<td>' + m.display_order + '</td>';
+      html += '<td class="actions">';
+      html += '<a href="#" class="edit-member" data-id="' + m.id + '" style="color:#5B2D8E;"><i class="fas fa-edit"></i> Edit</a>';
+      html += '<a href="#" class="delete-member" data-id="' + m.id + '" style="color:#dc2626;"><i class="fas fa-trash"></i></a>';
+      html += '</td></tr>';
+    });
+
+    teamBody.innerHTML = html;
+
+    // Bind edit buttons
+    document.querySelectorAll('.edit-member').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var id = parseInt(this.getAttribute('data-id'));
+        var member = allMembers.find(function(m) { return m.id === id; });
+        if (member) openEditModal(member);
+      });
+    });
+
+    // Bind delete buttons
+    document.querySelectorAll('.delete-member').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var id = parseInt(this.getAttribute('data-id'));
+        var member = allMembers.find(function(m) { return m.id === id; });
+        if (member) openDeleteModal(member);
+      });
+    });
+  }
+
+  // ============================================================
+  // ADD MEMBER
+  // ============================================================
+  addMemberBtn.addEventListener('click', function() {
+    openAddModal();
+  });
+
+  function openAddModal() {
+    modalTitle.textContent = 'Add Team Member';
+    memberForm.reset();
+    memberId.value = '';
+    mOrder.value = '0';
+    memberModal.classList.add('active');
+  }
+
+  function openEditModal(member) {
+    modalTitle.textContent = 'Edit Team Member';
+    memberId.value = member.id;
+    mName.value = member.name || '';
+    mCategory.value = member.category || '';
+    mRole.value = member.role_title || '';
+    mBio.value = member.bio || '';
+    mImage.value = member.image || '';
+    mParish.value = member.parish || '';
+    mChurch.value = member.church || '';
+    mOrder.value = member.display_order || 0;
+    memberModal.classList.add('active');
+  }
+
+  // ============================================================
+  // SAVE MEMBER (Create or Update)
+  // ============================================================
+  memberForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    var data = {
+      name: mName.value.trim(),
+      category: mCategory.value,
+      role_title: mRole.value.trim(),
+      bio: mBio.value.trim(),
+      image: mImage.value.trim(),
+      parish: mParish.value.trim(),
+      church: mChurch.value.trim(),
+      display_order: parseInt(mOrder.value) || 0,
+      visible: true
+    };
+
+    var id = memberId.value;
+
+    if (id) {
+      // Update
+      var result = await kacmSupabase.from('team_members').update(data).eq('id', parseInt(id));
+      if (result.error) {
+        showToast('Error updating member: ' + result.error.message, 'error');
+      } else {
+        showToast('Member updated successfully!', 'success');
+        memberModal.classList.remove('active');
+        loadTeamMembers();
+      }
+    } else {
+      // Create
+      var result = await kacmSupabase.from('team_members').insert(data);
+      if (result.error) {
+        showToast('Error adding member: ' + result.error.message, 'error');
+      } else {
+        showToast('Member added successfully!', 'success');
+        memberModal.classList.remove('active');
+        loadTeamMembers();
+      }
+    }
+  });
+
+  // ============================================================
+  // DELETE MEMBER
+  // ============================================================
+  function openDeleteModal(member) {
+    memberToDelete = member;
+    deleteMemberName.textContent = 'Delete "' + member.name + '" permanently? This cannot be undone.';
+    deleteModal.classList.add('active');
+  }
+
+  deleteCancel.addEventListener('click', function() {
+    deleteModal.classList.remove('active');
+    memberToDelete = null;
+  });
+
+  deleteConfirm.addEventListener('click', async function() {
+    if (!memberToDelete) return;
+    // Determine which table based on the object's properties
+    var table = memberToDelete.author !== undefined ? 'testimonials' : (memberToDelete.title !== undefined ? 'projects' : 'team_members');
+    var label = memberToDelete.author || memberToDelete.title || memberToDelete.name || 'item';
+    var result = await kacmSupabase.from(table).delete().eq('id', memberToDelete.id);
+    if (result.error) {
+      showToast('Error deleting: ' + result.error.message, 'error');
+    } else {
+      showToast('"' + label + '" deleted.', 'success');
+      memberToDelete = null;
+      deleteModal.classList.remove('active');
+      loadTeamMembers();
+      loadTestimonials();
+      loadProjects();
+    }
+  });
+
+  // Close modals on overlay click
+  memberModal.addEventListener('click', function(e) {
+    if (e.target === memberModal) memberModal.classList.remove('active');
+  });
+  deleteModal.addEventListener('click', function(e) {
+    if (e.target === deleteModal) { deleteModal.classList.remove('active'); memberToDelete = null; }
+  });
+  modalCancel.addEventListener('click', function() { memberModal.classList.remove('active'); });
+
+  // ============================================================
+  // IMAGE UPLOAD HANDLER
+  // ============================================================
+  function setupImageUpload(inputId, statusId, targetId) {
+    document.getElementById(inputId).addEventListener('change', async function() {
+      var file = this.files[0];
+      if (!file) return;
+      var status = document.getElementById(statusId);
+      var input = document.getElementById(targetId);
+      status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
+
+      // Generate unique filename
+      var ext = file.name.split('.').pop();
+      var filename = Date.now() + '_' + Math.random().toString(36).substring(2, 8) + '.' + ext;
+
+      var { data, error } = await kacmSupabase.storage.from('kacm-images').upload(filename, file);
+      if (error) {
+        status.innerHTML = '<span style="color:#dc2626;">Upload failed: ' + error.message + '</span>';
+        return;
+      }
+
+      // Get public URL
+      var { data: urlData } = kacmSupabase.storage.from('kacm-images').getPublicUrl(filename);
+      input.value = urlData.publicUrl;
+      status.innerHTML = '<span style="color:#15803d;"><i class="fas fa-check"></i> Uploaded!</span>';
+    });
+  }
+
+  // Setup upload buttons
+  setupImageUpload('m-file-input', 'm-upload-status', 'm-image');
+  setupImageUpload('t-file-input', 't-upload-status', 't-image');
+  setupImageUpload('p-file-input', 'p-upload-status', 'p-image');
+
+  // When opening modals, clear the upload status and make image field editable
+  function resetImageUpload(statusId, targetId, value) {
+    document.getElementById(statusId).innerHTML = '';
+    document.getElementById(targetId).value = value || '';
+  }
+
+  // ============================================================
+  // SETTINGS
+  // ============================================================
+  async function loadSettings() {
+    settingsContent.innerHTML = '<p style="color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading settings...</p>';
+    var result = await kacmSupabase.from('settings').select('*').order('setting_key');
+    if (result.error) {
+      settingsContent.innerHTML = '<p style="color:#dc2626;">Error loading settings: ' + escapeHtml(result.error.message) + '</p>';
+      return;
+    }
+    var settings = result.data || [];
+    if (settings.length === 0) {
+      settingsContent.innerHTML = '<p style="color:#888;">No settings found.</p>';
+      return;
+    }
+
+    var html = '<form id="settings-form">';
+    settings.forEach(function(s) {
+      var label = s.setting_key.replace(/_/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+      html += '<div class="form-group">';
+      html += '<label for="setting-' + s.id + '">' + escapeHtml(label) + '</label>';
+      html += '<input type="text" id="setting-' + s.id + '" value="' + escapeHtml(s.setting_value) + '" data-key="' + escapeHtml(s.setting_key) + '">';
+      html += '</div>';
+    });
+    html += '<button type="submit" class="btn btn-primary">Save Settings</button>';
+    html += '</form>';
+    settingsContent.innerHTML = html;
+
+    document.getElementById('settings-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var inputs = this.querySelectorAll('input[data-key]');
+      for (var i = 0; i < inputs.length; i++) {
+        var input = inputs[i];
+        var key = input.getAttribute('data-key');
+        var value = input.value;
+        await kacmSupabase.from('settings').update({ setting_value: value }).eq('setting_key', key);
+      }
+      showToast('Settings saved!', 'success');
+    });
+  }
+  </script>
+  <!-- ============ ADD/EDIT TESTIMONIAL MODAL ============ -->
+  <div class="modal-overlay" id="testimonial-modal">
+    <div class="modal-box">
+      <h2 id="testimonial-modal-title">Add Testimonial</h2>
+      <form id="testimonial-form">
+        <input type="hidden" id="t-id">
+        <div class="form-group">
+          <label for="t-author">Author Name *</label>
+          <input type="text" id="t-author" required>
+        </div>
+        <div class="form-group">
+          <label for="t-category">Category *</label>
+          <select id="t-category" required>
+            <option value="">Select...</option>
+            <option value="sponsor">Sponsor</option>
+            <option value="child">Sponsored Child</option>
+            <option value="community">Community</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="t-location">Location</label>
+          <input type="text" id="t-location" placeholder="e.g. Sponsor · United Kingdom">
+        </div>
+        <div class="form-group">
+          <label for="t-content">Testimonial *</label>
+          <textarea id="t-content" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="t-image">Image</label>
+          <div style="display:flex;gap:8px;">
+            <input type="text" id="t-image" placeholder="URL or path (or use Browse)" style="flex:1;">
+            <button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('t-file-input').click();" style="white-space:nowrap;"><i class="fas fa-upload"></i> Browse</button>
+          </div>
+          <input type="file" id="t-file-input" accept="image/jpeg,image/png,image/gif,image/webp" style="display:none;">
+          <div id="t-upload-status" style="font-size:12px;margin-top:4px;"></div>
+        </div>
+        <div class="form-group">
+          <label for="t-order">Display Order</label>
+          <input type="number" id="t-order" value="0" min="0">
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" id="testimonial-modal-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Testimonial</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ ADD/EDIT PROJECT MODAL ============ -->
+  <div class="modal-overlay" id="project-modal">
+    <div class="modal-box">
+      <h2 id="project-modal-title">Add Project</h2>
+      <form id="project-form">
+        <input type="hidden" id="p-id">
+        <div class="form-group">
+          <label for="p-title">Title *</label>
+          <input type="text" id="p-title" required>
+        </div>
+        <div class="form-group">
+          <label for="p-tagline">Tagline</label>
+          <input type="text" id="p-tagline" placeholder="e.g. From Our Land to Every Child's Plate">
+        </div>
+        <div class="form-group">
+          <label for="p-description">Description</label>
+          <textarea id="p-description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="p-image">Image</label>
+          <div style="display:flex;gap:8px;">
+            <input type="text" id="p-image" placeholder="URL or path (or use Browse)" style="flex:1;">
+            <button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('p-file-input').click();" style="white-space:nowrap;"><i class="fas fa-upload"></i> Browse</button>
+          </div>
+          <input type="file" id="p-file-input" accept="image/jpeg,image/png,image/gif,image/webp" style="display:none;">
+          <div id="p-upload-status" style="font-size:12px;margin-top:4px;"></div>
+        </div>
+        <div class="form-group">
+          <label for="p-features">Features (one per line)</label>
+          <textarea id="p-features" rows="4" placeholder="Organic farming of vegetables, fruits, and grains&#10;Agri-tourism activities&#10;Income reinvested into children's welfare"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="p-order">Display Order</label>
+          <input type="number" id="p-order" value="0" min="0">
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" id="project-modal-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ ADD/EDIT HERO SLIDE MODAL ============ -->
+  <div class="modal-overlay" id="hero-modal">
+    <div class="modal-box">
+      <h2 id="hero-modal-title">Add Hero Slide</h2>
+      <form id="hero-form">
+        <input type="hidden" id="h-id">
+        <div class="form-group"><label for="h-heading">Heading *</label><input type="text" id="h-heading" required></div>
+        <div class="form-group"><label for="h-subtitle">Subtitle</label><input type="text" id="h-subtitle"></div>
+        <div class="form-group"><label for="h-scripture">Scripture</label><input type="text" id="h-scripture"></div>
+        <div class="form-group"><label for="h-btn1-text">Button 1 Text</label><input type="text" id="h-btn1-text" placeholder="e.g. Sponsor a Child"></div>
+        <div class="form-group"><label for="h-btn1-link">Button 1 Link</label><input type="text" id="h-btn1-link" placeholder="e.g. projects.html#sponsor"></div>
+        <div class="form-group"><label for="h-btn2-text">Button 2 Text</label><input type="text" id="h-btn2-text"></div>
+        <div class="form-group"><label for="h-btn2-link">Button 2 Link</label><input type="text" id="h-btn2-link"></div>
+        <div class="form-group">
+          <label>Background Image</label>
+          <div style="display:flex;gap:8px;"><input type="text" id="h-image" placeholder="URL or path" style="flex:1;"><button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('h-file-input').click();"><i class="fas fa-upload"></i> Browse</button></div>
+          <input type="file" id="h-file-input" accept="image/*" style="display:none;"><div id="h-upload-status" style="font-size:12px;margin-top:4px;"></div>
+        </div>
+        <div class="form-group"><label for="h-order">Display Order</label><input type="number" id="h-order" value="0" min="0"></div>
+        <div class="modal-actions"><button type="button" class="btn btn-secondary" id="hero-modal-cancel">Cancel</button><button type="submit" class="btn btn-primary">Save Slide</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ ADD/EDIT MEDIA ARTICLE MODAL ============ -->
+  <div class="modal-overlay" id="media-modal">
+    <div class="modal-box">
+      <h2 id="media-modal-title">Add Article</h2>
+      <form id="media-form">
+        <input type="hidden" id="mid">
+        <div class="form-group"><label for="m-title">Title *</label><input type="text" id="m-title" required></div>
+        <div class="form-group"><label for="m-excerpt">Excerpt</label><textarea id="m-excerpt" rows="2"></textarea></div>
+        <div class="form-group"><label for="m-cat">Category</label>
+          <select id="m-cat">
+            <option value="article">Article</option><option value="press">Press Release</option><option value="event">Event</option><option value="story">Success Story</option><option value="library">Library PDF</option><option value="newsletter">Newsletter</option>
+          </select>
+        </div>
+        <div class="form-group"><label for="m-link">PDF / Link URL</label>
+          <div style="display:flex;gap:8px;">
+            <input type="text" id="m-link" placeholder="URL or upload PDF" style="flex:1;">
+            <button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('m-pdf-input').click();" style="white-space:nowrap;"><i class="fas fa-upload"></i> Upload PDF</button>
+          </div>
+          <input type="file" id="m-pdf-input" accept=".pdf" style="display:none;">
+          <div id="m-pdf-status" style="font-size:12px;margin-top:4px;"></div>
+        </div>
+        <div class="form-group"><label for="m-date">Date</label><input type="date" id="m-date"></div>
+        <div class="form-group">
+          <label>Image</label>
+          <div style="display:flex;gap:8px;"><input type="text" id="m-img" placeholder="URL or path" style="flex:1;"><button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('mfile-input').click();"><i class="fas fa-upload"></i> Browse</button></div>
+          <input type="file" id="mfile-input" accept="image/*" style="display:none;"><div id="mimg-upload-status" style="font-size:12px;margin-top:4px;"></div>
+        </div>
+        <div class="modal-actions"><button type="button" class="btn btn-secondary" id="media-modal-cancel">Cancel</button><button type="submit" class="btn btn-primary">Save Article</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ ADD/EDIT GALLERY ITEM MODAL ============ -->
+  <div class="modal-overlay" id="gallery-modal">
+    <div class="modal-box">
+      <h2 id="gallery-modal-title">Add Gallery Image</h2>
+      <form id="gallery-form">
+        <input type="hidden" id="g-id">
+        <div class="form-group">
+          <label>Image</label>
+          <div style="display:flex;gap:8px;"><input type="text" id="g-image" placeholder="URL or path" style="flex:1;"><button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('g-file-input').click();"><i class="fas fa-upload"></i> Browse</button></div>
+          <input type="file" id="g-file-input" accept="image/*" style="display:none;"><div id="g-upload-status" style="font-size:12px;margin-top:4px;"></div>
+        </div>
+        <div class="form-group"><label for="g-label">Label</label><input type="text" id="g-label" placeholder="e.g. Children's Programme"></div>
+        <div class="form-group"><label for="g-alt">Alt Text</label><input type="text" id="g-alt" placeholder="e.g. Children at KACM"></div>
+        <div class="form-group"><label for="g-order">Display Order</label><input type="number" id="g-order" value="0" min="0"></div>
+        <div class="modal-actions"><button type="button" class="btn btn-secondary" id="gallery-modal-cancel">Cancel</button><button type="submit" class="btn btn-primary">Save Image</button></div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+  // ============================================================
+  // TESTIMONIALS CRUD
+  // ============================================================
+  let allTestimonials = [];
+  const testimonialModal = document.getElementById('testimonial-modal');
+  const testimonialForm = document.getElementById('testimonial-form');
+  const tId = document.getElementById('t-id');
+  const tAuthor = document.getElementById('t-author');
+  const tCategory = document.getElementById('t-category');
+  const tLocation = document.getElementById('t-location');
+  const tContent = document.getElementById('t-content');
+  const tImage = document.getElementById('t-image');
+  const tOrder = document.getElementById('t-order');
+
+  document.getElementById('add-testimonial-btn').addEventListener('click', function() {
+    document.getElementById('testimonial-modal-title').textContent = 'Add Testimonial';
+    testimonialForm.reset(); tId.value = ''; tOrder.value = '0';
+    testimonialModal.classList.add('active');
+  });
+
+  testimonialForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var data = { author: tAuthor.value.trim(), category: tCategory.value, location: tLocation.value.trim(), content: tContent.value.trim(), image: tImage.value.trim(), display_order: parseInt(tOrder.value) || 0 };
+    var id = tId.value;
+    var result = id ? await kacmSupabase.from('testimonials').update(data).eq('id', parseInt(id)) : await kacmSupabase.from('testimonials').insert(data);
+    if (result.error) { showToast('Error: ' + result.error.message, 'error'); } else { showToast(id ? 'Testimonial updated!' : 'Testimonial added!', 'success'); testimonialModal.classList.remove('active'); loadTestimonials(); }
+  });
+  document.getElementById('testimonial-modal-cancel').addEventListener('click', function() { testimonialModal.classList.remove('active'); });
+  testimonialModal.addEventListener('click', function(e) { if (e.target === testimonialModal) testimonialModal.classList.remove('active'); });
+
+  async function loadTestimonials() {
+    var body = document.getElementById('testimonials-table-body');
+    body.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
+    var result = await kacmSupabase.from('testimonials').select('*').order('display_order');
+    if (result.error) { body.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:#dc2626;">Error: ' + escapeHtml(result.error.message) + '</td></tr>'; return; }
+    allTestimonials = result.data || [];
+    var html = '';
+    allTestimonials.forEach(function(t, i) {
+      html += '<tr><td>' + (i+1) + '</td><td><strong>' + escapeHtml(t.author) + '</strong></td><td>' + t.category + '</td><td>' + escapeHtml(t.location) + '</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + escapeHtml(t.content.substring(0, 80)) + '...</td>' +
+        '<td class="actions"><a href="#" class="edit-testimonial" data-id="' + t.id + '" style="color:#5B2D8E;"><i class="fas fa-edit"></i></a> <a href="#" class="delete-testimonial" data-id="' + t.id + '" style="color:#dc2626;"><i class="fas fa-trash"></i></a></td></tr>';
+    });
+    body.innerHTML = html || '<tr><td colspan="6" style="text-align:center;padding:40px;color:#888;">No testimonials found.</td></tr>';
+    document.querySelectorAll('.edit-testimonial').forEach(function(b) { b.addEventListener('click', function(e) { e.preventDefault(); var m = allTestimonials.find(function(x) { return x.id === parseInt(this.getAttribute('data-id')); }.bind(this)); if (m) { document.getElementById('testimonial-modal-title').textContent = 'Edit Testimonial'; tId.value = m.id; tAuthor.value = m.author; tCategory.value = m.category; tLocation.value = m.location || ''; tContent.value = m.content; tImage.value = m.image || ''; tOrder.value = m.display_order || 0; testimonialModal.classList.add('active'); } }); });
+    document.querySelectorAll('.delete-testimonial').forEach(function(b) { b.addEventListener('click', function(e) { e.preventDefault(); var m = allTestimonials.find(function(x) { return x.id === parseInt(this.getAttribute('data-id')); }.bind(this)); if (m) { memberToDelete = m; deleteMemberName.textContent = 'Delete testimonial by "' + m.author + '"?'; deleteModal.classList.add('active'); } }); });
+  }
+
+  // ============================================================
+  // PROJECTS CRUD
+  // ============================================================
+  let allProjectsData = [];
+  const projectModal = document.getElementById('project-modal');
+  const projectForm = document.getElementById('project-form');
+  const pId = document.getElementById('p-id');
+  const pTitle = document.getElementById('p-title');
+  const pTagline = document.getElementById('p-tagline');
+  const pDescription = document.getElementById('p-description');
+  const pImage = document.getElementById('p-image');
+  const pFeatures = document.getElementById('p-features');
+  const pOrder2 = document.getElementById('p-order');
+
+  document.getElementById('add-project-btn').addEventListener('click', function() {
+    document.getElementById('project-modal-title').textContent = 'Add Project';
+    projectForm.reset(); pId.value = ''; pOrder2.value = '0';
+    projectModal.classList.add('active');
+  });
+
+  projectForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var data = { title: pTitle.value.trim(), tagline: pTagline.value.trim(), description: pDescription.value.trim(), image: pImage.value.trim(), features: pFeatures.value.trim(), display_order: parseInt(pOrder2.value) || 0 };
+    var id = pId.value;
+    var result = id ? await kacmSupabase.from('projects').update(data).eq('id', parseInt(id)) : await kacmSupabase.from('projects').insert(data);
+    if (result.error) { showToast('Error: ' + result.error.message, 'error'); } else { showToast(id ? 'Project updated!' : 'Project added!', 'success'); projectModal.classList.remove('active'); loadProjects(); }
+  });
+  document.getElementById('project-modal-cancel').addEventListener('click', function() { projectModal.classList.remove('active'); });
+  projectModal.addEventListener('click', function(e) { if (e.target === projectModal) projectModal.classList.remove('active'); });
+
+  async function loadProjects() {
+    var body = document.getElementById('projects-table-body');
+    body.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
+    var result = await kacmSupabase.from('projects').select('*').order('display_order');
+    if (result.error) { body.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:#dc2626;">Error: ' + escapeHtml(result.error.message) + '</td></tr>'; return; }
+    allProjectsData = result.data || [];
+    var html = '';
+    allProjectsData.forEach(function(p, i) {
+      var imgHtml = p.image ? '<img src="' + escapeHtml(p.image) + '" style="width:50px;height:35px;object-fit:cover;border-radius:4px;">' : '<span style="color:#bbb;"><i class="fas fa-file-image"></i></span>';
+      html += '<tr><td>' + (i+1) + '</td><td><strong>' + escapeHtml(p.title) + '</strong></td><td>' + escapeHtml(p.tagline || '') + '</td><td>' + imgHtml + '</td><td>' + p.display_order + '</td>' +
+        '<td class="actions"><a href="#" class="edit-project" data-id="' + p.id + '" style="color:#5B2D8E;"><i class="fas fa-edit"></i></a> <a href="#" class="delete-project" data-id="' + p.id + '" style="color:#dc2626;"><i class="fas fa-trash"></i></a></td></tr>';
+    });
+    body.innerHTML = html || '<tr><td colspan="6" style="text-align:center;padding:40px;color:#888;">No projects found.</td></tr>';
+    document.querySelectorAll('.edit-project').forEach(function(b) { b.addEventListener('click', function(e) { e.preventDefault(); var m = allProjectsData.find(function(x) { return x.id === parseInt(this.getAttribute('data-id')); }.bind(this)); if (m) { document.getElementById('project-modal-title').textContent = 'Edit Project'; pId.value = m.id; pTitle.value = m.title; pTagline.value = m.tagline || ''; pDescription.value = m.description || ''; pImage.value = m.image || ''; pFeatures.value = (m.features || '').split('||').join('\n'); pOrder2.value = m.display_order || 0; projectModal.classList.add('active'); } }); });
+    document.querySelectorAll('.delete-project').forEach(function(b) { b.addEventListener('click', function(e) { e.preventDefault(); var m = allProjectsData.find(function(x) { return x.id === parseInt(this.getAttribute('data-id')); }.bind(this)); if (m) { memberToDelete = m; deleteMemberName.textContent = 'Delete project "' + m.title + '"?'; deleteModal.classList.add('active'); } }); });
+  }
+
+  // ============================================================
+  // HERO SLIDES CRUD
+  // ============================================================
+  let allHeroSlides = [];
+  const heroModal = document.getElementById('hero-modal');
+  const heroForm = document.getElementById('hero-form');
+  const hId = document.getElementById('h-id');
+  const hHeading = document.getElementById('h-heading');
+  const hSubtitle = document.getElementById('h-subtitle');
+  const hScripture = document.getElementById('h-scripture');
+  const hBtn1Text = document.getElementById('h-btn1-text');
+  const hBtn1Link = document.getElementById('h-btn1-link');
+  const hBtn2Text = document.getElementById('h-btn2-text');
+  const hBtn2Link = document.getElementById('h-btn2-link');
+  const hImage = document.getElementById('h-image');
+  const hOrderSlide = document.getElementById('h-order');
+
+  setupImageUpload('h-file-input', 'h-upload-status', 'h-image');
+
+  document.getElementById('add-hero-btn').addEventListener('click', function() {
+    document.getElementById('hero-modal-title').textContent = 'Add Hero Slide';
+    heroForm.reset(); hId.value = ''; hOrderSlide.value = '0'; document.getElementById('h-upload-status').innerHTML = '';
+    heroModal.classList.add('active');
+  });
+
+  heroForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var data = { heading: hHeading.value.trim(), subtitle: hSubtitle.value.trim(), scripture: hScripture.value.trim(), button1_text: hBtn1Text.value.trim(), button1_link: hBtn1Link.value.trim(), button2_text: hBtn2Text.value.trim(), button2_link: hBtn2Link.value.trim(), background_image: hImage.value.trim(), display_order: parseInt(hOrderSlide.value) || 0 };
+    var id = hId.value;
+    var result = id ? await kacmSupabase.from('hero_slides').update(data).eq('id', parseInt(id)) : await kacmSupabase.from('hero_slides').insert(data);
+    if (result.error) { showToast('Error: ' + result.error.message, 'error'); } else { showToast(id ? 'Slide updated!' : 'Slide added!', 'success'); heroModal.classList.remove('active'); loadHeroSlides(); }
+  });
+  document.getElementById('hero-modal-cancel').addEventListener('click', function() { heroModal.classList.remove('active'); });
+  heroModal.addEventListener('click', function(e) { if (e.target === heroModal) heroModal.classList.remove('active'); });
+
+  async function loadHeroSlides() {
+    var body = document.getElementById('hero-table-body');
+    body.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
+    var result = await kacmSupabase.from('hero_slides').select('*').order('display_order');
+    if (result.error) { body.innerHTML = '<tr><td colspan="6" style="padding:30px;color:#dc2626;">Error: ' + escapeHtml(result.error.message) + '</td></tr>'; return; }
+    allHeroSlides = result.data || [];
+    var html = '';
+    allHeroSlides.forEach(function(s, i) {
+      var imgHtml = s.background_image ? '<img src="' + escapeHtml(s.background_image) + '" style="width:50px;height:35px;object-fit:cover;border-radius:4px;">' : '<span style="color:#bbb;"><i class="fas fa-image"></i></span>';
+      html += '<tr><td>' + (i+1) + '</td><td>' + escapeHtml(s.heading || '').substring(0, 50) + '</td><td>' + (s.button1_text || '') + ' / ' + (s.button2_text || '') + '</td><td>' + imgHtml + '</td><td>' + s.display_order + '</td><td class="actions"><a href="#" class="edit-hero" data-id="' + s.id + '" style="color:#5B2D8E;"><i class="fas fa-edit"></i></a> <a href="#" class="delete-hero" data-id="' + s.id + '" style="color:#dc2626;"><i class="fas fa-trash"></i></a></td></tr>';
+    });
+    body.innerHTML = html || '<tr><td colspan="6" style="text-align:center;padding:40px;color:#888;">No hero slides found.</td></tr>';
+    document.querySelectorAll('.edit-hero').forEach(function(b) { b.addEventListener('click', function(e) { e.preventDefault(); var m = allHeroSlides.find(function(x) { return x.id === parseInt(this.getAttribute('data-id')); }.bind(this)); if (m) { document.getElementById('hero-modal-title').textContent = 'Edit Slide'; hId.value = m.id; hHeading.value = m.heading; hSubtitle.value = m.subtitle || ''; hScripture.value = m.scripture || ''; hBtn1Text.value = m.button1_text || ''; hBtn1Link.value = m.button1_link || ''; hBtn2Text.value = m.button2_text || ''; hBtn2Link.value = m.button2_link || ''; hImage.value = m.background_image || ''; hOrderSlide.value = m.display_order || 0; document.getElementById('h-upload-status').innerHTML = ''; heroModal.classList.add('active'); } }); });
+    document.querySelectorAll('.delete-hero').forEach(function(b) { b.addEventListener('click', function(e) { e.preventDefault(); var m = allHeroSlides.find(function(x) { return x.id === parseInt(this.getAttribute('data-id')); }.bind(this)); if (m) { memberToDelete = { id: m.id, _table: 'hero_slides', _label: m.heading || 'Slide' }; deleteMemberName.textContent = 'Delete slide "' + (m.heading || 'this slide') + '"?'; deleteModal.classList.add('active'); } }); });
+  }
+
+  // ============================================================
+  // MEDIA ARTICLES CRUD
+  // ============================================================
+  let allMedia = [];
+  const mediaModal = document.getElementById('media-modal');
+  const mediaForm = document.getElementById('media-form');
+  const mid = document.getElementById('mid');
+  const medTitle = document.getElementById('m-title');
+  const medExcerpt = document.getElementById('m-excerpt');
+  const medCat = document.getElementById('m-cat');
+  const medDate = document.getElementById('m-date');
+  const medImg = document.getElementById('m-img');
+  const medLink = document.getElementById('m-link');
+
+  setupImageUpload('mfile-input', 'mimg-upload-status', 'm-img');
+  // PDF upload handler
+  document.getElementById('m-pdf-input').addEventListener('change', async function() {
+    var file = this.files[0];
+    if (!file) return;
+    var status = document.getElementById('m-pdf-status');
+    status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
+    var ext = file.name.split('.').pop();
+    var filename = 'pdf_' + Date.now() + '_' + Math.random().toString(36).substring(2, 8) + '.' + ext;
+    var { data, error } = await kacmSupabase.storage.from('kacm-images').upload(filename, file);
+    if (error) { status.innerHTML = '<span style="color:#dc2626;">Upload failed: ' + error.message + '</span>'; return; }
+    var { data: urlData } = kacmSupabase.storage.from('kacm-images').getPublicUrl(filename);
+    document.getElementById('m-link').value = urlData.publicUrl;
+    status.innerHTML = '<span style="color:#15803d;"><i class="fas fa-check"></i> PDF uploaded!</span>';
+  });
+
+  document.getElementById('add-media-btn').addEventListener('click', function() {
+    document.getElementById('media-modal-title').textContent = 'Add Article';
+    mediaForm.reset(); mid.value = ''; document.getElementById('mimg-upload-status').innerHTML = '';
+    mediaModal.classList.add('active');
+  });
+
+  mediaForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var data = { title: medTitle.value.trim(), excerpt: medExcerpt.value.trim(), category: medCat.value, article_date: medDate.value || null, image: medImg.value.trim(), link: medLink.value.trim() };
+    var id = mid.value;
+    var result = id ? await kacmSupabase.from('media_articles').update(data).eq('id', parseInt(id)) : await kacmSupabase.from('media_articles').insert(data);
+    if (result.error) { showToast('Error: ' + result.error.message, 'error'); } else { showToast(id ? 'Article updated!' : 'Article added!', 'success'); mediaModal.classList.remove('active'); loadMedia(); }
+  });
+  document.getElementById('media-modal-cancel').addEventListener('click', function() { mediaModal.classList.remove('active'); });
+  mediaModal.addEventListener('click', function(e) { if (e.target === mediaModal) mediaModal.classList.remove('active'); });
+
+  async function loadMedia() {
+    var body = document.getElementById('media-table-body');
+    body.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
+    var result = await kacmSupabase.from('media_articles').select('*').order('article_date', { ascending: false });
+    if (result.error) { body.innerHTML = '<tr><td colspan="6" style="padding:30px;color:#dc2626;">Error: ' + escapeHtml(result.error.message) + '</td></tr>'; return; }
+    allMedia = result.data || [];
+    var html = '';
+    allMedia.forEach(function(a, i) {
+      var imgHtml = a.image ? '<img src="' + escapeHtml(a.image) + '" style="width:50px;height:35px;object-fit:cover;border-radius:4px;">' : '<span style="color:#bbb;"><i class="fas fa-file"></i></span>';
+      html += '<tr><td>' + (i+1) + '</td><td>' + escapeHtml(a.title || '').substring(0, 50) + '</td><td>' + (a.category || '') + '</td><td>' + (a.article_date || '') + '</td><td>' + imgHtml + '</td><td class="actions"><a href="#" class="edit-media" data-id="' + a.id + '" style="color:#5B2D8E;"><i class="fas fa-edit"></i></a> <a href="#" class="delete-media" data-id="' + a.id + '" style="color:#dc2626;"><i class="fas fa-trash"></i></a></td></tr>';
+    });
+    body.innerHTML = html || '<tr><td colspan="6" style="text-align:center;padding:40px;color:#888;">No articles found.</td></tr>';
+    document.querySelectorAll('.edit-media').forEach(function(b) { b.addEventListener('click', function(e) { e.preventDefault(); var m = allMedia.find(function(x) { return x.id === parseInt(this.getAttribute('data-id')); }.bind(this)); if (m) { document.getElementById('media-modal-title').textContent = 'Edit Article'; mid.value = m.id; medTitle.value = m.title; medExcerpt.value = m.excerpt || ''; medCat.value = m.category || 'article'; medDate.value = m.article_date || ''; medImg.value = m.image || ''; medLink.value = m.link || ''; document.getElementById('mimg-upload-status').innerHTML = ''; mediaModal.classList.add('active'); } }); });
+    document.querySelectorAll('.delete-media').forEach(function(b) { b.addEventListener('click', function(e) { e.preventDefault(); var m = allMedia.find(function(x) { return x.id === parseInt(this.getAttribute('data-id')); }.bind(this)); if (m) { memberToDelete = { id: m.id, _table: 'media_articles', _label: m.title || 'Article' }; deleteMemberName.textContent = 'Delete article "' + (m.title || 'this article') + '"?'; deleteModal.classList.add('active'); } }); });
+  }
+
+  // ============================================================
+  // GALLERY CRUD
+  // ============================================================
+  let allGallery = [];
+  const galleryModal2 = document.getElementById('gallery-modal');
+  const galleryForm = document.getElementById('gallery-form');
+  const gId = document.getElementById('g-id');
+  const gImage = document.getElementById('g-image');
+  const gLabel = document.getElementById('g-label');
+  const gAlt = document.getElementById('g-alt');
+  const gOrder = document.getElementById('g-order');
+
+  setupImageUpload('g-file-input', 'g-upload-status', 'g-image');
+
+  document.getElementById('add-gallery-btn').addEventListener('click', function() {
+    document.getElementById('gallery-modal-title').textContent = 'Add Gallery Image';
+    galleryForm.reset(); gId.value = ''; gOrder.value = '0'; document.getElementById('g-upload-status').innerHTML = '';
+    galleryModal2.classList.add('active');
+  });
+
+  galleryForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var data = { filename: gImage.value.trim(), label: gLabel.value.trim(), alt_text: gAlt.value.trim(), display_order: parseInt(gOrder.value) || 0 };
+    var id = gId.value;
+    var result = id ? await kacmSupabase.from('gallery').update(data).eq('id', parseInt(id)) : await kacmSupabase.from('gallery').insert(data);
+    if (result.error) { showToast('Error: ' + result.error.message, 'error'); } else { showToast(id ? 'Image updated!' : 'Image added!', 'success'); galleryModal2.classList.remove('active'); loadGallery(); }
+  });
+  document.getElementById('gallery-modal-cancel').addEventListener('click', function() { galleryModal2.classList.remove('active'); });
+  galleryModal2.addEventListener('click', function(e) { if (e.target === galleryModal2) galleryModal2.classList.remove('active'); });
+
+  async function loadGallery() {
+    var body = document.getElementById('gallery-table-body');
+    body.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:30px;color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
+    var result = await kacmSupabase.from('gallery').select('*').order('display_order');
+    if (result.error) { body.innerHTML = '<tr><td colspan="5" style="padding:30px;color:#dc2626;">Error: ' + escapeHtml(result.error.message) + '</td></tr>'; return; }
+    allGallery = result.data || [];
+    var html = '';
+    allGallery.forEach(function(g, i) {
+      var imgHtml = g.filename ? '<img src="' + escapeHtml(g.filename) + '" style="width:50px;height:35px;object-fit:cover;border-radius:4px;">' : '<span style="color:#bbb;"><i class="fas fa-image"></i></span>';
+      html += '<tr><td>' + (i+1) + '</td><td>' + imgHtml + '</td><td>' + escapeHtml(g.label || '') + '</td><td>' + g.display_order + '</td><td class="actions"><a href="#" class="edit-gallery" data-id="' + g.id + '" style="color:#5B2D8E;"><i class="fas fa-edit"></i></a> <a href="#" class="delete-gallery" data-id="' + g.id + '" style="color:#dc2626;"><i class="fas fa-trash"></i></a></td></tr>';
+    });
+    body.innerHTML = html || '<tr><td colspan="5" style="text-align:center;padding:40px;color:#888;">No gallery images found.</td></tr>';
+    document.querySelectorAll('.edit-gallery').forEach(function(b) { b.addEventListener('click', function(e) { e.preventDefault(); var m = allGallery.find(function(x) { return x.id === parseInt(this.getAttribute('data-id')); }.bind(this)); if (m) { document.getElementById('gallery-modal-title').textContent = 'Edit Image'; gId.value = m.id; gImage.value = m.filename || ''; gLabel.value = m.label || ''; gAlt.value = m.alt_text || ''; gOrder.value = m.display_order || 0; document.getElementById('g-upload-status').innerHTML = ''; galleryModal2.classList.add('active'); } }); });
+    document.querySelectorAll('.delete-gallery').forEach(function(b) { b.addEventListener('click', function(e) { e.preventDefault(); var m = allGallery.find(function(x) { return x.id === parseInt(this.getAttribute('data-id')); }.bind(this)); if (m) { memberToDelete = { id: m.id, _table: 'gallery', _label: m.label || 'image' }; deleteMemberName.textContent = 'Delete image "' + (m.label || 'this image') + '"?'; deleteModal.classList.add('active'); } }); });
+  }
+
+  </script>
+</body>
+</html>
